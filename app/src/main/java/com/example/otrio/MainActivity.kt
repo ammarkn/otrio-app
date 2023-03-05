@@ -1,5 +1,6 @@
 package com.example.otrio
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import com.example.otrio.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,16 +24,34 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        //variable for button to take user to instructions
+        val instButtonClick = findViewById<Button>(R.id.go_to_instructions)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        //event listener to change page when button is clicked
+        instButtonClick.setOnClickListener {
+            val intent = Intent(this, InstructionsActivity::class.java)
+            startActivity(intent)
+        }
+
+        //variable for button to take user to instructions
+        val gameButtonClick = findViewById<Button>(R.id.go_to_game)
+
+        //event listener to change page when button is clicked
+        gameButtonClick.setOnClickListener {
+            val intent = Intent(this, GameplayActivity::class.java)
+            startActivity(intent)
+        }
+
+        //setSupportActionBar(binding.toolbar)
+
+       /* val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        setupActionBarWithNavController(navController, appBarConfiguration)*/
 
-        binding.fab.setOnClickListener { view ->
+        /*binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
-        }
+        }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,9 +70,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
+    /*override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
-    }
+    }*/
 }
