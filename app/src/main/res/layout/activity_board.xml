@@ -127,20 +127,23 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/instructionsButton"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="321dp"
+            android:layout_marginStart="10dp"
+            android:text="I"
+            app:icon="@android:drawable/ic_dialog_info" />
+
+        <Button
             android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="10dp"
             android:text="Home" />
-
-        <Button
-            android:id="@+id/instructionsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="258dp"
-            android:text="Instructions" />
 
     </RelativeLayout>
 
