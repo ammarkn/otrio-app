@@ -17,6 +17,8 @@
         <activity
             android:name=".InstructionsActivity"
             android:exported="false" />
+        <activity android:name=".BoardActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
