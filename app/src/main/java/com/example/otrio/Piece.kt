@@ -1,9 +1,17 @@
 package com.example.otrio
 
 class Piece(private val color: String, private val size: String) {
-    var position: Int? = null
-    fun setPiecePosition(position: Int) {
-        this.position = position
+//    var position: Int? = null
+    var xPos: Int? = null;
+    var yPos: Int? = null;
+
+//    fun setPiecePosition(position: Int) {
+//        this.position = position
+//    }
+
+    fun setPiecePosition(xPos: Int, yPos: Int) {
+        this.xPos = xPos
+        this.yPos = yPos
     }
 
     fun getColor(): String {
@@ -14,7 +22,15 @@ class Piece(private val color: String, private val size: String) {
         return size
     }
 
-    fun getPiecePosition(): Int? {
-        return position
+    fun getxPos() : Int? {
+        return xPos
     }
+
+    fun getyPos() : Int? {
+        return yPos;
+    }
+
+//    fun getPiecePosition(): Int? {
+//        return position
+//    }
 }

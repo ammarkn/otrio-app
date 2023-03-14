@@ -6,16 +6,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import java.lang.System.arraycopy
 
 class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rounds = 0;
 
-    private var blueWin = false
     private var redWin = false
+    private var blueWin = false
 
-    var blueWins = 0
     var redWins = 0
+    var blueWins = 0
 
     private val buttons = Array(3) { arrayOfNulls<Button>(3) }
 
@@ -106,84 +107,74 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun placePiece(piece: Piece, position: Int) {
-        piece.setPiecePosition(position);
+    private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
+        piece.setPiecePosition(xPos, yPos);
     }
 
     /*
     Method 1 of winning: https://otrio.com/pages/how-to-play
      */
     private fun samePieceWin() {
-        var grid = Array(3) { arrayOfNulls<String>(3) }
+        var temp = Array(3) { arrayOfNulls <String>(3) }
+        var board = Array(3) { arrayOfNulls <Piece?>(3) }
+
         for (i in 0..2) {
             for (j in 0..2) {
-                grid[i][j] = buttons[i][j]!!.text.toString()
+                temp[i][j] = buttons[i][j]!!.text.toString()
             }
+        }
+
+        for(i in temp.indices) {
+            arraycopy(temp[i], 0, board[i], 0, temp[0].size)
         }
 
         //Rows
         for (i in 0..2) {
-            if (grid[i][0] == grid[i][1] && grid[i][0] == grid[i][2] && grid[i][0]!!.startsWith("Red")) {
+            if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0]!!.getColor() == "Red") {
                 redWin = true
             }
-            else if(grid[i][0] == grid[i][1] && grid[i][0] == grid[i][2] && grid[i][0]!!.startsWith("Blue")) {
+            else if(board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0]!!.getColor() == "Blue") {
                 blueWin = true
             }
         }
 
         //Columns
         for (i in 0..2) {
-            if (grid[0][i] == grid[1][i] && grid[0][i] == grid[2][i] && grid[0][i]!!.startsWith("Red")) {
+            if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i]!!.getColor() == "Red") {
                 redWin = true
             }
-            else if (grid[0][i] == grid[1][i] && grid[0][i] == grid[2][i] && grid[0][i]!!.startsWith("Blue")) {
+            else if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i]!!.getColor() == "Blue") {
                 blueWin = true
             }
         }
 
         //Diagonal (Left to right)
-        if (grid[0][0] == grid[1][1] && grid[0][0] == grid[2][2] && grid[0][0]!!.startsWith("Red")) {
+        if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0]!!.getColor() == "Red") {
             redWin = true
         }
         //Diagonal (Right to left)
-        else if (grid[0][2] == grid[1][1] && grid[0][2] == grid[2][0] && grid[0][2]!!.startsWith("Blue")) {
+        else if (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2]!!.getColor() == "Blue") {
             blueWin = true
         }
 
-        if(redWin) {
-            redWins++
-        }
-        else if(blueWin) {
-            blueWins++
-        }
+        if(redWin) { redWins++ } else if(blueWin) { blueWins++ }
     }
 
     /*
     Method 2 of winning: https://otrio.com/pages/how-to-play
      */
     private fun sameSpaceWin() {
-        if((redPeg0.getPiecePosition() == redMedium0.getPiecePosition() && redPeg0.getPiecePosition() == redBig0.getPiecePosition()) ||
-                (redPeg1.getPiecePosition() == redMedium1.getPiecePosition() && redPeg1.getPiecePosition() == redBig1.getPiecePosition()) ||
-                (redPeg2.getPiecePosition() == redMedium2.getPiecePosition() && redPeg2.getPiecePosition() == redBig2.getPiecePosition()) ||
-                (redPeg1.getPiecePosition() == redMedium0.getPiecePosition() && redPeg1.getPiecePosition() == redBig0.getPiecePosition()) ||
-                (redPeg0.getPiecePosition() == redMedium1.getPiecePosition() && redPeg0.getPiecePosition() == redBig0.getPiecePosition()) ||
-                (redPeg0.getPiecePosition() == redMedium1.getPiecePosition() && redPeg0.getPiecePosition() == redBig1.getPiecePosition())) {
-            blueWin = true
-        }
-        else if((bluePeg0.getPiecePosition() == blueMedium0.getPiecePosition() && bluePeg0.getPiecePosition() == blueBig0.getPiecePosition()) ||
-            (bluePeg1.getPiecePosition() == blueMedium1.getPiecePosition() && bluePeg1.getPiecePosition() == blueBig1.getPiecePosition()) ||
-            (bluePeg2.getPiecePosition() == blueMedium2.getPiecePosition() && bluePeg2.getPiecePosition() == blueBig2.getPiecePosition()) ||
-            (bluePeg1.getPiecePosition() == blueMedium0.getPiecePosition() && bluePeg1.getPiecePosition() == blueBig0.getPiecePosition()) ||
-            (bluePeg0.getPiecePosition() == blueMedium1.getPiecePosition() && bluePeg0.getPiecePosition() == blueBig0.getPiecePosition()) ||
-            (bluePeg0.getPiecePosition() == blueMedium1.getPiecePosition() && bluePeg0.getPiecePosition() == blueBig1.getPiecePosition())) {
-            blueWin = true
+        var temp = Array(3) { arrayOfNulls <String>(3) }
+        var board = Array(3) { arrayOfNulls <Piece?>(3) }
+
+        for (i in 0..2) {
+            for (j in 0..2) {
+                temp[i][j] = buttons[i][j]!!.text.toString()
+            }
         }
 
-        if(redWin) {
-            redWins++
-        }
-        else if(blueWin) {
-            blueWins++
+        for(i in temp.indices) {
+            arraycopy(temp[i], 0, board[i], 0, temp[0].size)
         }
     }
 
@@ -191,74 +182,85 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     Method 3 of winning: https://otrio.com/pages/how-to-play
      */
     private fun ascendingDescendingWin() {
-        var grid = Array(3) { arrayOfNulls<String>(3) }
+        var temp = Array(3) { arrayOfNulls <String>(3) }
+        var board = Array(3) { arrayOfNulls <Piece?>(3) }
+
         for (i in 0..2) {
             for (j in 0..2) {
-                grid[i][j] = buttons[i][j]!!.text.toString()
+                temp[i][j] = buttons[i][j]!!.text.toString()
             }
+        }
+
+        for(i in temp.indices) {
+            arraycopy(temp[i], 0, board[i], 0, temp[0].size)
         }
 
         // Ascending/descending row
         for (i in 0..2) {
-            if(grid[i][0]!!.startsWith("RedPeg") && grid[i][1]!!.startsWith("RedMedium") && grid[i][2]!!.startsWith("RedBig")) {
+            if(board[i][0]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][2]!!.getSize() == ("Big")
+                && board[i][0]!!.getColor() == ("Red") && board[i][1]!!.getColor() == ("Red") && board[i][2]!!.getColor() == ("Red")) {
                 redWin = true
             }
-            else if(grid[i][2]!!.startsWith("RedPeg") && grid[i][1]!!.startsWith("RedMedium") && grid[i][0]!!.startsWith("RedBig")) {
+            else if(board[i][2]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][0]!!.getSize() == ("Big")
+                && board[i][2]!!.getColor() == ("Red") && board[i][1]!!.getColor() == ("Red") && board[i][0]!!.getColor() == ("Red")) {
                 redWin = true
             }
         }
 
         for (i in 0..2) {
-            if(grid[i][0]!!.startsWith("BluePeg") && grid[i][1]!!.startsWith("BlueMedium") && grid[i][2]!!.startsWith("BlueBig")) {
+            if(board[i][0]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][2]!!.getSize() == ("Big")
+                && board[i][0]!!.getColor() == ("Blue") && board[i][1]!!.getColor() == ("Blue") && board[i][2]!!.getColor() == ("Blue")) {
                 blueWin = true
             }
-            else if(grid[i][2]!!.startsWith("BluePeg") && grid[i][1]!!.startsWith("BlueMedium") && grid[i][0]!!.startsWith("BlueBig")) {
+            else if(board[i][2]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][0]!!.getSize() == ("Big")
+                && board[i][2]!!.getColor() == ("Blue") && board[i][1]!!.getColor() == ("Blue") && board[i][0]!!.getColor() == ("Blue")) {
                 blueWin = true
             }
         }
 
         // Ascending/descending column
         for (i in 0..2) {
-            if(grid[0][i]!!.startsWith("RedPeg") && grid[1][i]!!.startsWith("RedMedium") && grid[2][i]!!.startsWith("RedBig")) {
+            if(board[0][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[2][i]!!.getSize() == ("Big")
+                && board[0][i]!!.getColor() == ("Red") && board[1][i]!!.getColor() == ("Red") && board[2][i]!!.getColor() == ("Red")) {
                 redWin = true
             }
-            else if(grid[2][i]!!.startsWith("RedPeg") && grid[1][i]!!.startsWith("RedMedium") && grid[0][i]!!.startsWith("RedBig")) {
+            else if(board[2][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[0][i]!!.getSize() == ("Big")
+                && board[2][i]!!.getColor() == ("Red") && board[1][i]!!.getColor() == ("Red") && board[0][i]!!.getColor() == ("Red")) {
                 redWin = true
             }
         }
 
         for (i in 0..2) {
-            if(grid[0][i]!!.startsWith("BluePeg") && grid[1][i]!!.startsWith("BlueMedium") && grid[2][i]!!.startsWith("BlueBig")) {
+            if(board[0][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[2][i]!!.getSize() == ("Big")
+                && board[0][i]!!.getColor() == ("Blue") && board[1][i]!!.getColor() == ("Blue") && board[2][i]!!.getColor() == ("Blue")) {
                 blueWin = true
             }
-            else if(grid[2][i]!!.startsWith("BluePeg") && grid[1][i]!!.startsWith("BlueMedium") && grid[0][i]!!.startsWith("BlueBig")) {
+            else if(board[2][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[0][i]!!.getSize() == ("Big")
+                && board[2][i]!!.getColor() == ("Blue") && board[1][i]!!.getColor() == ("Blue") && board[0][i]!!.getColor() == ("Blue")) {
                 blueWin = true
             }
         }
 
         //Diagonal (Left to right)
-        if(grid[0][0]!!.startsWith("RedPeg") && grid[1][1]!!.startsWith("RedMedium") && grid[2][2]!!.startsWith("RedBig")) {
+        if(board[0][0]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[2][2]!!.getSize() == ("Big")
+            && board[0][0]!!.getColor() == ("Red") && board[1][1]!!.getColor() == ("Red") && board[2][2]!!.getColor() == ("Red")) {
             redWin = true
         }
+        else if(board[0][0]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[2][2]!!.getSize() == ("Big")
+            && board[0][0]!!.getColor() == ("Blue") && board[1][1]!!.getColor() == ("Blue") && board[2][2]!!.getColor() == ("Blue")) {
+            blueWin = true
+        }
+
         //Diagonal (Right to left)
-        else if(grid[0][2]!!.startsWith("RedPeg") && grid[1][1]!!.startsWith("RedMedium") && grid[0][2]!!.startsWith("RedBig")) {
+        if(board[0][2]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[0][2]!!.getSize() == ("Big")
+            && board[0][2]!!.getColor() == ("Red") && board[1][1]!!.getColor() == ("Red") && board[0][2]!!.getColor() == ("Red")) {
             redWin = true
         }
-
-        //Diagonal (Left to right)
-        if(grid[0][0]!!.startsWith("BluePeg") && grid[1][1]!!.startsWith("BlueMedium") && grid[2][2]!!.startsWith("BlueBig")) {
-            blueWin = false
-        }
-        //Diagonal (Right to left)
-        else if(grid[0][2]!!.startsWith("BluePeg") && grid[1][1]!!.startsWith("BlueMedium") && grid[0][2]!!.startsWith("BlueBig")) {
-            blueWin = false
+        else if(board[0][2]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[0][2]!!.getSize() == ("Big")
+            && board[0][2]!!.getColor() == ("Blue") && board[1][1]!!.getColor() == ("Blue") && board[0][2]!!.getColor() == ("Blue")) {
+            blueWin = true
         }
 
-        if(redWin) {
-            redWins++
-        }
-        else if(blueWin) {
-            blueWins++
-        }
+        if(redWin) { redWins++ } else if(blueWin) { blueWins++ }
     }
 }
