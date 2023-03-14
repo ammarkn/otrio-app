@@ -34,17 +34,17 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     var redMedium2 = Piece("Red", "Medium")
     var redBig2 = Piece("Red", "Big")
 
-    var bluePeg0 = Piece("Red", "Peg")
-    var blueMedium0 = Piece("Red", "Medium")
-    var blueBig0 = Piece("Red", "Big")
+    var bluePeg0 = Piece("Blue", "Peg")
+    var blueMedium0 = Piece("Blue", "Medium")
+    var blueBig0 = Piece("Blue", "Big")
 
-    var bluePeg1 = Piece("Red", "Peg")
-    var blueMedium1 = Piece("Red", "Medium")
-    var blueBig1 = Piece("Red", "Big")
+    var bluePeg1 = Piece("Blue", "Peg")
+    var blueMedium1 = Piece("Blue", "Medium")
+    var blueBig1 = Piece("Blue", "Big")
 
-    var bluePeg2 = Piece("Red", "Peg")
-    var blueMedium2 = Piece("Red", "Medium")
-    var blueBig2 = Piece("Red", "Big")
+    var bluePeg2 = Piece("Blue", "Peg")
+    var blueMedium2 = Piece("Blue", "Medium")
+    var blueBig2 = Piece("Blue", "Big")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
