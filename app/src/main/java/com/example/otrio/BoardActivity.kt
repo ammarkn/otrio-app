@@ -22,6 +22,9 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     private var textP1 = TextView(this)
     private var textP2 = TextView(this)
 
+    var redPieces = ArrayList<Piece>()
+    var bluePieces = ArrayList<Piece>()
+
     var redPeg0 = Piece("Red", "Peg")
     var redMedium0 = Piece("Red", "Medium")
     var redBig0 = Piece("Red", "Big")
@@ -62,6 +65,29 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
+
+        redPieces.add(redPeg0)
+        redPieces.add(redMedium0)
+        redPieces.add(redBig0)
+        redPieces.add(redPeg1)
+        redPieces.add(redMedium1)
+        redPieces.add(redBig1)
+        redPieces.add(redPeg2)
+        redPieces.add(redMedium2)
+        redPieces.add(redBig2)
+
+        bluePieces.add(bluePeg0)
+        bluePieces.add(blueMedium0)
+        bluePieces.add(blueBig0)
+        bluePieces.add(bluePeg1)
+        bluePieces.add(blueMedium1)
+        bluePieces.add(blueBig1)
+        bluePieces.add(bluePeg2)
+        bluePieces.add(blueMedium2)
+        bluePieces.add(blueBig2)
+
+        var p1 = Player("player1", redWins, redPieces)
+        var p2 = Player("player2", blueWins, bluePieces)
 
         textP1 = findViewById(R.id.p1Text)
         textP2 = findViewById(R.id.p2Text)
