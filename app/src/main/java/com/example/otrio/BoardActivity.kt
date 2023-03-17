@@ -23,8 +23,8 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     private var textP1 = TextView(this)
     private var textP2 = TextView(this)
 
-    var redPieces = ArrayList<Piece>()
-    var bluePieces = ArrayList<Piece>()
+    var redPieces = ArrayList<ArrayList<Piece>>()
+    var bluePieces = ArrayList<ArrayList<Piece>>()
 
     var redPeg0 = Piece("Red", "Peg")
     var redMedium0 = Piece("Red", "Medium")
@@ -50,6 +50,20 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     var blueMedium2 = Piece("Blue", "Medium")
     var blueBig2 = Piece("Blue", "Big")
 
+    var turn = 0 //the current turn number
+    var pieceType = Piece("null","null") //the piece current picked up by one of players
+
+    var p1 = Player("player1", "red", redWins, redPieces)
+    var p2 = Player("player2", "blue", blueWins, bluePieces)
+
+    var playerList = ArrayList<Player>() //save all play in one list
+
+    private lateinit var turnplayer: TextView
+    private lateinit var pegnumber: TextView
+    private lateinit var mediumnumber: TextView
+    private lateinit var bignumber: TextView
+    private lateinit var picked: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
@@ -67,28 +81,73 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
-        redPieces.add(redPeg0)
-        redPieces.add(redMedium0)
-        redPieces.add(redBig0)
-        redPieces.add(redPeg1)
-        redPieces.add(redMedium1)
-        redPieces.add(redBig1)
-        redPieces.add(redPeg2)
-        redPieces.add(redMedium2)
-        redPieces.add(redBig2)
+        var redPeg = ArrayList<Piece>()
+        var redMedium = ArrayList<Piece>()
+        var redBig = ArrayList<Piece>()
 
-        bluePieces.add(bluePeg0)
-        bluePieces.add(blueMedium0)
-        bluePieces.add(blueBig0)
-        bluePieces.add(bluePeg1)
-        bluePieces.add(blueMedium1)
-        bluePieces.add(blueBig1)
-        bluePieces.add(bluePeg2)
-        bluePieces.add(blueMedium2)
-        bluePieces.add(blueBig2)
+        redPeg.add(redPeg0)
+        redPeg.add(redPeg1)
+        redPeg.add(redPeg2)
 
-        var p1 = Player("player1", redWins, redPieces)
-        var p2 = Player("player2", blueWins, bluePieces)
+        redMedium.add(redMedium0)
+        redMedium.add(redMedium1)
+        redMedium.add(redMedium2)
+
+        redBig.add(redBig0)
+        redBig.add(redBig1)
+        redBig.add(redBig2)
+
+        var bluePeg = ArrayList<Piece>()
+        var blueMedium = ArrayList<Piece>()
+        var blueBig = ArrayList<Piece>()
+
+        bluePeg.add(bluePeg0)
+        bluePeg.add(bluePeg1)
+        bluePeg.add(bluePeg2)
+
+        blueMedium.add(blueMedium0)
+        blueMedium.add(blueMedium1)
+        blueMedium.add(blueMedium2)
+
+        blueBig.add(blueBig0)
+        blueBig.add(blueBig1)
+        blueBig.add(blueBig2)
+
+        redPieces.add(redPeg)
+        redPieces.add(redMedium)
+        redPieces.add(redBig)
+
+        bluePieces.add(bluePeg)
+        bluePieces.add(blueMedium)
+        bluePieces.add(blueBig)
+
+        //set player list
+        playerList.add(p1)
+        playerList.add(p2)
+
+        //when users pick up a piece
+        val buttonPeg = findViewById<Button>(R.id.peg)
+        buttonPeg.setOnClickListener(this)
+
+        val buttonMedium = findViewById<Button>(R.id.medium)
+        buttonMedium.setOnClickListener(this)
+
+        val buttonBig = findViewById<Button>(R.id.big)
+        buttonBig.setOnClickListener(this)
+
+        picked = findViewById(R.id.currentPiece) //will be used to show the update of current picked piece
+
+        turnplayer = findViewById(R.id.playerTurn)
+        turnplayer.text = "Player1"
+
+        pegnumber = findViewById(R.id.pegNumber)
+        pegnumber.text = p1.getPieces()[0].size.toString()
+
+        mediumnumber = findViewById(R.id.mediumNumber)
+        mediumnumber.text = p1.getPieces()[1].size.toString()
+
+        bignumber = findViewById(R.id.bigNumber)
+        bignumber.text = p1.getPieces()[2].size.toString()
 
         textP1 = findViewById(R.id.p1Text)
         textP2 = findViewById(R.id.p2Text)
@@ -104,11 +163,41 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
+        when (v.id) {
+            R.id.peg -> handleButtonPegClick()
+            R.id.medium -> handleButtonMediumClick()
+            R.id.big -> handleButtonBigClick()
+        }
+    }
 
+    private fun handleButtonPegClick() {
+        pieceType = Piece(playerList[turn%2].getColor(),"Peg")
+        picked.text = pieceType.getColor()+" "+pieceType.getSize()
+    }
+
+    private fun handleButtonBigClick() {
+        pieceType = Piece(playerList[turn%2].getColor(),"Medium")
+        picked.text = pieceType.getColor()+" "+pieceType.getSize()
+    }
+
+    private fun handleButtonMediumClick() {
+        pieceType = Piece(playerList[turn%2].getColor(),"Big")
+        picked.text = pieceType.getColor()+" "+pieceType.getSize()
+    }
+
+    private fun showNextPlayerInfo() {
+        turn ++
+        val nextPlayer = playerList[turn%2]
+
+        turnplayer.text = nextPlayer.getName()
+        pegnumber.text = nextPlayer.getPieces()[0].size.toString()
+        mediumnumber.text = nextPlayer.getPieces()[1].size.toString()
+        bignumber.text = nextPlayer.getPieces()[2].size.toString()
     }
 
     private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
         piece.setPiecePosition(xPos, yPos);
+        showNextPlayerInfo()
     }
 
     /*

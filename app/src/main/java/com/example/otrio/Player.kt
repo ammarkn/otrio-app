@@ -1,6 +1,6 @@
 package com.example.otrio
 
-class Player(private val name: String, private var wins: Int, private val pieces: ArrayList<Piece>) {
+class Player(private val name: String, private val color: String, private var wins: Int, private val pieces: ArrayList<ArrayList<Piece>>) {
     fun winGame() {
         wins++
     }
@@ -9,11 +9,15 @@ class Player(private val name: String, private var wins: Int, private val pieces
         return name
     }
 
+    fun getColor(): String {
+        return color
+    }
+
     fun getWins(): Int {
         return wins
     }
 
-    fun getPieces(): ArrayList<Piece> {
+    fun getPieces(): ArrayList<ArrayList<Piece>> {
         return pieces
     }
 }
