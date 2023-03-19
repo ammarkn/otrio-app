@@ -116,8 +116,15 @@
             android:layout_height="wrap_content"
             android:src="@drawable/winning_3"
             android:scaleType="fitStart"
-            android:layout_marginBottom="70dp"
+
             />
+        <Button
+            android:id="@+id/go_to_gameplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="70dp"
+            android:text="Play Game" />
 
 
     </LinearLayout>

@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         //event listener to change page when button is clicked
         gameButtonClick.setOnClickListener {
-            val intent = Intent(this, GameplayActivity::class.java)
+            val intent = Intent(this, BoardActivity::class.java)
             startActivity(intent)
         }
 
