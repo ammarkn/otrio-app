@@ -12,6 +12,12 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rounds = 0;
 
+    private var playing = true
+
+    private var buttonPegSelected = false
+    private var buttonMediumSelected = false
+    private var buttonBigSelected = false
+
     private var redWin = false
     private var blueWin = false
 
@@ -20,8 +26,8 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private val buttons = Array(3) { arrayOfNulls<Button>(3) }
 
-    private var textP1 = TextView(this)
-    private var textP2 = TextView(this)
+    private lateinit var textP1 : TextView
+    private lateinit var textP2 : TextView
 
     var redPieces = ArrayList<ArrayList<Piece>>()
     var bluePieces = ArrayList<ArrayList<Piece>>()
@@ -64,6 +70,14 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var bignumber: TextView
     private lateinit var picked: TextView
 
+    var redPeg = ArrayList<Piece>()
+    var redMedium = ArrayList<Piece>()
+    var redBig = ArrayList<Piece>()
+
+    var bluePeg = ArrayList<Piece>()
+    var blueMedium = ArrayList<Piece>()
+    var blueBig = ArrayList<Piece>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
@@ -81,10 +95,6 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
-        var redPeg = ArrayList<Piece>()
-        var redMedium = ArrayList<Piece>()
-        var redBig = ArrayList<Piece>()
-
         redPeg.add(redPeg0)
         redPeg.add(redPeg1)
         redPeg.add(redPeg2)
@@ -96,10 +106,6 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         redBig.add(redBig0)
         redBig.add(redBig1)
         redBig.add(redBig2)
-
-        var bluePeg = ArrayList<Piece>()
-        var blueMedium = ArrayList<Piece>()
-        var blueBig = ArrayList<Piece>()
 
         bluePeg.add(bluePeg0)
         bluePeg.add(bluePeg1)
@@ -160,29 +166,493 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
                 buttons[i][j]!!.setOnClickListener(this)
             }
         }
+
+        //How does the game play???
+        //could move to diff function, but leave here until it work
+        /*while(playing){
+            if(buttonBigSelected){
+                //figure out which square selected, then send piece to square
+            }
+        }*/
     }
+
 
     override fun onClick(v: View) {
         when (v.id) {
+            //R.id.peg -> buttonPegSelected = true
             R.id.peg -> handleButtonPegClick()
             R.id.medium -> handleButtonMediumClick()
             R.id.big -> handleButtonBigClick()
+            R.id.grid00 -> handleButton00Click()
+            R.id.grid01 -> handleButton01Click()
+            R.id.grid02 -> handleButton02Click()
+            R.id.grid10 -> handleButton10Click()
+            R.id.grid11 -> handleButton11Click()
+            R.id.grid12 -> handleButton12Click()
+            R.id.grid20 -> handleButton20Click()
+            R.id.grid21 -> handleButton21Click()
+            R.id.grid22 -> handleButton22Click()
+        }
+    }
+
+    private fun handleButton00Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid00)
+            //check if peg already placed here
+            if(!button.text.toString().contains("Peg")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 0, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 0, 0)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid00)
+            if(!button.text.toString().contains("Medium")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 0, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 0, 0)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid00)
+            if(!button.text.toString().contains("Big")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 0, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 0, 0)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton01Click() {
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid01)
+            if(!button.text.toString().contains("Peg")) {
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if (pieceType.getColor() == ("red")) {
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 0, 1)
+                } else if (pieceType.getColor() == ("blue")) {
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 0, 1)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid01)
+            if(!button.text.toString().contains("Medium")) {
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if (pieceType.getColor() == ("red")) {
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 0, 1)
+                } else if (pieceType.getColor() == ("blue")) {
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 0, 1)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid01)
+            if(!button.text.toString().contains("Big")) {
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if (pieceType.getColor() == ("red")) {
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 0, 1)
+                } else if (pieceType.getColor() == ("blue")) {
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 0, 1)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton02Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid02)
+            if(!button.text.toString().contains("Peg")) {
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if (pieceType.getColor() == ("red")) {
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 0, 2)
+                } else if (pieceType.getColor() == ("blue")) {
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 0, 2)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid02)
+            if(!button.text.toString().contains("Medium")) {
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if (pieceType.getColor() == ("red")) {
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 0, 2)
+                } else if (pieceType.getColor() == ("blue")) {
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 0, 2)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid02)
+            if(!button.text.toString().contains("Big")) {
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if (pieceType.getColor() == ("red")) {
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 0, 2)
+                } else if (pieceType.getColor() == ("blue")) {
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 0, 2)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton10Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid10)
+            //check if peg already placed here
+            if(!button.text.toString().contains("Peg")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 1, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 1, 0)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid10)
+            if(!button.text.toString().contains("Medium")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 1, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 1, 0)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid10)
+            if(!button.text.toString().contains("Big")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 1, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 1, 0)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton11Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid11)
+            //check if peg already placed here
+            if(!button.text.toString().contains("Peg")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 1, 1)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 1, 1)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid11)
+            if(!button.text.toString().contains("Medium")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 1, 1)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 1, 1)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid11)
+            if(!button.text.toString().contains("Big")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 1, 1)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 1, 1)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton12Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid12)
+            //check if peg already placed here
+            if(!button.text.toString().contains("Peg")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 1, 2)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 1, 2)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid12)
+            if(!button.text.toString().contains("Medium")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 1, 2)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 1, 2)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid12)
+            if(!button.text.toString().contains("Big")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 1, 2)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 1, 2)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton20Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid20)
+            //check if peg already placed here
+            if(!button.text.toString().contains("Peg")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 2, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 2, 0)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid20)
+            if(!button.text.toString().contains("Medium")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 2, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 2, 0)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid20)
+            if(!button.text.toString().contains("Big")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 2, 0)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 2, 0)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton21Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid21)
+            //check if peg already placed here
+            if(!button.text.toString().contains("Peg")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 2, 1)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 2, 1)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid21)
+            if(!button.text.toString().contains("Medium")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 2, 1)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 2, 1)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid21)
+            if(!button.text.toString().contains("Big")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 2, 1)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 2, 1)
+                }
+            }
+            buttonBigSelected = false
+        }
+    }
+
+    private fun handleButton22Click() {
+        //check which button selected
+        if(buttonPegSelected){
+            val button: Button = findViewById(R.id.grid22)
+            //check if peg already placed here
+            if(!button.text.toString().contains("Peg")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redPeg.removeAt(redPeg.size - 1)
+                    placePiece(removedElement, 2, 2)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                    placePiece(removedElement, 2, 2)
+                }
+            }
+            buttonPegSelected = false
+        }
+        if(buttonMediumSelected){
+            val button: Button = findViewById(R.id.grid22)
+            if(!button.text.toString().contains("Medium")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redMedium.removeAt(redMedium.size - 1)
+                    placePiece(removedElement, 2, 2)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                    placePiece(removedElement, 2, 2)
+                }
+            }
+            buttonMediumSelected = false
+        }
+        if(buttonBigSelected){
+            val button: Button = findViewById(R.id.grid22)
+            if(!button.text.toString().contains("Big")){
+                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+                if(pieceType.getColor()==("red")){
+                    var removedElement = redBig.removeAt(redBig.size - 1)
+                    placePiece(removedElement, 2, 2)
+                }
+                else if(pieceType.getColor()==("blue")){
+                    var removedElement = blueBig.removeAt(blueBig.size - 1)
+                    placePiece(removedElement, 2, 2)
+                }
+            }
+            buttonBigSelected = false
         }
     }
 
     private fun handleButtonPegClick() {
         pieceType = Piece(playerList[turn%2].getColor(),"Peg")
-        picked.text = pieceType.getColor()+" "+pieceType.getSize()
-    }
+        picked.text = pieceType.getColor() + " " + pieceType.getSize()
+        buttonPegSelected = true
 
-    private fun handleButtonBigClick() {
-        pieceType = Piece(playerList[turn%2].getColor(),"Medium")
-        picked.text = pieceType.getColor()+" "+pieceType.getSize()
     }
 
     private fun handleButtonMediumClick() {
+        pieceType = Piece(playerList[turn%2].getColor(),"Medium")
+        picked.text = pieceType.getColor()+" "+pieceType.getSize()
+        buttonMediumSelected = true
+    }
+
+    private fun handleButtonBigClick() {
         pieceType = Piece(playerList[turn%2].getColor(),"Big")
         picked.text = pieceType.getColor()+" "+pieceType.getSize()
+        buttonBigSelected = true
     }
 
     private fun showNextPlayerInfo() {
@@ -196,7 +666,9 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
+        println("Place piece")
         piece.setPiecePosition(xPos, yPos);
+
         showNextPlayerInfo()
     }
 
@@ -350,6 +822,7 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             blueWin = true
         }
 
+        //if we're tracking wins, we'll need to reset the game??
         if(redWin) { redWins++ } else if(blueWin) { blueWins++ }
     }
 }
