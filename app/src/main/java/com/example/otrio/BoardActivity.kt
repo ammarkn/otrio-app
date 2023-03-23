@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import java.lang.System.arraycopy
 
@@ -12,9 +14,7 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rounds = 0;
 
-    private var buttonPegSelected = false
-    private var buttonMediumSelected = false
-    private var buttonBigSelected = false
+    private var pickedPiece = false
 
     private var redWin = false
     private var blueWin = false
@@ -30,29 +30,29 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     var redPieces = ArrayList<ArrayList<Piece>>()
     var bluePieces = ArrayList<ArrayList<Piece>>()
 
-    var redPeg0 = Piece("Red", "Peg")
+    var redPeg0 = Piece("red", "Peg")
     var redMedium0 = Piece("Red", "Medium")
-    var redBig0 = Piece("Red", "Big")
+    var redBig0 = Piece("red", "Big")
 
-    var redPeg1 = Piece("Red", "Peg")
+    var redPeg1 = Piece("red", "Peg")
     var redMedium1 = Piece("Red", "Medium")
-    var redBig1 = Piece("Red", "Big")
+    var redBig1 = Piece("red", "Big")
 
     var redPeg2 = Piece("Red", "Peg")
-    var redMedium2 = Piece("Red", "Medium")
-    var redBig2 = Piece("Red", "Big")
+    var redMedium2 = Piece("red", "Medium")
+    var redBig2 = Piece("Rred", "Big")
 
-    var bluePeg0 = Piece("Blue", "Peg")
+    var bluePeg0 = Piece("blue", "Peg")
     var blueMedium0 = Piece("Blue", "Medium")
-    var blueBig0 = Piece("Blue", "Big")
+    var blueBig0 = Piece("blue", "Big")
 
-    var bluePeg1 = Piece("Blue", "Peg")
+    var bluePeg1 = Piece("blue", "Peg")
     var blueMedium1 = Piece("Blue", "Medium")
-    var blueBig1 = Piece("Blue", "Big")
+    var blueBig1 = Piece("blue", "Big")
 
-    var bluePeg2 = Piece("Blue", "Peg")
+    var bluePeg2 = Piece("blue", "Peg")
     var blueMedium2 = Piece("Blue", "Medium")
-    var blueBig2 = Piece("Blue", "Big")
+    var blueBig2 = Piece("blue", "Big")
 
     var turn = 0 //the current turn number
     var pieceType = Piece("null","null") //the piece current picked up by one of players
@@ -139,6 +139,27 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         val buttonBig = findViewById<Button>(R.id.big)
         buttonBig.setOnClickListener(this)
 
+        val button00 = findViewById<RelativeLayout>(R.id.grid00)
+        button00.setOnClickListener(this)
+        val button01 = findViewById<RelativeLayout>(R.id.grid01)
+        button01.setOnClickListener(this)
+        val button02 = findViewById<RelativeLayout>(R.id.grid02)
+        button02.setOnClickListener(this)
+
+        val button10 = findViewById<RelativeLayout>(R.id.grid10)
+        button10.setOnClickListener(this)
+        val button11 = findViewById<RelativeLayout>(R.id.grid11)
+        button11.setOnClickListener(this)
+        val button12 = findViewById<RelativeLayout>(R.id.grid12)
+        button12.setOnClickListener(this)
+
+        val button20 = findViewById<RelativeLayout>(R.id.grid20)
+        button20.setOnClickListener(this)
+        val button21 = findViewById<RelativeLayout>(R.id.grid21)
+        button21.setOnClickListener(this)
+        val button22 = findViewById<RelativeLayout>(R.id.grid22)
+        button22.setOnClickListener(this)
+
         picked = findViewById(R.id.currentPiece) //will be used to show the update of current picked piece
 
         turnplayer = findViewById(R.id.playerTurn)
@@ -156,14 +177,14 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         textP1 = findViewById(R.id.p1Text)
         textP2 = findViewById(R.id.p2Text)
 
-        for (i in 0..2) {
+/*        for (i in 0..2) {
             for (j in 0..2) {
                 val buttonID = "grid" + i + j
                 val resID = resources.getIdentifier(buttonID, "id", packageName)
                 buttons[i][j] = findViewById(resID)
                 buttons[i][j]!!.setOnClickListener(this)
             }
-        }
+        }*/
     }
 
 
@@ -173,131 +194,96 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.peg -> handleButtonPegClick()
             R.id.medium -> handleButtonMediumClick()
             R.id.big -> handleButtonBigClick()
-            R.id.grid00 -> handleButton00Click()
-            R.id.grid01 -> handleButton01Click()
-            R.id.grid02 -> handleButton02Click()
-            R.id.grid10 -> handleButton10Click()
-            R.id.grid11 -> handleButton11Click()
-            R.id.grid12 -> handleButton12Click()
-            R.id.grid20 -> handleButton20Click()
-            R.id.grid21 -> handleButton21Click()
-            R.id.grid22 -> handleButton22Click()
+
+            R.id.grid00 -> handleLayoutOnClick("circle00",0,0)
+            R.id.grid01 -> handleLayoutOnClick("circle01",0,1)
+            R.id.grid02 -> handleLayoutOnClick("circle02",0,2)
+
+            R.id.grid10 -> handleLayoutOnClick("circle10",1,0)
+            R.id.grid11 -> handleLayoutOnClick("circle11",1,1)
+            R.id.grid12 -> handleLayoutOnClick("circle12",1,2)
+
+            R.id.grid20 -> handleLayoutOnClick("circle20",2,0)
+            R.id.grid21 -> handleLayoutOnClick("circle21",2,1)
+            R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
         }
     }
 
-    private fun handleButtonActions(vId : Int, Xpos : Int,Ypos : Int){
-        //check which button selected
-        if(buttonPegSelected){
-            val button: Button = findViewById(vId)
+    private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {
+
+        val newTag = resources.getIdentifier(pieceType.getColor()+pieceType.getSize().lowercase(),"drawable",packageName)
+        //get id of image name of the piece base on the picked piece
+        val vId = resources.getIdentifier(vIdstart+pieceType.getSize(),"id",packageName)
+        //get the id of the image view
+        if(pickedPiece){ //check which button selected (Layout as a button)
+            val imageView: ImageView = findViewById(vId)
             //check if peg already placed here
-            if(!button.text.toString().contains("Peg")){
-                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
+            var imageName = imageView.tag.toString()
+            //get the name of the image in the imageview
+            if(imageName.contains("blank")){
+                imageView.setImageResource(newTag)
+                imageView.setTag(pieceType.getColor()+pieceType.getSize().lowercase())//re-set the name for check late
+                var removedElement = Piece("null","null")
                 if(pieceType.getColor()==("red")){
-                    var removedElement = redPeg.removeAt(redPeg.size - 1)
-                    placePiece(removedElement, Xpos, Ypos)
+                    when(pieceType.getSize()){
+                        "Peg"->{
+                            removedElement = redPeg.removeAt(redPeg.size - 1)
+                        }
+                        "Medium"->{
+                            removedElement = redMedium.removeAt(redMedium.size - 1)
+                        }
+                        "Big"->{
+                            removedElement = redBig.removeAt(redBig.size - 1)
+                        }
+                        else->{
+                            removedElement = Piece("error","error")
+                        }
+                    }
                 }
                 else if(pieceType.getColor()==("blue")){
-                    var removedElement = bluePeg.removeAt(bluePeg.size - 1)
-                    placePiece(removedElement, Xpos, Ypos)
+                    when(pieceType.getSize()){
+                        "Peg"->{
+                            removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                        }
+                        "Medium"->{
+                            removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                        }
+                        "Big"->{
+                            removedElement = blueBig.removeAt(blueBig.size - 1)
+                        }
+                        else->{
+                            removedElement = Piece("error","error")
+                        }
+                    }
                 }
+                placePiece(removedElement, Xpos, Ypos)
             }
-            buttonPegSelected = false
+            pickedPiece = false
         }
-        if(buttonMediumSelected){
-            val button: Button = findViewById(vId)
-            if(!button.text.toString().contains("Medium")){
-                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
-                if(pieceType.getColor()==("red")){
-                    var removedElement = redMedium.removeAt(redMedium.size - 1)
-                    placePiece(removedElement, Xpos, Ypos)
-                }
-                else if(pieceType.getColor()==("blue")){
-                    var removedElement = blueMedium.removeAt(blueMedium.size - 1)
-                    placePiece(removedElement, Xpos, Ypos)
-                }
-            }
-            buttonMediumSelected = false
-        }
-        if(buttonBigSelected){
-            val button: Button = findViewById(vId)
-            if(!button.text.toString().contains("Big")){
-                button.text = (button.text.toString()).plus(picked.text.toString()).plus("\n")
-                if(pieceType.getColor()==("red")){
-                    var removedElement = redBig.removeAt(redBig.size - 1)
-                    placePiece(removedElement, Xpos, Ypos)
-                }
-                else if(pieceType.getColor()==("blue")){
-                    var removedElement = blueBig.removeAt(blueBig.size - 1)
-                    placePiece(removedElement, Xpos, Ypos)
-                }
-            }
-            buttonBigSelected = false
-        }
-    }
-
-    private fun handleButton00Click() {
-        var vId = R.id.grid00
-        handleButtonActions(vId, 0, 0)
-    }
-
-    private fun handleButton01Click() {
-        var vId = R.id.grid01
-        handleButtonActions(vId, 0, 1)
-    }
-
-    private fun handleButton02Click() {
-        var vId = R.id.grid02
-        handleButtonActions(vId, 0, 2)
-    }
-
-    private fun handleButton10Click() {
-        var vId = R.id.grid10
-        handleButtonActions(vId, 1, 0)
-    }
-
-    private fun handleButton11Click() {
-        var vId = R.id.grid11
-        handleButtonActions(vId, 1, 1)
-    }
-
-    private fun handleButton12Click() {
-        var vId = R.id.grid12
-        handleButtonActions(vId, 1, 2)
-    }
-
-    private fun handleButton20Click() {
-        var vId = R.id.grid20
-        handleButtonActions(vId, 2, 0)
-        //check which button selected
-    }
-
-    private fun handleButton21Click() {
-        var vId = R.id.grid21
-        handleButtonActions(vId, 2, 1)
-    }
-
-    private fun handleButton22Click() {
-        var vId = R.id.grid22
-        handleButtonActions(vId, 2, 2)
     }
 
     private fun handleButtonPegClick() {
-        pieceType = Piece(playerList[turn%2].getColor(),"Peg")
-        picked.text = pieceType.getColor() + " " + pieceType.getSize()
-        buttonPegSelected = true
-
+        if(playerList[turn%2].getPieces()[0].size > 0){
+            pieceType = Piece(playerList[turn%2].getColor(),"Peg")
+            picked.text = pieceType.getColor() + " " + pieceType.getSize()
+            pickedPiece = true
+        }
     }
 
     private fun handleButtonMediumClick() {
-        pieceType = Piece(playerList[turn%2].getColor(),"Medium")
-        picked.text = pieceType.getColor()+" "+pieceType.getSize()
-        buttonMediumSelected = true
+        if(playerList[turn%2].getPieces()[1].size > 0){
+            pieceType = Piece(playerList[turn%2].getColor(),"Medium")
+            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            pickedPiece = true
+        }
     }
 
     private fun handleButtonBigClick() {
-        pieceType = Piece(playerList[turn%2].getColor(),"Big")
-        picked.text = pieceType.getColor()+" "+pieceType.getSize()
-        buttonBigSelected = true
+        if(playerList[turn%2].getPieces()[2].size > 0){
+            pieceType = Piece(playerList[turn%2].getColor(),"Big")
+            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            pickedPiece = true
+        }
     }
 
     private fun showNextPlayerInfo() {
@@ -308,6 +294,7 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         pegnumber.text = nextPlayer.getPieces()[0].size.toString()
         mediumnumber.text = nextPlayer.getPieces()[1].size.toString()
         bignumber.text = nextPlayer.getPieces()[2].size.toString()
+        picked.text = ""
     }
 
     private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
