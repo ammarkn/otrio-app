@@ -40,7 +40,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/circle00Peg"
+                android:id="@+id/circle00peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -49,7 +49,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle00Medium"
+                android:id="@+id/circle00medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -58,7 +58,7 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle00Big"
+                android:id="@+id/circle00big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/circle01Peg"
+                android:id="@+id/circle01peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -83,7 +83,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle01Medium"
+                android:id="@+id/circle01medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -92,7 +92,7 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle01Big"
+                android:id="@+id/circle01big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -108,7 +108,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle02Peg"
+                android:id="@+id/circle02peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -117,7 +117,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle02Medium"
+                android:id="@+id/circle02medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -126,13 +126,13 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle02Big"
+                android:id="@+id/circle02big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -149,7 +149,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle10Peg"
+                android:id="@+id/circle10peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -158,7 +158,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle10Medium"
+                android:id="@+id/circle10medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -167,7 +167,7 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle10Big"
+                android:id="@+id/circle10big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -183,7 +183,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle11Peg"
+                android:id="@+id/circle11peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -192,7 +192,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle11Medium"
+                android:id="@+id/circle11medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -201,13 +201,13 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle11Big"
+                android:id="@+id/circle11big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -217,7 +217,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle12Peg"
+                android:id="@+id/circle12peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -226,7 +226,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle12Medium"
+                android:id="@+id/circle12medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -235,7 +235,7 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle12Big"
+                android:id="@+id/circle12big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -258,7 +258,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle20Peg"
+                android:id="@+id/circle20peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -267,7 +267,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle20Medium"
+                android:id="@+id/circle20medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -276,7 +276,7 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle20Big"
+                android:id="@+id/circle20big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -292,7 +292,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle21Peg"
+                android:id="@+id/circle21peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -301,7 +301,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle21Medium"
+                android:id="@+id/circle21medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -310,7 +310,7 @@
                 android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle21Big"
+                android:id="@+id/circle21big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -326,7 +326,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle22Peg"
+                android:id="@+id/circle22peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -335,7 +335,7 @@
                 android:tag="blankpeg"/>
 
             <ImageView
-                android:id="@+id/circle22Medium"
+                android:id="@+id/circle22medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -344,7 +344,7 @@
                 android:tag="blankmedium"/>
 
             <ImageView
-                android:id="@+id/circle22Big"
+                android:id="@+id/circle22big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
