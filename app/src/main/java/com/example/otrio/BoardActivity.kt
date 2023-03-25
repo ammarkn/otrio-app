@@ -1,15 +1,14 @@
 package com.example.otrio
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 import java.lang.System.arraycopy
 
@@ -25,8 +24,7 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     var redWins = 0
     var blueWins = 0
 
-    private lateinit var textP1 : TextView
-    private lateinit var textP2 : TextView
+    private lateinit var sharedPreferences: SharedPreferences
 
     var redPieces = ArrayList<ArrayList<Piece>>()
     var bluePieces = ArrayList<ArrayList<Piece>>()
@@ -94,6 +92,11 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this, InstructionsActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+        }
+
+        val resetButtonClick = findViewById<Button>(R.id.resetButton)
+        resetButtonClick.setOnClickListener {
+            resetBoard()
         }
 
         redPeg.add(redPeg0)
@@ -179,6 +182,10 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
         redWinText = findViewById(R.id.p1Text)
         blueWinText = findViewById(R.id.p2Text)
+
+        sharedPreferences = getSharedPreferences("Wins", Context.MODE_PRIVATE)
+        redWins = sharedPreferences.getInt("redWins", 0)
+        blueWins = sharedPreferences.getInt("blueWins", 0)
     }
 
 
@@ -201,25 +208,35 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.grid21 -> handleLayoutOnClick("circle21",2,1)
             R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
         }
-        if(sameSpaceWin()) {
-            if(redWin) {
-                println("Red win by same space win")
-                redWins++
-            }
-            else if(blueWin) {
-                println("Blue win by same space win")
-                blueWins++
-            }
-        }
 
-        if(samePieceWin()) {
-            if(redWin) {
-                println("Red win by same piece win")
-                redWins++
+        if(sameSpaceWin() || samePieceWin()) {
+            if(sameSpaceWin()) {
+                if(redWin) {
+//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Red win by same space win")
+                    redWins++
+                    resetBoard()
+                }
+                else if(blueWin) {
+//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Blue win by same space win")
+                    blueWins++
+                    resetBoard()
+                }
             }
-            else if(blueWin) {
-                println("Blue win by same piece win")
-                blueWins++
+            else if(samePieceWin()) {
+                if(redWin) {
+//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Red win by same piece win")
+                    redWins++
+                    resetBoard()
+                }
+                else if(blueWin) {
+//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Blue win by same piece win")
+                    blueWins++
+                    resetBoard()
+                }
             }
         }
 
@@ -278,6 +295,17 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             }
             pickedPiece = false
         }
+    }
+
+    private fun resetBoard() {
+        recreate()
+
+        Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
+
+        val wins = sharedPreferences.edit()
+        wins.putInt("redWins", redWins)
+        wins.putInt("blueWins", blueWins)
+        wins.apply()
     }
 
     private fun handleButtonPegClick() {

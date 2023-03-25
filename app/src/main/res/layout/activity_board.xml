@@ -479,9 +479,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="321dp"
-            android:text="I"
+            android:layout_marginEnd="341dp"
+
             app:icon="@android:drawable/ic_dialog_info" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Reset" />
 
         <Button
             android:id="@+id/homeButton"
@@ -490,6 +497,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:text="Home" />
+
 
     </RelativeLayout>
 
