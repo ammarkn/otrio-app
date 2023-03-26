@@ -10,26 +10,43 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import java.lang.System.arraycopy
 
-class BoardActivity : AppCompatActivity(), View.OnClickListener {
+
+class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rounds = 0;
 
     private var pickedPiece = false
 
+    //variables to store each player's number of wins
+    //DONT NEED THESE????????????
     private var redWin = false
     private var blueWin = false
+    private var yellowWin = false
+    private var greenWin = false
 
+    //variables to save each player's win count
     var redWins = 0
     var blueWins = 0
+    var yellowWins = 0
+    var greenWins = 0
 
+
+    //array to store buttons
     private val buttons = Array(3) { arrayOfNulls<Button>(3) }
 
+    //variables for text - NEED THESE STILL????
     private lateinit var textP1 : TextView
     private lateinit var textP2 : TextView
+    private lateinit var textP3 : TextView
+    private lateinit var textP4 : TextView
 
+    //arraylists to store each player's pieces
     var redPieces = ArrayList<ArrayList<Piece>>()
     var bluePieces = ArrayList<ArrayList<Piece>>()
+    var yellowPieces = ArrayList<ArrayList<Piece>>()
+    var greenPieces = ArrayList<ArrayList<Piece>>()
 
+    //create pieces for each player (3 of each size)
     var redPeg0 = Piece("red", "Peg")
     var redMedium0 = Piece("red", "Medium")
     var redBig0 = Piece("red", "Big")
@@ -54,20 +71,52 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     var blueMedium2 = Piece("blue", "Medium")
     var blueBig2 = Piece("blue", "Big")
 
-    var turn = 0 //the current turn number
-    var pieceType = Piece("null","null") //the piece current picked up by one of players
+    var yellowPeg0 = Piece("yellow", "Peg")
+    var yellowMedium0 = Piece("yellow", "Medium")
+    var yellowBig0 = Piece("yellow", "Big")
 
+    var yellowPeg1 = Piece("yellow", "Peg")
+    var yellowMedium1 = Piece("yellow", "Medium")
+    var yellowBig1 = Piece("yellow", "Big")
+
+    var yellowPeg2 = Piece("yellow", "Peg")
+    var yellowMedium2 = Piece("yellow", "Medium")
+    var yellowBig2 = Piece("yellow", "Big")
+
+    var greenPeg0 = Piece("green", "Peg")
+    var greenMedium0 = Piece("green", "Medium")
+    var greenBig0 = Piece("green", "Big")
+
+    var greenPeg1 = Piece("green", "Peg")
+    var greenMedium1 = Piece("green", "Medium")
+    var greenBig1 = Piece("green", "Big")
+
+    var greenPeg2 = Piece("green", "Peg")
+    var greenMedium2 = Piece("green", "Medium")
+    var greenBig2 = Piece("green", "Big")
+
+    //set turn count to 0
+    var turn = 0 //the current turn number
+    //the piece current picked up by one of players
+    var pieceType = Piece("null","null")
+
+    //create the players, storing their pieces and win counts
     var p1 = Player("player1", "red", redWins, redPieces)
     var p2 = Player("player2", "blue", blueWins, bluePieces)
+    var p3 = Player("player3", "yellow", yellowWins, yellowPieces)
+    var p4 = Player("player4", "green", greenWins, greenPieces)
 
-    var playerList = ArrayList<Player>() //save all play in one list
+    //arraylist to save all players in
+    var playerList = ArrayList<Player>()
 
+    //text view variables that will track player info on the board
     private lateinit var turnplayer: TextView
     private lateinit var pegnumber: TextView
     private lateinit var mediumnumber: TextView
     private lateinit var bignumber: TextView
     private lateinit var picked: TextView
 
+    //create arraylist for each piece size+color
     var redPeg = ArrayList<Piece>()
     var redMedium = ArrayList<Piece>()
     var redBig = ArrayList<Piece>()
@@ -76,9 +125,17 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     var blueMedium = ArrayList<Piece>()
     var blueBig = ArrayList<Piece>()
 
+    var yellowPeg = ArrayList<Piece>()
+    var yellowMedium = ArrayList<Piece>()
+    var yellowBig = ArrayList<Piece>()
+
+    var greenPeg = ArrayList<Piece>()
+    var greenMedium = ArrayList<Piece>()
+    var greenBig = ArrayList<Piece>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_board)
+        setContentView(R.layout.activity_four_player_board)
 
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
@@ -93,6 +150,7 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
+        //add each individual pieces to arraylists of pieces of same size+color
         redPeg.add(redPeg0)
         redPeg.add(redPeg1)
         redPeg.add(redPeg2)
@@ -117,6 +175,31 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         blueBig.add(blueBig1)
         blueBig.add(blueBig2)
 
+        yellowPeg.add(yellowPeg0)
+        yellowPeg.add(yellowPeg1)
+        yellowPeg.add(yellowPeg2)
+
+        yellowMedium.add(yellowMedium0)
+        yellowMedium.add(yellowMedium1)
+        yellowMedium.add(yellowMedium2)
+
+        yellowBig.add(yellowBig0)
+        yellowBig.add(yellowBig1)
+        yellowBig.add(yellowBig2)
+
+        greenPeg.add(greenPeg0)
+        greenPeg.add(greenPeg1)
+        greenPeg.add(greenPeg2)
+
+        greenMedium.add(greenMedium0)
+        greenMedium.add(greenMedium1)
+        greenMedium.add(greenMedium2)
+
+        greenBig.add(greenBig0)
+        greenBig.add(greenBig1)
+        greenBig.add(greenBig2)
+
+        //add each size piece arraylist to arraylists for each color
         redPieces.add(redPeg)
         redPieces.add(redMedium)
         redPieces.add(redBig)
@@ -125,11 +208,21 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         bluePieces.add(blueMedium)
         bluePieces.add(blueBig)
 
-        //set player list
+        yellowPieces.add(yellowPeg)
+        yellowPieces.add(yellowMedium)
+        yellowPieces.add(yellowBig)
+
+        greenPieces.add(greenPeg)
+        greenPieces.add(greenMedium)
+        greenPieces.add(greenBig)
+
+        //add players to player list
         playerList.add(p1)
         playerList.add(p2)
+        playerList.add(p3)
+        playerList.add(p4)
 
-        //when users pick up a piece
+        //set onclick listeners for player pieces
         val buttonPeg = findViewById<Button>(R.id.peg)
         buttonPeg.setOnClickListener(this)
 
@@ -139,6 +232,7 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         val buttonBig = findViewById<Button>(R.id.big)
         buttonBig.setOnClickListener(this)
 
+        //set onclick listeners for each board piece
         val button00 = findViewById<RelativeLayout>(R.id.grid00)
         button00.setOnClickListener(this)
         val button01 = findViewById<RelativeLayout>(R.id.grid01)
@@ -160,11 +254,14 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         val button22 = findViewById<RelativeLayout>(R.id.grid22)
         button22.setOnClickListener(this)
 
-        picked = findViewById(R.id.currentPiece) //will be used to show the update of current picked piece
+        //will be used to show the update of current picked piece
+        picked = findViewById(R.id.currentPiece)
 
+        //set variable to track current player's turn on the board
         turnplayer = findViewById(R.id.playerTurn)
         turnplayer.text = "Player1"
 
+        //set variables to track number of pieces player has left to use
         pegnumber = findViewById(R.id.pegNumber)
         pegnumber.text = p1.getPieces()[0].size.toString()
 
@@ -174,39 +271,38 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         bignumber = findViewById(R.id.bigNumber)
         bignumber.text = p1.getPieces()[2].size.toString()
 
+        //set text for each player (ARE WE KEEPING THESE FOR 3/4 PLAYER)
         textP1 = findViewById(R.id.p1Text)
         textP2 = findViewById(R.id.p2Text)
+        //textP3 = findViewById(R.id.p3Text)
+        //textP4 = findViewById(R.id.p4Text)
 
-/*        for (i in 0..2) {
-            for (j in 0..2) {
-                val buttonID = "grid" + i + j
-                val resID = resources.getIdentifier(buttonID, "id", packageName)
-                buttons[i][j] = findViewById(resID)
-                buttons[i][j]!!.setOnClickListener(this)
-            }
-        }*/
     }
 
-
     override fun onClick(v: View) {
+        //call functions for onclick
         when (v.id) {
-            //R.id.peg -> buttonPegSelected = true
+            //if user clicks a piece to play
             R.id.peg -> handleButtonPegClick()
             R.id.medium -> handleButtonMediumClick()
             R.id.big -> handleButtonBigClick()
 
+            //if user clicks top row on board
             R.id.grid00 -> handleLayoutOnClick("circle00",0,0)
             R.id.grid01 -> handleLayoutOnClick("circle01",0,1)
             R.id.grid02 -> handleLayoutOnClick("circle02",0,2)
 
+            //if user clicks middle row on board
             R.id.grid10 -> handleLayoutOnClick("circle10",1,0)
             R.id.grid11 -> handleLayoutOnClick("circle11",1,1)
             R.id.grid12 -> handleLayoutOnClick("circle12",1,2)
 
+            //if user
             R.id.grid20 -> handleLayoutOnClick("circle20",2,0)
             R.id.grid21 -> handleLayoutOnClick("circle21",2,1)
             R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
         }
+
     }
 
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {
@@ -224,72 +320,145 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
                 imageView.setImageResource(newTag)
                 imageView.setTag(pieceType.getColor()+pieceType.getSize().lowercase())//re-set the name for check late
                 var removedElement = Piece("null","null")
+                //if piece color is red
                 if(pieceType.getColor()==("red")){
+                    //get size of piece
                     when(pieceType.getSize()){
+                        //remove red peg from list
                         "Peg"->{
                             removedElement = redPeg.removeAt(redPeg.size - 1)
                         }
+                        //remove red medium from list
                         "Medium"->{
                             removedElement = redMedium.removeAt(redMedium.size - 1)
                         }
+                        //remove red big from list
                         "Big"->{
                             removedElement = redBig.removeAt(redBig.size - 1)
                         }
+                        //set removed piece to error, to handle error cases
                         else->{
                             removedElement = Piece("error","error")
                         }
                     }
                 }
+                //if piece color is blue
                 else if(pieceType.getColor()==("blue")){
+                    //get size of piece
                     when(pieceType.getSize()){
+                        //remove blue peg from list
                         "Peg"->{
                             removedElement = bluePeg.removeAt(bluePeg.size - 1)
                         }
+                        //remove blue medium from list
                         "Medium"->{
                             removedElement = blueMedium.removeAt(blueMedium.size - 1)
                         }
+                        //remove blue big from list
                         "Big"->{
                             removedElement = blueBig.removeAt(blueBig.size - 1)
                         }
+                        //set removed piece to error, to handle error cases
                         else->{
                             removedElement = Piece("error","error")
                         }
                     }
                 }
+                //if piece color is yellow
+                else if(pieceType.getColor()==("yellow")){
+                    //get size of piece
+                    when(pieceType.getSize()){
+                        //remove yellow peg from list
+                        "Peg"->{
+                            removedElement = yellowPeg.removeAt(yellowPeg.size - 1)
+                        }
+                        //remove yellow medium from list
+                        "Medium"->{
+                            removedElement = yellowMedium.removeAt(yellowMedium.size - 1)
+                        }
+                        //remove yellow big from list
+                        "Big"->{
+                            removedElement = yellowBig.removeAt(yellowBig.size - 1)
+                        }
+                        //set removed piece to error, to handle error cases
+                        else->{
+                            removedElement = Piece("error","error")
+                        }
+                    }
+                }
+                //if piece color is green
+                else if(pieceType.getColor()==("green")){
+                    //get size of piece
+                    when(pieceType.getSize()){
+                        //remove green peg from list
+                        "Peg"->{
+                            removedElement = greenPeg.removeAt(greenPeg.size - 1)
+                        }
+                        //remove green medium from list
+                        "Medium"->{
+                            removedElement = greenMedium.removeAt(greenMedium.size - 1)
+                        }
+                        //remove green big from list
+                        "Big"->{
+                            removedElement = greenBig.removeAt(greenBig.size - 1)
+                        }
+                        //set removed piece to error, to handle error cases
+                        else->{
+                            removedElement = Piece("error","error")
+                        }
+                    }
+                }
+                //call placepiece function to finish placing the piece on the board
                 placePiece(removedElement, Xpos, Ypos)
             }
+            //reset picked piece as the piece to play should no longer be selected
             pickedPiece = false
         }
     }
 
     private fun handleButtonPegClick() {
-        if(playerList[turn%2].getPieces()[0].size > 0){
-            pieceType = Piece(playerList[turn%2].getColor(),"Peg")
+        //check if user has any peg pieces left
+        if(playerList[turn%4].getPieces()[0].size > 0){
+            //set piece type if they have remaining piece to play
+            pieceType = Piece(playerList[turn%4].getColor(),"Peg")
+            //set text for piece to be displayed on screen
             picked.text = pieceType.getColor() + " " + pieceType.getSize()
+            //confirm a piece has been picked
             pickedPiece = true
         }
     }
 
     private fun handleButtonMediumClick() {
-        if(playerList[turn%2].getPieces()[1].size > 0){
-            pieceType = Piece(playerList[turn%2].getColor(),"Medium")
+        //check if user has any medium pieces left
+        if(playerList[turn%4].getPieces()[1].size > 0){
+            //set piece type if they have remaining piece to play
+            pieceType = Piece(playerList[turn%4].getColor(),"Medium")
+            //set text for piece to be displayed on screen
             picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            //confirm a piece has been picked
             pickedPiece = true
         }
     }
 
     private fun handleButtonBigClick() {
-        if(playerList[turn%2].getPieces()[2].size > 0){
-            pieceType = Piece(playerList[turn%2].getColor(),"Big")
+        //check if user has any big pieces left
+        if(playerList[turn%4].getPieces()[2].size > 0){
+            //set piece type if they have remaining piece to play
+            pieceType = Piece(playerList[turn%4].getColor(),"Big")
+            //set text for piece to be displayed on screen
             picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            //confirm a piece has been picked
             pickedPiece = true
         }
     }
 
     private fun showNextPlayerInfo() {
+        //increase number of turns played
         turn ++
-        val nextPlayer = playerList[turn%2]
+        //use modulaus to determine next player based on number of turns
+        val nextPlayer = playerList[turn%4]
 
+        //get new player's name, and number of pieces
         turnplayer.text = nextPlayer.getName()
         pegnumber.text = nextPlayer.getPieces()[0].size.toString()
         mediumnumber.text = nextPlayer.getPieces()[1].size.toString()
@@ -298,16 +467,16 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
-        println("Place piece")
+        //set the piece location for win conditions
         piece.setPiecePosition(xPos, yPos);
-
+        //call function to show next player's information
         showNextPlayerInfo()
     }
 
     /*
     Method 1 of winning: https://otrio.com/pages/how-to-play
      */
-    private fun samePieceWin() {
+    /*private fun samePieceWin() {
         var temp = Array(3) { arrayOfNulls <String>(3) }
         var board = Array(3) { arrayOfNulls <Piece?>(3) }
 
@@ -456,5 +625,5 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
         //if we're tracking wins, we'll need to reset the game??
         if(redWin) { redWins++ } else if(blueWin) { blueWins++ }
-    }
+    }*/
 }

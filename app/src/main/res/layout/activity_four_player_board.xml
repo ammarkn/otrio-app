@@ -1,38 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BoardActivity">
+    tools:context=".FourPlayerBoardActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/winText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Wins: "
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/p1Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Player 1: 0 Wins"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/winText"
+            android:text="P1: 0"
             android:textSize="25sp" />
 
         <TextView
             android:id="@+id/p2Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="54dp"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/p1Text"
-            android:text="Player 2: 0 Wins"
+            android:text="P2: 0"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/p3Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/p2Text"
+            android:text="P3: 0"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/p4Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/p3Text"
+            android:text="P4: 0"
             android:textSize="25sp" />
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1">
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4">
 
         <RelativeLayout
             android:id="@+id/grid00"
@@ -46,7 +79,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle00Medium"
@@ -55,7 +88,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle00Big"
@@ -64,7 +97,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -80,7 +113,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle01Medium"
@@ -89,7 +122,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle01Big"
@@ -98,7 +131,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -114,7 +147,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle02Medium"
@@ -123,7 +156,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle02Big"
@@ -132,16 +165,19 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1">
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:id="@+id/grid10"
@@ -155,7 +191,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle10Medium"
@@ -164,7 +200,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle10Big"
@@ -189,7 +225,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle11Medium"
@@ -198,7 +234,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle11Big"
@@ -207,7 +243,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -223,7 +259,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle12Medium"
@@ -232,7 +268,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle12Big"
@@ -241,16 +277,19 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1">
+        android:id="@+id/linearLayout3"
+        android:layout_width="413dp"
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:id="@+id/grid20"
@@ -264,7 +303,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle20Medium"
@@ -273,7 +312,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle20Big"
@@ -282,7 +321,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -298,7 +337,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle21Medium"
@@ -316,7 +355,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -332,7 +371,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle22Medium"
@@ -341,7 +380,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle22Big"
@@ -350,15 +389,17 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="68dp">
+        android:layout_height="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2">
 
         <TextView
             android:id="@+id/playerTurn"
@@ -400,8 +441,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/pegNumber"
             android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/pegNumber"
             android:text="remain:"
             android:textSize="25sp" />
 
@@ -420,8 +461,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/mediumNumber"
             android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/mediumNumber"
             android:text="remain:"
             android:textSize="25sp" />
 
@@ -438,9 +479,13 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1">
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="75dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/peg"
@@ -469,8 +514,11 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp">
 
         <Button
             android:id="@+id/instructionsButton"
@@ -493,4 +541,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
