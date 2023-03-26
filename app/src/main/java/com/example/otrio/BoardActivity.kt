@@ -30,27 +30,27 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     var bluePieces = ArrayList<ArrayList<Piece>>()
 
     var redPeg0 = Piece("red", "Peg")
-    var redMedium0 = Piece("Red", "Medium")
+    var redMedium0 = Piece("red", "Medium")
     var redBig0 = Piece("red", "Big")
 
     var redPeg1 = Piece("red", "Peg")
-    var redMedium1 = Piece("Red", "Medium")
+    var redMedium1 = Piece("red", "Medium")
     var redBig1 = Piece("red", "Big")
 
-    var redPeg2 = Piece("Red", "Peg")
+    var redPeg2 = Piece("red", "Peg")
     var redMedium2 = Piece("red", "Medium")
-    var redBig2 = Piece("Rred", "Big")
+    var redBig2 = Piece("red", "Big")
 
     var bluePeg0 = Piece("blue", "Peg")
-    var blueMedium0 = Piece("Blue", "Medium")
+    var blueMedium0 = Piece("blue", "Medium")
     var blueBig0 = Piece("blue", "Big")
 
     var bluePeg1 = Piece("blue", "Peg")
-    var blueMedium1 = Piece("Blue", "Medium")
+    var blueMedium1 = Piece("blue", "Medium")
     var blueBig1 = Piece("blue", "Big")
 
     var bluePeg2 = Piece("blue", "Peg")
-    var blueMedium2 = Piece("Blue", "Medium")
+    var blueMedium2 = Piece("blue", "Medium")
     var blueBig2 = Piece("blue", "Big")
 
     var turn = 0 //the current turn number

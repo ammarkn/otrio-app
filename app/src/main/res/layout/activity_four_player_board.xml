@@ -1,38 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BoardActivity">
+    tools:context=".FourPlayerBoardActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/winText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Wins: "
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/p1Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Player 1: 0 Wins"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/winText"
+            android:text="P1: 0"
             android:textSize="25sp" />
 
         <TextView
             android:id="@+id/p2Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="54dp"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/p1Text"
-            android:text="Player 2: 0 Wins"
+            android:text="P2: 0"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/p3Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/p2Text"
+            android:text="P3: 0"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/p4Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/p3Text"
+            android:text="P4: 0"
             android:textSize="25sp" />
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1">
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4">
 
         <RelativeLayout
             android:id="@+id/grid00"
@@ -40,31 +73,31 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/circle00peg"
+                android:id="@+id/circle00Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle00medium"
+                android:id="@+id/circle00Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle00big"
+                android:id="@+id/circle00Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -74,31 +107,31 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/circle01peg"
+                android:id="@+id/circle01Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle01medium"
+                android:id="@+id/circle01Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle01big"
+                android:id="@+id/circle01Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -108,25 +141,25 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle02peg"
+                android:id="@+id/circle02Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle02medium"
+                android:id="@+id/circle02Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle02big"
+                android:id="@+id/circle02Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -139,9 +172,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1">
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:id="@+id/grid10"
@@ -149,25 +185,25 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle10peg"
+                android:id="@+id/circle10Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle10medium"
+                android:id="@+id/circle10Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle10big"
+                android:id="@+id/circle10Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -183,25 +219,25 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle11peg"
+                android:id="@+id/circle11Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle11medium"
+                android:id="@+id/circle11Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle11big"
+                android:id="@+id/circle11Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -217,40 +253,43 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle12peg"
+                android:id="@+id/circle12Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle12medium"
+                android:id="@+id/circle12Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle12big"
+                android:id="@+id/circle12Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="1">
+        android:id="@+id/linearLayout3"
+        android:layout_width="413dp"
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:id="@+id/grid20"
@@ -258,31 +297,31 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle20peg"
+                android:id="@+id/circle20Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle20medium"
+                android:id="@+id/circle20Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle20big"
+                android:id="@+id/circle20Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -292,16 +331,16 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle21peg"
+                android:id="@+id/circle21Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle21medium"
+                android:id="@+id/circle21Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
@@ -310,13 +349,13 @@
                 android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle21big"
+                android:id="@+id/circle21Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -326,39 +365,41 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/circle22peg"
+                android:id="@+id/circle22Peg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
-                android:id="@+id/circle22medium"
+                android:id="@+id/circle22Medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
-                android:id="@+id/circle22big"
+                android:id="@+id/circle22Big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="68dp">
+        android:layout_height="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2">
 
         <TextView
             android:id="@+id/playerTurn"
@@ -400,8 +441,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/pegNumber"
             android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/pegNumber"
             android:text="remain:"
             android:textSize="25sp" />
 
@@ -420,8 +461,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/mediumNumber"
             android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/mediumNumber"
             android:text="remain:"
             android:textSize="25sp" />
 
@@ -438,9 +479,13 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1">
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="75dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/peg"
@@ -469,8 +514,11 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp">
 
         <Button
             android:id="@+id/instructionsButton"
@@ -479,16 +527,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="341dp"
-            android:contentDescription="Instructions"
+            android:layout_marginEnd="321dp"
+            android:text="I"
             app:icon="@android:drawable/ic_dialog_info" />
-
-        <Button
-            android:id="@+id/resetButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Reset" />
 
         <Button
             android:id="@+id/homeButton"
@@ -498,7 +539,6 @@
             android:layout_marginEnd="10dp"
             android:text="Home" />
 
-
     </RelativeLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
