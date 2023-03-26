@@ -1,6 +1,7 @@
 package com.example.otrio
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -317,14 +318,53 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun resetBoard() {
-        Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
+        val builder = AlertDialog.Builder(this)
 
-        val wins = winData.edit()
-        wins.putInt("redWins", redWins)
-        wins.putInt("blueWins", blueWins)
-        wins.apply()
+        if(!blueWin && !redWin) {
+            builder.setTitle("Reset Board")
+            builder.setMessage("Are you sure you want to reset the board? This action cannot be undone.")
+            builder.setPositiveButton("Yes") { _, _ ->
+                val wins = winData.edit()
+                wins.putInt("redWins", redWins)
+                wins.putInt("blueWins", blueWins)
+                wins.apply()
 
-        recreate()
+                recreate()
+                Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        else {
+            if(redWin) {
+                builder.setTitle("Winner: Player 1 (Red)")
+            }
+            else {
+                builder.setTitle("Winner: Player 2 (Blue)")
+            }
+            builder.setMessage("Would you like to play again?")
+            builder.setPositiveButton("Yes") { _, _ ->
+                val wins = winData.edit()
+                wins.putInt("redWins", redWins)
+                wins.putInt("blueWins", blueWins)
+                wins.apply()
+
+                recreate()
+                Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No") { dialog, id ->
+                dialog.dismiss()
+            }
+            builder.setNeutralButton("Take Me Home") { _, _ ->
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                startActivity(intent)
+            }
+        }
+
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun handleButtonPegClick() {
