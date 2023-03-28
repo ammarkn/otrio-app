@@ -1,16 +1,19 @@
 package com.example.otrio
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import org.w3c.dom.Text
 import java.lang.System.arraycopy
 
-class BoardActivity : AppCompatActivity(), View.OnClickListener {
+class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rounds = 0;
 
@@ -78,7 +81,7 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_board)
+        setContentView(R.layout.two_player_activity_board)
 
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
@@ -91,6 +94,11 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this, InstructionsActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
+        }
+
+        val openDialogButton = findViewById<Button>(R.id.open_dialog)
+        openDialogButton.setOnClickListener {
+            showCustomDialog()
         }
 
         redPeg.add(redPeg0)
@@ -174,8 +182,8 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         bignumber = findViewById(R.id.bigNumber)
         bignumber.text = p1.getPieces()[2].size.toString()
 
-        textP1 = findViewById(R.id.p1Text)
-        textP2 = findViewById(R.id.p2Text)
+//        textP1 = findViewById(R.id.p1Text)
+//        textP2 = findViewById(R.id.p2Text)
 
 /*        for (i in 0..2) {
             for (j in 0..2) {
@@ -187,6 +195,18 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         }*/
     }
 
+    private fun showCustomDialog() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.win_dialog)
+        val player1Wins = dialog.findViewById<TextView>(R.id.player1_wins)
+        val player2Wins = dialog.findViewById<TextView>(R.id.player2_wins)
+
+        player1Wins.text = "Player 1 Wins: 1"
+        player2Wins.text = "Player 2 Wins: 2"
+        dialog.show()
+    }
 
     override fun onClick(v: View) {
         when (v.id) {
