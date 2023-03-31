@@ -8,12 +8,21 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.Otrio"
         tools:targetApi="31">
         <activity
             android:name=".TwoPlayerBoardActivity"
             android:exported="false" />
+        <activity
+            android:name=".FourPlayerBoardActivity"
+            android:exported="false"
+        />
+        <activity
+            android:name=".BoardActivity"
+            android:exported="false"
+            android:launchMode="singleInstance" />
         <activity
             android:name=".GameplayActivity"
             android:exported="false" />
