@@ -20,10 +20,6 @@
             android:exported="false"
         />
         <activity
-            android:name=".BoardActivity"
-            android:exported="false"
-            android:launchMode="singleInstance" />
-        <activity
             android:name=".GameplayActivity"
             android:exported="false" />
         <activity

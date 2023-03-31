@@ -2,6 +2,7 @@ package com.example.otrio
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -9,6 +10,7 @@ import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.core.content.ContextCompat
 import java.lang.System.arraycopy
@@ -67,8 +69,6 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mediumnumber: TextView
     private lateinit var bignumber: TextView
     private lateinit var picked: TextView
-    private lateinit var redWinText : TextView
-    private lateinit var blueWinText : TextView
 
     var redPeg = ArrayList<Piece>()
     var redMedium = ArrayList<Piece>()
@@ -80,7 +80,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.two_player_activity_board)
+        setContentView(R.layout.activity_board)
 
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
@@ -195,11 +195,11 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.win_dialog)
-        val player1Wins = dialog.findViewById<TextView>(R.id.player1_wins)
-        val player2Wins = dialog.findViewById<TextView>(R.id.player2_wins)
+        val player1Wins = dialog.findViewById<TextView>(R.id.red_wins)
+        val player2Wins = dialog.findViewById<TextView>(R.id.blue_wins)
 
-        player1Wins.text = "Player 1 Wins: 1"
-        player2Wins.text = "Player 2 Wins: 2"
+        player1Wins.text = "Player 1: $redWins Wins"
+        player2Wins.text = "Player 2: $blueWins Wins"
         dialog.show()
     }
 
@@ -273,8 +273,6 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             resetBoard()
         }
 
-        redWinText.text = "Player 1: " + redWins.toString() + " Wins"
-        blueWinText.text = "Player 2: " + blueWins.toString() + " Wins"
     }
 
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {

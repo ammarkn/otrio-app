@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="Player 1 Wins: "
         android:textSize="24sp"
-        android:id="@+id/player1_wins"
+        android:id="@+id/red_wins"
         android:layout_marginBottom="15dp"
         />
     <TextView
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:text="Player 2 Wins: "
         android:textSize="24sp"
-        android:id="@+id/player2_wins"
+        android:id="@+id/blue_wins"
         android:layout_marginBottom="15dp"
         />
     <TextView
@@ -26,14 +26,14 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:visibility="gone"
-        android:id="@+id/player3_wins"
+        android:id="@+id/yellow_wins"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:visibility="gone"
-        android:id="@+id/player4_wins"
+        android:id="@+id/green_wins"
         />
 
 </LinearLayout>
