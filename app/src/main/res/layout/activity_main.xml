@@ -30,7 +30,7 @@
         android:text="OTRIO" />
 
     <Button
-        android:id="@+id/go_to_game"
+        android:id="@+id/go_to_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"

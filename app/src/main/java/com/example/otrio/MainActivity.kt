@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         //variable for button to take user to instructions
-        val gameButtonClick = findViewById<Button>(R.id.go_to_game)
+        val gameButtonClick = findViewById<Button>(R.id.go_to_play)
 
         //event listener to change page when button is clicked
         gameButtonClick.setOnClickListener {
-            val intent = Intent(this, BoardActivity::class.java)
+            val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
         }
 

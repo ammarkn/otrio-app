@@ -135,7 +135,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_four_player_board)
+        setContentView(R.layout.activity_board)
 
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
@@ -270,12 +270,6 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
         bignumber = findViewById(R.id.bigNumber)
         bignumber.text = p1.getPieces()[2].size.toString()
-
-        //set text for each player (ARE WE KEEPING THESE FOR 3/4 PLAYER)
-        textP1 = findViewById(R.id.p1Text)
-        textP2 = findViewById(R.id.p2Text)
-        //textP3 = findViewById(R.id.p3Text)
-        //textP4 = findViewById(R.id.p4Text)
 
     }
 

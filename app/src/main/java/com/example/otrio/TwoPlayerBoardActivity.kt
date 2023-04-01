@@ -2,6 +2,7 @@ package com.example.otrio
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -9,11 +10,12 @@ import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.core.content.ContextCompat
 import java.lang.System.arraycopy
 
-class BoardActivity : AppCompatActivity(), View.OnClickListener {
+class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rounds = 0;
 
@@ -67,8 +69,6 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mediumnumber: TextView
     private lateinit var bignumber: TextView
     private lateinit var picked: TextView
-    private lateinit var redWinText : TextView
-    private lateinit var blueWinText : TextView
 
     var redPeg = ArrayList<Piece>()
     var redMedium = ArrayList<Piece>()
@@ -95,6 +95,10 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
+        val openDialogButton = findViewById<Button>(R.id.open_dialog)
+        openDialogButton.setOnClickListener {
+            showCustomDialog()
+        }
         val resetButtonClick = findViewById<Button>(R.id.resetButton)
         resetButtonClick.setOnClickListener {
             resetBoard()
@@ -181,14 +185,23 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
         bignumber = findViewById(R.id.bigNumber)
         bignumber.text = p1.getPieces()[2].size.toString()
 
-        redWinText = findViewById(R.id.p1Text)
-        blueWinText = findViewById(R.id.p2Text)
-
         winData = getSharedPreferences("Wins", Context.MODE_PRIVATE)
         redWins = winData.getInt("redWins", 0)
         blueWins = winData.getInt("blueWins", 0)
     }
 
+    private fun showCustomDialog() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.win_dialog)
+        val player1Wins = dialog.findViewById<TextView>(R.id.red_wins)
+        val player2Wins = dialog.findViewById<TextView>(R.id.blue_wins)
+
+        player1Wins.text = "Player 1: $redWins Wins"
+        player2Wins.text = "Player 2: $blueWins Wins"
+        dialog.show()
+    }
 
     override fun onClick(v: View) {
         when (v.id) {
@@ -260,8 +273,6 @@ class BoardActivity : AppCompatActivity(), View.OnClickListener {
             resetBoard()
         }
 
-        redWinText.text = "Player 1: " + redWins.toString() + " Wins"
-        blueWinText.text = "Player 2: " + blueWins.toString() + " Wins"
     }
 
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {
