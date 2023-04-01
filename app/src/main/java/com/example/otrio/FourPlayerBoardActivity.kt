@@ -1,24 +1,26 @@
 package com.example.otrio
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.media.Image
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.core.content.ContextCompat
 import java.lang.System.arraycopy
 
 
 class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var rounds = 0;
+    private var playCount = 0;
 
     private var pickedPiece = false
 
     //variables to store each player's number of wins
-    //DONT NEED THESE????????????
     private var redWin = false
     private var blueWin = false
     private var yellowWin = false
@@ -29,6 +31,8 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     var blueWins = 0
     var yellowWins = 0
     var greenWins = 0
+
+    private lateinit var winData: SharedPreferences
 
 
     //array to store buttons
@@ -115,6 +119,11 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mediumnumber: TextView
     private lateinit var bignumber: TextView
     private lateinit var picked: TextView
+    private lateinit var redWinText : TextView
+    private lateinit var blueWinText : TextView
+    private lateinit var yellowWinText : TextView
+    private lateinit var greenWinText : TextView
+
 
     //create arraylist for each piece size+color
     var redPeg = ArrayList<Piece>()
@@ -133,22 +142,32 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     var greenMedium = ArrayList<Piece>()
     var greenBig = ArrayList<Piece>()
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_board)
+        setContentView(R.layout.activity_four_player_board)
 
+        //create button to return to home page
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
+        //create button to access instructions
         val instructionsButtonClick = findViewById<Button>(R.id.instructionsButton)
         instructionsButtonClick.setOnClickListener {
             val intent = Intent(this, InstructionsActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
+
+        //create button to reset board
+        val resetButtonClick = findViewById<Button>(R.id.resetButton)
+        resetButtonClick.setOnClickListener {
+            resetBoard()
+        }
+
 
         //add each individual pieces to arraylists of pieces of same size+color
         redPeg.add(redPeg0)
@@ -271,6 +290,23 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         bignumber = findViewById(R.id.bigNumber)
         bignumber.text = p1.getPieces()[2].size.toString()
 
+        //set win text for each player
+        //textP1 = findViewById(R.id.p1Text)
+        //textP2 = findViewById(R.id.p2Text)
+        //textP3 = findViewById(R.id.p3Text)
+        //textP4 = findViewById(R.id.p4Text)
+        redWinText = findViewById(R.id.p1Text)
+        blueWinText = findViewById(R.id.p2Text)
+        yellowWinText = findViewById(R.id.p3Text)
+        greenWinText = findViewById(R.id.p4Text)
+
+        winData = getSharedPreferences("Wins", Context.MODE_PRIVATE)
+        redWins = winData.getInt("redWins", 0)
+        blueWins = winData.getInt("blueWins", 0)
+        yellowWins = winData.getInt("yellowWins", 0)
+        greenWins = winData.getInt("greenWins", 0)
+
+
     }
 
     override fun onClick(v: View) {
@@ -297,13 +333,104 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
         }
 
+        if(sameSpaceWin() || samePieceWin() || ascendingDescendingWin()) {
+            if(sameSpaceWin()) {
+                if(redWin) {
+//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Red win by same space win")
+                    redWins++
+                    resetBoard()
+                }
+                else if(blueWin) {
+//                    Toast.makeText(this, "Blue win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Blue win by same space win")
+                    blueWins++
+                    resetBoard()
+                }
+                else if(yellowWin) {
+//                    Toast.makeText(this, "Yellow win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Yellow win by same space win")
+                    yellowWins++
+                    resetBoard()
+                }
+                else if(greenWin) {
+//                    Toast.makeText(this, "Green win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Green win by same space win")
+                    greenWins++
+                    resetBoard()
+                }
+            }
+            else if(samePieceWin()) {
+                if(redWin) {
+//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Red win by same piece win")
+                    redWins++
+                    resetBoard()
+                }
+                else if(blueWin) {
+//                    Toast.makeText(this, "Blue win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Blue win by same piece win")
+                    blueWins++
+                    resetBoard()
+                }
+                else if(yellowWin) {
+//                    Toast.makeText(this, "Yellow win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Yellow win by same piece win")
+                    yellowWins++
+                    resetBoard()
+                }
+                else if(greenWin) {
+//                    Toast.makeText(this, "Green win by same space win", Toast.LENGTH_SHORT).show()
+                    println("Green win by same piece win")
+                    greenWins++
+                    resetBoard()
+                }
+            }
+            else if(ascendingDescendingWin()) {
+                if(redWin) {
+//                    Toast.makeText(this, "Red win by ascending descending win", Toast.LENGTH_SHORT).show()
+                    println("Red win by ascending descending win")
+                    redWins++
+                    resetBoard()
+                }
+                else if(blueWin) {
+//                    Toast.makeText(this, "Blue win by ascending descending win", Toast.LENGTH_SHORT).show()
+                    println("Blue win by ascending descending win")
+                    blueWins++
+                    resetBoard()
+                }
+                else if(yellowWin) {
+//                    Toast.makeText(this, "Yellow win by ascending descending win", Toast.LENGTH_SHORT).show()
+                    println("Yellow win by ascending descending win")
+                    yellowWins++
+                    resetBoard()
+                }
+                else if(greenWin) {
+//                    Toast.makeText(this, "Green win by ascending descending win", Toast.LENGTH_SHORT).show()
+                    println("Green win by ascending descending win")
+                    greenWins++
+                    resetBoard()
+                }
+            }
+        }
+        else if(draw()) {
+//                    Toast.makeText(this, "Draw", Toast.LENGTH_SHORT).show()
+            println("Draw")
+            resetBoard()
+        }
+
+        redWinText.text = "Player 1: " + redWins.toString() + " Wins"
+        blueWinText.text = "Player 2: " + blueWins.toString() + " Wins"
+        yellowWinText.text = "Player 3: " + yellowWins.toString() + " Wins"
+        greenWinText.text = "Player 4: " + greenWins.toString() + " Wins"
+
     }
 
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {
 
         val newTag = resources.getIdentifier(pieceType.getColor()+pieceType.getSize().lowercase(),"drawable",packageName)
         //get id of image name of the piece base on the picked piece
-        val vId = resources.getIdentifier(vIdstart+pieceType.getSize(),"id",packageName)
+        val vId = resources.getIdentifier(vIdstart+pieceType.getSize().lowercase(),"id",packageName)
         //get the id of the image view
         if(pickedPiece){ //check which button selected (Layout as a button)
             val imageView: ImageView = findViewById(vId)
@@ -321,14 +448,17 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         //remove red peg from list
                         "Peg"->{
                             removedElement = redPeg.removeAt(redPeg.size - 1)
+                            playCount++
                         }
                         //remove red medium from list
                         "Medium"->{
                             removedElement = redMedium.removeAt(redMedium.size - 1)
+                            playCount++
                         }
                         //remove red big from list
                         "Big"->{
                             removedElement = redBig.removeAt(redBig.size - 1)
+                            playCount++
                         }
                         //set removed piece to error, to handle error cases
                         else->{
@@ -343,14 +473,17 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         //remove blue peg from list
                         "Peg"->{
                             removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                            playCount++
                         }
                         //remove blue medium from list
                         "Medium"->{
                             removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                            playCount++
                         }
                         //remove blue big from list
                         "Big"->{
                             removedElement = blueBig.removeAt(blueBig.size - 1)
+                            playCount++
                         }
                         //set removed piece to error, to handle error cases
                         else->{
@@ -365,14 +498,17 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         //remove yellow peg from list
                         "Peg"->{
                             removedElement = yellowPeg.removeAt(yellowPeg.size - 1)
+                            playCount++
                         }
                         //remove yellow medium from list
                         "Medium"->{
                             removedElement = yellowMedium.removeAt(yellowMedium.size - 1)
+                            playCount++
                         }
                         //remove yellow big from list
                         "Big"->{
                             removedElement = yellowBig.removeAt(yellowBig.size - 1)
+                            playCount++
                         }
                         //set removed piece to error, to handle error cases
                         else->{
@@ -387,14 +523,17 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         //remove green peg from list
                         "Peg"->{
                             removedElement = greenPeg.removeAt(greenPeg.size - 1)
+                            playCount++
                         }
                         //remove green medium from list
                         "Medium"->{
                             removedElement = greenMedium.removeAt(greenMedium.size - 1)
+                            playCount++
                         }
                         //remove green big from list
                         "Big"->{
                             removedElement = greenBig.removeAt(greenBig.size - 1)
+                            playCount++
                         }
                         //set removed piece to error, to handle error cases
                         else->{
@@ -408,7 +547,71 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             //reset picked piece as the piece to play should no longer be selected
             pickedPiece = false
         }
+        else{
+            Toast.makeText(this, "Select a piece then select a location on the board", Toast.LENGTH_SHORT).show()
+        }
     }
+
+    private fun resetBoard() {
+        val builder = AlertDialog.Builder(this)
+
+        if(!blueWin && !redWin && !yellowWin && !greenWin) {
+            builder.setTitle("Reset Board")
+            builder.setMessage("Are you sure you want to reset the board? This action cannot be undone.")
+            builder.setPositiveButton("Yes") { _, _ ->
+                val wins = winData.edit()
+                wins.putInt("redWins", redWins)
+                wins.putInt("blueWins", blueWins)
+                wins.putInt("yellowWins", yellowWins)
+                wins.putInt("greenWins", greenWins)
+                wins.apply()
+
+                recreate()
+                Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        else {
+            if(redWin) {
+                builder.setTitle("Winner: Player 1 (Red)")
+            }
+            else if(blueWin){
+                builder.setTitle("Winner: Player 2 (Blue)")
+            }
+            else if(yellowWin){
+                builder.setTitle("Winner: Player 3 (Yellow)")
+            }
+            else if(greenWin){
+                builder.setTitle("Winner: Player 4 (Green)")
+            }
+            builder.setMessage("Would you like to play again?")
+            builder.setPositiveButton("Yes") { _, _ ->
+                val wins = winData.edit()
+                wins.putInt("redWins", redWins)
+                wins.putInt("blueWins", blueWins)
+                wins.putInt("yellowWins", yellowWins)
+                wins.putInt("greenWins", greenWins)
+                wins.apply()
+
+                recreate()
+                Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton("No") { dialog, id ->
+                dialog.dismiss()
+            }
+            builder.setNeutralButton("Take Me Home") { _, _ ->
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                startActivity(intent)
+            }
+        }
+
+        val alert = builder.create()
+        alert.show()
+    }
+
 
     private fun handleButtonPegClick() {
         //check if user has any peg pieces left
@@ -419,6 +622,9 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             picked.text = pieceType.getColor() + " " + pieceType.getSize()
             //confirm a piece has been picked
             pickedPiece = true
+        }
+        else{
+            Toast.makeText(this, "There are no Peg pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -432,6 +638,9 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             //confirm a piece has been picked
             pickedPiece = true
         }
+        else{
+            Toast.makeText(this, "There are no Medium pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun handleButtonBigClick() {
@@ -443,6 +652,9 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             picked.text = pieceType.getColor()+" "+pieceType.getSize()
             //confirm a piece has been picked
             pickedPiece = true
+        }
+        else{
+            Toast.makeText(this, "There are no Big pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -470,154 +682,463 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     /*
     Method 1 of winning: https://otrio.com/pages/how-to-play
      */
-    /*private fun samePieceWin() {
-        var temp = Array(3) { arrayOfNulls <String>(3) }
-        var board = Array(3) { arrayOfNulls <Piece?>(3) }
+    @SuppressLint("DiscouragedApi")
+    private fun samePieceWin() : Boolean {
+        val pieces = arrayOf("peg", "medium", "big")
+        val players = arrayOf("red", "blue", "yellow", "green")
 
-        for (i in 0..2) {
-            for (j in 0..2) {
-                temp[i][j] = buttons[i][j]!!.text.toString()
+        // Checks all rows
+        for(i in 0..2) {
+            for(piece in pieces) {
+                for(player in players) {
+                    val img = ContextCompat.getDrawable(this, resources.getIdentifier("${player}${piece}", "drawable", packageName))
+
+                    val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid${i}0", "id", packageName))
+                    val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid${i}1", "id", packageName))
+                    val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid${i}2", "id", packageName))
+
+                    val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle${i}0${piece}", "id", packageName))
+                    val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle${i}1${piece}", "id", packageName))
+                    val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle${i}2${piece}", "id", packageName))
+
+                    if (piece1.drawable.constantState == img?.constantState && piece1.drawable.constantState == piece2.drawable.constantState && piece1.drawable.constantState == piece3.drawable.constantState) {
+                        if(player == "red") {
+                            redWin = true
+                            return true
+                        }
+                        else if(player == "blue") {
+                            blueWin = true
+                            return true
+                        }
+                        else if(player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
+                        else if(player == "green") {
+                            greenWin = true
+                            return true
+                        }
+                    }
+                }
             }
         }
 
-        for(i in temp.indices) {
-            arraycopy(temp[i], 0, board[i], 0, temp[0].size)
+        // Checks all columns
+        for(i in 0..2) {
+            for(piece in pieces) {
+                for(player in players) {
+                    val img = ContextCompat.getDrawable(this, resources.getIdentifier("${player}${piece}", "drawable", packageName))
+
+                    val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid0${i}", "id", packageName))
+                    val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid1${i}", "id", packageName))
+                    val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid2${i}", "id", packageName))
+
+                    val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle0${i}${piece}", "id", packageName))
+                    val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle1${i}${piece}", "id", packageName))
+                    val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle2${i}${piece}", "id", packageName))
+
+                    if (piece1.drawable.constantState == img?.constantState && piece1.drawable.constantState == piece2.drawable.constantState && piece1.drawable.constantState == piece3.drawable.constantState) {
+                        if(player == "red") {
+                            redWin = true
+                            return true
+                        }
+                        else if(player == "blue") {
+                            blueWin = true
+                            return true
+                        }
+                        else if(player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
+                        else if(player == "green") {
+                            greenWin = true
+                            return true
+                        }
+                    }
+                }
+            }
         }
 
-        //Rows
-        for (i in 0..2) {
-            if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0]!!.getColor() == "Red") {
-                redWin = true
-            }
-            else if(board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0]!!.getColor() == "Blue") {
-                blueWin = true
+        // Checks diagonal (top left to bottom right)
+        for(piece in pieces) {
+            for(player in players) {
+                val img = ContextCompat.getDrawable(this, resources.getIdentifier("${player}${piece}", "drawable", packageName))
+
+                val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid00", "id", packageName))
+                val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid11", "id", packageName))
+                val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid22", "id", packageName))
+
+                val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle00${piece}", "id", packageName))
+                val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle11${piece}", "id", packageName))
+                val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle22${piece}", "id", packageName))
+
+                if (piece1.drawable.constantState == img?.constantState && piece1.drawable.constantState == piece2.drawable.constantState && piece1.drawable.constantState == piece3.drawable.constantState) {
+                    if(player == "red") {
+                        redWin = true
+                        return true
+                    }
+                    else if(player == "blue") {
+                        blueWin = true
+                        return true
+                    }
+                    else if(player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
+                    else if(player == "green") {
+                        greenWin = true
+                        return true
+                    }
+                }
             }
         }
 
-        //Columns
-        for (i in 0..2) {
-            if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i]!!.getColor() == "Red") {
-                redWin = true
-            }
-            else if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i]!!.getColor() == "Blue") {
-                blueWin = true
+        // Checks diagonal (top right to bottom left)
+        for(piece in pieces) {
+            for(player in players) {
+                val img = ContextCompat.getDrawable(this, resources.getIdentifier("${player}${piece}", "drawable", packageName))
+
+                val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid02", "id", packageName))
+                val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid11", "id", packageName))
+                val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid20", "id", packageName))
+
+                val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle02${piece}", "id", packageName))
+                val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle11${piece}", "id", packageName))
+                val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle20${piece}", "id", packageName))
+
+                if (piece1.drawable.constantState == img?.constantState && piece1.drawable.constantState == piece2.drawable.constantState && piece1.drawable.constantState == piece3.drawable.constantState) {
+                    if(player == "red") {
+                        redWin = true
+                        return true
+                    }
+                    else if(player == "blue") {
+                        blueWin = true
+                        return true
+                    }
+                    else if(player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
+                    else if(player == "green") {
+                        greenWin = true
+                        return true
+                    }
+                }
             }
         }
 
-        //Diagonal (Left to right)
-        if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0]!!.getColor() == "Red") {
-            redWin = true
-        }
-        //Diagonal (Right to left)
-        else if (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2]!!.getColor() == "Blue") {
-            blueWin = true
-        }
-
-        if(redWin) { redWins++ } else if(blueWin) { blueWins++ }
+        return false
     }
 
     /*
     Method 2 of winning: https://otrio.com/pages/how-to-play
      */
-    private fun sameSpaceWin() {
-        var temp = Array(3) { arrayOfNulls <String>(3) }
-        var board = Array(3) { arrayOfNulls <Piece?>(3) }
+    @SuppressLint("DiscouragedApi")
+    private fun sameSpaceWin() : Boolean {
+        for(i in 0..2) {
+            for(j in 0..2) {
+                val gridID = "grid$i$j"
+                val circleID = "circle$i$j"
 
-        for (i in 0..2) {
-            for (j in 0..2) {
-                temp[i][j] = buttons[i][j]!!.text.toString()
+                val layout = findViewById<RelativeLayout>(resources.getIdentifier(gridID, "id", packageName))
+
+                val peg = layout.findViewById<ImageView>(resources.getIdentifier(circleID + "peg", "id", packageName))
+                val medium = layout.findViewById<ImageView>(resources.getIdentifier(circleID + "medium", "id", packageName))
+                val big = layout.findViewById<ImageView>(resources.getIdentifier(circleID + "big", "id", packageName))
+
+                if(peg.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.redpeg)?.constantState) {
+                    if(medium.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.redmedium)?.constantState) {
+                        if(big.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.redbig)?.constantState) {
+                            redWin = true
+                            return true
+                        }
+                    }
+                }
+                else if(peg.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.bluepeg)?.constantState) {
+                    if(medium.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.bluemedium)?.constantState) {
+                        if(big.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.bluebig)?.constantState) {
+                            blueWin = true
+                            return true
+                        }
+                    }
+                }
+                else if(peg.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.yellowpeg)?.constantState) {
+                    if(medium.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.yellowmedium)?.constantState) {
+                        if(big.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.yellowbig)?.constantState) {
+                            yellowWin = true
+                            return true
+                        }
+                    }
+                }
+                else if(peg.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.greenpeg)?.constantState) {
+                    if(medium.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.greenmedium)?.constantState) {
+                        if(big.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.greenbig)?.constantState) {
+                            greenWin = true
+                            return true
+                        }
+                    }
+                }
             }
         }
-
-        for(i in temp.indices) {
-            arraycopy(temp[i], 0, board[i], 0, temp[0].size)
-        }
+        return false
     }
 
     /*
     Method 3 of winning: https://otrio.com/pages/how-to-play
      */
-    private fun ascendingDescendingWin() {
-        var temp = Array(3) { arrayOfNulls <String>(3) }
-        var board = Array(3) { arrayOfNulls <Piece?>(3) }
+    @SuppressLint("DiscouragedApi")
+    private fun ascendingDescendingWin() : Boolean {
+        val pieces = arrayOf("peg", "medium", "big")
+        val players = arrayOf("red", "blue", "yellow", "green")
 
-        for (i in 0..2) {
-            for (j in 0..2) {
-                temp[i][j] = buttons[i][j]!!.text.toString()
+        // Checks all rows
+        for(i in 0..2) {
+            for(piece in pieces) {
+                for(player in players) {
+                    val peg = ContextCompat.getDrawable(this, resources.getIdentifier("${player}peg", "drawable", packageName))
+                    val medium = ContextCompat.getDrawable(this, resources.getIdentifier("${player}medium", "drawable", packageName))
+                    val big = ContextCompat.getDrawable(this, resources.getIdentifier("${player}big", "drawable", packageName))
+
+                    val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid${i}0", "id", packageName))
+                    val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid${i}1", "id", packageName))
+                    val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid${i}2", "id", packageName))
+
+                    val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle${i}0peg", "id", packageName))
+                    val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle${i}1medium", "id", packageName))
+                    val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle${i}2big", "id", packageName))
+
+                    val piece4 = layout3.findViewById<ImageView>(resources.getIdentifier("circle${i}2peg", "id", packageName))
+                    val piece5 = layout2.findViewById<ImageView>(resources.getIdentifier("circle${i}1medium", "id", packageName))
+                    val piece6 = layout1.findViewById<ImageView>(resources.getIdentifier("circle${i}0big", "id", packageName))
+
+                    if(piece1.drawable.constantState == peg?.constantState && piece2.drawable.constantState == medium?.constantState && piece3.drawable.constantState == big?.constantState) {
+                        if(player == "red") {
+                            redWin = true
+                            return true
+                        }
+                        else if(player == "blue") {
+                            blueWin = true
+                            return true
+                        }
+                        else if(player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
+                        else if(player == "green") {
+                            greenWin = true
+                            return true
+                        }
+                    }
+                    else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
+                        if(player == "red") {
+                            redWin = true
+                            return true
+                        }
+                        else if(player == "blue") {
+                            blueWin = true
+                            return true
+                        }
+                        else if(player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
+                        else if(player == "green") {
+                            greenWin = true
+                            return true
+                        }
+                    }
+                }
             }
         }
 
-        for(i in temp.indices) {
-            arraycopy(temp[i], 0, board[i], 0, temp[0].size)
+        // Checks all columns
+        for(i in 0..2) {
+            for(piece in pieces) {
+                for(player in players) {
+                    val peg = ContextCompat.getDrawable(this, resources.getIdentifier("${player}peg", "drawable", packageName))
+                    val medium = ContextCompat.getDrawable(this, resources.getIdentifier("${player}medium", "drawable", packageName))
+                    val big = ContextCompat.getDrawable(this, resources.getIdentifier("${player}big", "drawable", packageName))
+
+                    val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid0${i}", "id", packageName))
+                    val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid1${i}", "id", packageName))
+                    val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid2${i}", "id", packageName))
+
+                    val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle0${i}peg", "id", packageName))
+                    val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle1${i}medium", "id", packageName))
+                    val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle2${i}big", "id", packageName))
+
+                    val piece4 = layout3.findViewById<ImageView>(resources.getIdentifier("circle2${i}peg", "id", packageName))
+                    val piece5 = layout2.findViewById<ImageView>(resources.getIdentifier("circle1${i}medium", "id", packageName))
+                    val piece6 = layout1.findViewById<ImageView>(resources.getIdentifier("circle0${i}big", "id", packageName))
+
+                    if(piece1.drawable.constantState == peg?.constantState && piece2.drawable.constantState == medium?.constantState && piece3.drawable.constantState == big?.constantState) {
+                        if(player == "red") {
+                            redWin = true
+                            return true
+                        }
+                        else if(player == "blue") {
+                            blueWin = true
+                            return true
+                        }
+                        else if(player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
+                        else if(player == "green") {
+                            greenWin = true
+                            return true
+                        }
+                    }
+                    else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
+                        if(player == "red") {
+                            redWin = true
+                            return true
+                        }
+                        else if(player == "blue") {
+                            blueWin = true
+                            return true
+                        }
+                        else if(player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
+                        else if(player == "green") {
+                            greenWin = true
+                            return true
+                        }
+                    }
+                }
+            }
         }
 
-        // Ascending/descending row
-        for (i in 0..2) {
-            if(board[i][0]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][2]!!.getSize() == ("Big")
-                && board[i][0]!!.getColor() == ("Red") && board[i][1]!!.getColor() == ("Red") && board[i][2]!!.getColor() == ("Red")) {
-                redWin = true
-            }
-            else if(board[i][2]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][0]!!.getSize() == ("Big")
-                && board[i][2]!!.getColor() == ("Red") && board[i][1]!!.getColor() == ("Red") && board[i][0]!!.getColor() == ("Red")) {
-                redWin = true
+        // Checks diagonals (top left to bottom right)
+        for(piece in pieces) {
+            for(player in players) {
+                val peg = ContextCompat.getDrawable(this, resources.getIdentifier("${player}peg", "drawable", packageName))
+                val medium = ContextCompat.getDrawable(this, resources.getIdentifier("${player}medium", "drawable", packageName))
+                val big = ContextCompat.getDrawable(this, resources.getIdentifier("${player}big", "drawable", packageName))
+
+                val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid00", "id", packageName))
+                val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid11", "id", packageName))
+                val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid22", "id", packageName))
+
+                val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle00peg", "id", packageName))
+                val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle11medium", "id", packageName))
+                val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle22big", "id", packageName))
+
+                val piece4 = layout3.findViewById<ImageView>(resources.getIdentifier("circle22peg", "id", packageName))
+                val piece5 = layout2.findViewById<ImageView>(resources.getIdentifier("circle11medium", "id", packageName))
+                val piece6 = layout1.findViewById<ImageView>(resources.getIdentifier("circle00big", "id", packageName))
+
+                if(piece1.drawable.constantState == peg?.constantState && piece2.drawable.constantState == medium?.constantState && piece3.drawable.constantState == big?.constantState) {
+                    if(player == "red") {
+                        redWin = true
+                        return true
+                    }
+                    else if(player == "blue") {
+                        blueWin = true
+                        return true
+                    }
+                    else if(player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
+                    else if(player == "green") {
+                        greenWin = true
+                        return true
+                    }
+                }
+                else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
+                    if(player == "red") {
+                        redWin = true
+                        return true
+                    }
+                    else if(player == "blue") {
+                        blueWin = true
+                        return true
+                    }
+                    else if(player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
+                    else if(player == "green") {
+                        greenWin = true
+                        return true
+                    }
+                }
             }
         }
 
-        for (i in 0..2) {
-            if(board[i][0]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][2]!!.getSize() == ("Big")
-                && board[i][0]!!.getColor() == ("Blue") && board[i][1]!!.getColor() == ("Blue") && board[i][2]!!.getColor() == ("Blue")) {
-                blueWin = true
-            }
-            else if(board[i][2]!!.getSize() == ("Peg") && board[i][1]!!.getSize() == ("Medium") && board[i][0]!!.getSize() == ("Big")
-                && board[i][2]!!.getColor() == ("Blue") && board[i][1]!!.getColor() == ("Blue") && board[i][0]!!.getColor() == ("Blue")) {
-                blueWin = true
+        // Checks diagonals (top right to bottom left)
+        for(piece in pieces) {
+            for(player in players) {
+                val peg = ContextCompat.getDrawable(this, resources.getIdentifier("${player}peg", "drawable", packageName))
+                val medium = ContextCompat.getDrawable(this, resources.getIdentifier("${player}medium", "drawable", packageName))
+                val big = ContextCompat.getDrawable(this, resources.getIdentifier("${player}big", "drawable", packageName))
+
+                val layout1 = findViewById<RelativeLayout>(resources.getIdentifier("grid02", "id", packageName))
+                val layout2 = findViewById<RelativeLayout>(resources.getIdentifier("grid11", "id", packageName))
+                val layout3 = findViewById<RelativeLayout>(resources.getIdentifier("grid20", "id", packageName))
+
+                val piece1 = layout1.findViewById<ImageView>(resources.getIdentifier("circle02peg", "id", packageName))
+                val piece2 = layout2.findViewById<ImageView>(resources.getIdentifier("circle11medium", "id", packageName))
+                val piece3 = layout3.findViewById<ImageView>(resources.getIdentifier("circle20big", "id", packageName))
+
+                val piece4 = layout3.findViewById<ImageView>(resources.getIdentifier("circle20peg", "id", packageName))
+                val piece5 = layout2.findViewById<ImageView>(resources.getIdentifier("circle11medium", "id", packageName))
+                val piece6 = layout1.findViewById<ImageView>(resources.getIdentifier("circle02big", "id", packageName))
+
+                if(piece1.drawable.constantState == peg?.constantState && piece2.drawable.constantState == medium?.constantState && piece3.drawable.constantState == big?.constantState) {
+                    if(player == "red") {
+                        redWin = true
+                        return true
+                    }
+                    else if(player == "blue") {
+                        blueWin = true
+                        return true
+                    }
+                    else if(player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
+                    else if(player == "green") {
+                        greenWin = true
+                        return true
+                    }
+                }
+                else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
+                    if(player == "red") {
+                        redWin = true
+                        return true
+                    }
+                    else if(player == "blue") {
+                        blueWin = true
+                        return true
+                    }
+                    else if(player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
+                    else if(player == "green") {
+                        greenWin = true
+                        return true
+                    }
+                }
             }
         }
 
-        // Ascending/descending column
-        for (i in 0..2) {
-            if(board[0][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[2][i]!!.getSize() == ("Big")
-                && board[0][i]!!.getColor() == ("Red") && board[1][i]!!.getColor() == ("Red") && board[2][i]!!.getColor() == ("Red")) {
-                redWin = true
-            }
-            else if(board[2][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[0][i]!!.getSize() == ("Big")
-                && board[2][i]!!.getColor() == ("Red") && board[1][i]!!.getColor() == ("Red") && board[0][i]!!.getColor() == ("Red")) {
-                redWin = true
-            }
-        }
+        return false
+    }
 
-        for (i in 0..2) {
-            if(board[0][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[2][i]!!.getSize() == ("Big")
-                && board[0][i]!!.getColor() == ("Blue") && board[1][i]!!.getColor() == ("Blue") && board[2][i]!!.getColor() == ("Blue")) {
-                blueWin = true
-            }
-            else if(board[2][i]!!.getSize() == ("Peg") && board[1][i]!!.getSize() == ("Medium") && board[0][i]!!.getSize() == ("Big")
-                && board[2][i]!!.getColor() == ("Blue") && board[1][i]!!.getColor() == ("Blue") && board[0][i]!!.getColor() == ("Blue")) {
-                blueWin = true
-            }
+    private fun draw() : Boolean {
+        if(playCount == 27) {
+            return true
         }
+        //need to add another condition if board fills up
+        //or 27 pieces have been played
+        //6 red, 6 blue, 6 yellow, 5 green
+        return false
+    }
 
-        //Diagonal (Left to right)
-        if(board[0][0]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[2][2]!!.getSize() == ("Big")
-            && board[0][0]!!.getColor() == ("Red") && board[1][1]!!.getColor() == ("Red") && board[2][2]!!.getColor() == ("Red")) {
-            redWin = true
-        }
-        else if(board[0][0]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[2][2]!!.getSize() == ("Big")
-            && board[0][0]!!.getColor() == ("Blue") && board[1][1]!!.getColor() == ("Blue") && board[2][2]!!.getColor() == ("Blue")) {
-            blueWin = true
-        }
 
-        //Diagonal (Right to left)
-        if(board[0][2]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[0][2]!!.getSize() == ("Big")
-            && board[0][2]!!.getColor() == ("Red") && board[1][1]!!.getColor() == ("Red") && board[0][2]!!.getColor() == ("Red")) {
-            redWin = true
-        }
-        else if(board[0][2]!!.getSize() == ("Peg") && board[1][1]!!.getSize() == ("Medium") && board[0][2]!!.getSize() == ("Big")
-            && board[0][2]!!.getColor() == ("Blue") && board[1][1]!!.getColor() == ("Blue") && board[0][2]!!.getColor() == ("Blue")) {
-            blueWin = true
-        }
-
-        //if we're tracking wins, we'll need to reset the game??
-        if(redWin) { redWins++ } else if(blueWin) { blueWins++ }
-    }*/
 }
