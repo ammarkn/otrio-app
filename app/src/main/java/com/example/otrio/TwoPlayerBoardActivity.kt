@@ -232,7 +232,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Blue win by same space win", Toast.LENGTH_SHORT).show()
                     println("Blue win by same space win")
                     blueWins++
                     resetBoard()
@@ -246,7 +246,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Blue win by same space win", Toast.LENGTH_SHORT).show()
                     println("Blue win by same piece win")
                     blueWins++
                     resetBoard()
@@ -326,6 +326,9 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
             pickedPiece = false
         }
+        else{
+            Toast.makeText(this, "Select a piece then select a location on the board", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun resetBoard() {
@@ -384,6 +387,9 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             picked.text = pieceType.getColor() + " " + pieceType.getSize()
             pickedPiece = true
         }
+        else{
+            Toast.makeText(this, "There are no Peg pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun handleButtonMediumClick() {
@@ -392,6 +398,9 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             picked.text = pieceType.getColor()+" "+pieceType.getSize()
             pickedPiece = true
         }
+        else{
+            Toast.makeText(this, "There are no Medium pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun handleButtonBigClick() {
@@ -399,6 +408,9 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             pieceType = Piece(playerList[turn%2].getColor(),"Big")
             picked.text = pieceType.getColor()+" "+pieceType.getSize()
             pickedPiece = true
+        }
+        else{
+            Toast.makeText(this, "There are no Big pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
         }
     }
 
