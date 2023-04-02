@@ -14,12 +14,15 @@ import android.view.Window
 import android.widget.*
 import androidx.core.content.ContextCompat
 import java.lang.System.arraycopy
+import kotlin.random.Random
 
-class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
+class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var rounds = 0;
 
     private var pickedPiece = false
+
+    private var randomChosen = false
 
     private var redWin = false
     private var blueWin = false
@@ -99,6 +102,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         openDialogButton.setOnClickListener {
             showCustomDialog()
         }
+
         val resetButtonClick = findViewById<Button>(R.id.resetButton)
         resetButtonClick.setOnClickListener {
             resetBoard()
@@ -203,6 +207,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         dialog.show()
     }
 
+
     override fun onClick(v: View) {
         when (v.id) {
             //R.id.peg -> buttonPegSelected = true
@@ -272,7 +277,6 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             println("Draw")
             resetBoard()
         }
-
     }
 
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {
@@ -294,12 +298,15 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     when(pieceType.getSize()){
                         "Peg"->{
                             removedElement = redPeg.removeAt(redPeg.size - 1)
+                            randomChosen = false;
                         }
                         "Medium"->{
                             removedElement = redMedium.removeAt(redMedium.size - 1)
+                            randomChosen = false;
                         }
                         "Big"->{
                             removedElement = redBig.removeAt(redBig.size - 1)
+                            randomChosen = false;
                         }
                         else->{
                             removedElement = Piece("error","error")
@@ -310,12 +317,15 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     when(pieceType.getSize()){
                         "Peg"->{
                             removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                            randomChosen = false;
                         }
                         "Medium"->{
                             removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                            randomChosen = false;
                         }
                         "Big"->{
                             removedElement = blueBig.removeAt(blueBig.size - 1)
+                            randomChosen = false;
                         }
                         else->{
                             removedElement = Piece("error","error")
@@ -329,6 +339,55 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         else{
             Toast.makeText(this, "Select a piece then select a location on the board", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun cpuTurn(){
+        while(randomChosen){
+            val randPieceSize = Random.nextInt(0, 3)
+            val randLocation = Random.nextInt(0, 9)
+            //val randomValues = List(10) { Random.nextInt(0, 100) }
+            // prints new sequence every time
+            println(randPieceSize)
+            //check the piece size
+            if(randPieceSize == 0){
+                handleButtonPegClick()
+            }
+            else if(randPieceSize == 1){
+                handleButtonMediumClick()
+            }
+            else{
+                handleButtonBigClick()
+            }
+            //check where to place piece
+            if(randLocation == 0){
+                handleLayoutOnClick("circle00",0,0)
+            }
+            else if(randLocation == 1){
+                handleLayoutOnClick("circle01",0,1)
+            }
+            else if(randLocation == 2){
+                handleLayoutOnClick("circle02",0,2)
+            }
+            else if(randLocation == 3){
+                handleLayoutOnClick("circle10",1,0)
+            }
+            else if(randLocation == 4){
+                handleLayoutOnClick("circle11",1,1)
+            }
+            else if(randLocation == 5){
+                handleLayoutOnClick("circle12",1,2)
+            }
+            else if(randLocation == 6){
+                handleLayoutOnClick("circle20",2,0)
+            }
+            else if(randLocation == 7){
+                handleLayoutOnClick("circle21",2,1)
+            }
+            else if(randLocation == 8){
+                handleLayoutOnClick("circle22",2,2)
+            }
+        }
+
     }
 
     private fun resetBoard() {
@@ -423,6 +482,12 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         mediumnumber.text = nextPlayer.getPieces()[1].size.toString()
         bignumber.text = nextPlayer.getPieces()[2].size.toString()
         picked.text = ""
+
+        //if the player is now the CPU
+        if(turn%2 == 1){
+            randomChosen = true
+            cpuTurn()
+        }
     }
 
     private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
