@@ -13,24 +13,26 @@
         android:theme="@style/Theme.Otrio"
         tools:targetApi="31">
         <activity
+            android:name=".SinglePlayerBoardActivity"
+            android:exported="false" />
+        <activity
             android:name=".TwoPlayerBoardActivity"
             android:exported="false" />
         <activity
             android:name=".FourPlayerBoardActivity"
-            android:exported="false"
-        />
+            android:exported="false" />
         <activity
             android:name=".GameplayActivity"
             android:exported="false" />
         <activity
             android:name=".InstructionsActivity"
             android:exported="false" />
-        <activity android:name=".PlayActivity"
+        <activity
+            android:name=".PlayActivity"
             android:exported="false" />
-
-        <activity android:name=".ThreePlayerBoardActivity"
+        <activity
+            android:name=".ThreePlayerBoardActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"

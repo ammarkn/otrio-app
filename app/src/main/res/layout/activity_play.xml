@@ -14,6 +14,14 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         >
+
+        <Button
+            android:id="@+id/go_to_single_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Single PLayer" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
