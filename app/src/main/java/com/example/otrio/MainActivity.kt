@@ -10,17 +10,36 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import com.example.otrio.databinding.ActivityMainBinding
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var greetingText : TextView
+
+    private var greetings = arrayOf(
+        "Welcome! It's always a pleasure to see you.",
+        "Hope you're doing well and ready to conquer the day!",
+        "Rise and shine, it's a new day full of possibilities.",
+        "May this day be as wonderful as you are.",
+        "Sending you positive vibes for a productive day!",
+        "You got this, go out there and crush it!",
+        "Let's make today a day to remember!",
+        "Hope you're ready for a day full of new opportunities!",
+        "Hey there, it's nice to see you again!",
+        "Bonjour! May your day be filled with positivity. "
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        greetingText = findViewById(R.id.greeting_text)
+        greetingText.text = randomGreeting()
 
         MediaPlayerManager.createMediaPlayer(this)
         //variable for button to take user to instructions
@@ -41,13 +60,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val settingsButton = findViewById<Button>(R.id.got_to_settings)
+        val settingsButton = findViewById<Button>(R.id.go_to_settings)
 
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }
+
+    private fun randomGreeting() : String {
+        return greetings[Random.nextInt(greetings.size)]
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
