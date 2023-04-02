@@ -543,9 +543,9 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 //call placepiece function to finish placing the piece on the board
                 placePiece(removedElement, Xpos, Ypos)
+                //reset picked piece as the piece to play should no longer be selected
+                pickedPiece = false
             }
-            //reset picked piece as the piece to play should no longer be selected
-            pickedPiece = false
         }
         else{
             Toast.makeText(this, "Select a piece then select a location on the board", Toast.LENGTH_SHORT).show()

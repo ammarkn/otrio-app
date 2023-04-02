@@ -323,8 +323,8 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 placePiece(removedElement, Xpos, Ypos)
+                pickedPiece = false
             }
-            pickedPiece = false
         }
         else{
             Toast.makeText(this, "Select a piece then select a location on the board", Toast.LENGTH_SHORT).show()
