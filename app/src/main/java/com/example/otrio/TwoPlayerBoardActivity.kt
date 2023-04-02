@@ -323,8 +323,8 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 placePiece(removedElement, Xpos, Ypos)
+                pickedPiece = false
             }
-            pickedPiece = false
         }
     }
 
