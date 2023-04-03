@@ -12,4 +12,7 @@
     <color name="background_color">#212121</color>
     <color name="text_color">#FFFFFF</color>
 
+    <color name="solid_color">#717171</color>
+    <color name="stroke_color">#4E4E4E</color>
+
 </resources>

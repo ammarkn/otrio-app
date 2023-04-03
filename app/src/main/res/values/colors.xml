@@ -12,4 +12,7 @@
     <color name="background_color">#FCFCFC</color>
     <color name="text_color">#252525</color>
 
+    <color name="solid_color">#ffffff</color>
+    <color name="stroke_color">#cdcdcd</color>
+
 </resources>
