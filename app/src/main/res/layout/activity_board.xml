@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background_color"
     tools:context=".TwoPlayerBoardActivity">
 
     <RelativeLayout
@@ -356,6 +357,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="Turn for:"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
@@ -364,6 +366,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/playerTurn"
             android:text="Picked:"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
@@ -373,6 +376,7 @@
             android:layout_below="@+id/playerTurn"
             android:layout_marginLeft="5dp"
             android:text="remain:"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
@@ -383,6 +387,7 @@
             android:layout_toRightOf="@+id/pegText"
             android:text="0"
             android:textAlignment="center"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
@@ -393,6 +398,7 @@
             android:layout_toRightOf="@+id/pegNumber"
             android:layout_marginLeft="5dp"
             android:text="remain:"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
@@ -403,6 +409,7 @@
             android:layout_toRightOf="@+id/mediumText"
             android:text="0"
             android:textAlignment="center"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
@@ -413,6 +420,7 @@
             android:layout_toRightOf="@+id/mediumNumber"
             android:layout_marginLeft="5dp"
             android:text="remain:"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
@@ -423,6 +431,7 @@
             android:layout_toRightOf="@+id/bigText"
             android:text="0"
             android:textAlignment="center"
+            android:textColor="@color/text_color"
             android:textSize="25sp" />
 
     </RelativeLayout>

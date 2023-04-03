@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".InstructionsActivity">
 
     <ScrollView
@@ -24,6 +25,7 @@
             android:text="How to Play"
             android:textSize="25sp"
             android:layout_marginBottom="15dp"
+            android:textColor="@color/text_color"
             />
 
         <TextView
@@ -31,24 +33,28 @@
             android:layout_height="wrap_content"
             android:text="2 Players"
             android:textSize="20sp"
+            android:textColor="@color/text_color"
             />
         <TextView
             android:padding="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Each player selects two colors that are opposite to each other on the board. You can win with either of your colors, but colors cannot be combined for a win. The youngest player goes first and play proceeds clockwise. Players take turns placing their pieces, one per turn, into the center area."
+            android:textColor="@color/text_color"
             />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/two_players"
             android:layout_marginBottom="15dp"
+            android:textColor="@color/text_color"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3-4 Players"
             android:textSize="20sp"
+            android:textColor="@color/text_color"
             />
 
         <TextView
@@ -57,6 +63,7 @@
             android:layout_height="wrap_content"
             android:text="Each player selects a color. If only three are playing, one color is not used in the game. The youngest player goes first and play proceeds clockwise. Players take turns placing their pieces, one per turn, into the center area."
             android:layout_marginBottom="15dp"
+            android:textColor="@color/text_color"
             />
 
         <TextView
@@ -64,6 +71,7 @@
             android:layout_height="wrap_content"
             android:text="Rules for Playing Pieces"
             android:textSize="25sp"
+            android:textColor="@color/text_color"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -75,17 +83,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Once a piece is placed, it cannot be moved"
+            android:textColor="@color/text_color"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• If you cannot play a piece, you skip a turn."
+            android:textColor="@color/text_color"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="• Keep placing pieces until someone gets an Otrio!"
+            android:textColor="@color/text_color"
             />
         </LinearLayout>
 
@@ -94,11 +105,13 @@
             android:layout_height="wrap_content"
             android:text="Winning"
             android:textSize="25sp"
+            android:textColor="@color/text_color"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
             />
 
         <ImageView

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="music_switch_preference"
+        android:title="Switch Preference"
+        android:summary="This is a switch preference"
+        android:defaultValue="true" />
+
+    <SwitchPreference
+        android:key="darkMode_switch_preference"
+        android:title="Switch Preference"
+        android:summary="This is a switch preference"
+        android:defaultValue="false" />
+</PreferenceScreen>

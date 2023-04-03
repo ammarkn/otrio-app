@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:id="@+id/musicSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Music    "
+            android:text="Music             "
             android:textOn="On"
             android:textOff="Off"
             app:showText="true"
@@ -26,5 +27,21 @@
             android:thumb="@drawable/switch_thumb"
             app:track="@drawable/switch_track"
             />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/mode_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dark Mode    "
+            android:textOn="On"
+            android:textOff="Off"
+            app:showText="true"
+            android:checked="false"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:thumb="@drawable/switch_thumb"
+            app:track="@drawable/switch_track"
+            />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
