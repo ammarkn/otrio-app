@@ -165,7 +165,6 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             resetBoard()
         }
 
-
         //add each individual pieces to arraylists of pieces of same size+color
         redPeg.add(redPeg0)
         redPeg.add(redPeg1)
@@ -541,7 +540,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 }
-                //call placepiece function to finish placing the piece on the board
+                //call placePiece function to finish placing the piece on the board
                 placePiece(removedElement, Xpos, Ypos)
                 //reset picked piece as the piece to play should no longer be selected
                 pickedPiece = false

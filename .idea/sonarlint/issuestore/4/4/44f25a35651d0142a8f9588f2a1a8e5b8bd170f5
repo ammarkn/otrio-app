@@ -1,0 +1,33 @@
+
+Tkotlin:S1172Ø"5Use "_" instead of this unused lambda parameter "id".(ş–¸f8©Éíëô0
+9kotlin:S1128"Remove this unused import.(İ¦ùÂ8ÎÉíëô0
+9kotlin:S1128"Remove this unused import.(¿ˆĞ³8ÎÉíëô0
+Ckotlin:S125×"Remove this commented out code.(¡œï¼øÿÿÿÿ8ØÉíëô0
+Ckotlin:S125İ"Remove this commented out code.(¾Øãâøÿÿÿÿ8ÜÉíëô0
+Ckotlin:S125ã"Remove this commented out code.(Šøî üÿÿÿÿ8İÉíëô0
+>kotlin:S125é"Remove this commented out code.(Şæş8ŞÉíëô0
+Ckotlin:S125ñ"Remove this commented out code.(¡œï¼øÿÿÿÿ8ŞÉíëô0
+Ckotlin:S125÷"Remove this commented out code.(¾Øãâøÿÿÿÿ8ßÉíëô0
+Ckotlin:S125ı"Remove this commented out code.(Šøî üÿÿÿÿ8ßÉíëô0
+>kotlin:S125ƒ"Remove this commented out code.(Şæş8àÉíëô0
+Ckotlin:S125‹"Remove this commented out code.(µš­ıùÿÿÿÿ8àÉíëô0
+>kotlin:S125‘"Remove this commented out code.(õÖşÙ8àÉíëô0
+>kotlin:S125—"Remove this commented out code.(â«É¶8àÉíëô0
+>kotlin:S125"Remove this commented out code.(êƒõñ8áÉíëô0
+=kotlin:S125¥"Remove this commented out code.(İ•À)8áÉíëô0
+skotlin:S1871š"NThis branch's code block is the same as the block for the branch on line 1032.(ô›“êÿÿÿÿÿ8îÉíëô0
+skotlin:S1871Ô"NThis branch's code block is the same as the block for the branch on line 1090.(ô›“êÿÿÿÿÿ8ïÉíëô0
+rkotlin:S1871£"MThis branch's code block is the same as the block for the branch on line 913.(ô›“êÿÿÿÿÿ8ïÉíëô0
+rkotlin:S1871ß"MThis branch's code block is the same as the block for the branch on line 973.(ô›“êÿÿÿÿÿ8ïÉíëô0
+wkotlin:S3776¼"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(öÍæšøÿÿÿÿ8úÉíëô0
+wkotlin:S3776¬"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(€û”Ëøÿÿÿÿ8úÉíëô0
+wkotlin:S3776­"RRefactor this method to reduce its Cognitive Complexity from 66 to the 15 allowed.(şæÌØıÿÿÿÿ8ûÉíëô0
+rkotlin:S3776Ä"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(±…•·8ûÉíëô0
+skotlin:S3776ù"SRefactor this method to reduce its Cognitive Complexity from 104 to the 15 allowed.(òÿš·8ıÉíëô0
+rkotlin:S117¬"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(€û”Ëøÿÿÿÿ8ÿÉíëô0
+rkotlin:S117¬"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(€û”Ëøÿÿÿÿ8€Êíëô0
+Nkotlin:S1066Ñ".Merge this "if" statement with the nested one.(°İ·Ó8“Êíëô0
+Skotlin:S1066Ù".Merge this "if" statement with the nested one.(Ã©£±øÿÿÿÿ8“Êíëô0
+Nkotlin:S1066è".Merge this "if" statement with the nested one.(—©Ï8“Êíëô0
+Nkotlin:S1066á".Merge this "if" statement with the nested one.(ç†Ş¨8“Êíëô0
+Nkotlin:S1066é".Merge this "if" statement with the nested one.(ñÊø8”Êíëô0

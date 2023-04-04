@@ -15,25 +15,26 @@ import androidx.core.content.ContextCompat
 
 class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var rounds = 0;
-
     private var pickedPiece = false
 
+    // Used to check if player has won
     private var redWin = false
     private var blueWin = false
     private var yellowWin = false
 
+    // Stores each player's number of wins
     var redWins = 0
     var blueWins = 0
     var yellowWins = 0
 
     private lateinit var winData: SharedPreferences
 
+    // ArrayLists to store each players pieces
     var redPieces = ArrayList<ArrayList<Piece>>()
     var bluePieces = ArrayList<ArrayList<Piece>>()
     var yellowPieces = ArrayList<ArrayList<Piece>>()
 
-
+    // Create pieces for each player (3 of each size)
     var redPeg0 = Piece("red", "Peg")
     var redMedium0 = Piece("Red", "Medium")
     var redBig0 = Piece("red", "Big")
@@ -70,15 +71,20 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     var yellowMedium2 = Piece("yellow", "Medium")
     var yellowBig2 = Piece("yellow", "Big")
 
-    var turn = 0 //the current turn number
+    // Turn starts at 0
+    var turn = 0
+    // Init piece to be null at first
     var pieceType = Piece("null","null") //the piece current picked up by one of players
 
+    // Create the players with their name, color, wins, and pieces
     var p1 = Player("player1", "red", redWins, redPieces)
     var p2 = Player("player2", "blue", blueWins, bluePieces)
     var p3 = Player("player3", "yellow", yellowWins, yellowPieces)
 
-    var playerList = ArrayList<Player>() //save all play in one list
+    // Save all the players in one ArrayList
+    var playerList = ArrayList<Player>()
 
+    // TextView variables that will track player info on the board
     private lateinit var turnplayer: TextView
     private lateinit var pegnumber: TextView
     private lateinit var mediumnumber: TextView
@@ -101,12 +107,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
+        // Button to return user to homepage
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
+        // Button to take user to instructions page
         val instructionsButtonClick = findViewById<Button>(R.id.instructionsButton)
         instructionsButtonClick.setOnClickListener {
             val intent = Intent(this, InstructionsActivity::class.java)
@@ -114,16 +122,19 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
+        // Button to show the user the number of wins
         val openDialogButton = findViewById<Button>(R.id.open_dialog)
         openDialogButton.setOnClickListener {
             showCustomDialog()
         }
 
+        // Button to reset the board
         val resetButtonClick = findViewById<Button>(R.id.resetButton)
         resetButtonClick.setOnClickListener {
             resetBoard()
         }
 
+        // Add each individual pieces to arraylists of pieces of same size+color
         redPeg.add(redPeg0)
         redPeg.add(redPeg1)
         redPeg.add(redPeg2)
@@ -160,6 +171,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         yellowBig.add(yellowBig1)
         yellowBig.add(yellowBig2)
 
+        // Add each size piece arraylist to arraylists for each color
         redPieces.add(redPeg)
         redPieces.add(redMedium)
         redPieces.add(redBig)
@@ -172,12 +184,12 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         yellowPieces.add(yellowMedium)
         yellowPieces.add(yellowBig)
 
-        //set player list
+        // Add players to playerList
         playerList.add(p1)
         playerList.add(p2)
         playerList.add(p3)
 
-        //when users pick up a piece
+        // Set onClick listeners for player pieces
         val buttonPeg = findViewById<Button>(R.id.peg)
         buttonPeg.setOnClickListener(this)
 
@@ -187,6 +199,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val buttonBig = findViewById<Button>(R.id.big)
         buttonBig.setOnClickListener(this)
 
+        // Set onClick listeners for each board pieces
         val button00 = findViewById<RelativeLayout>(R.id.grid00)
         button00.setOnClickListener(this)
         val button01 = findViewById<RelativeLayout>(R.id.grid01)
@@ -208,11 +221,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val button22 = findViewById<RelativeLayout>(R.id.grid22)
         button22.setOnClickListener(this)
 
-        picked = findViewById(R.id.currentPiece) //will be used to show the update of current picked piece
+        // Used to show the update of picked piece
+        picked = findViewById(R.id.currentPiece)
 
+        // Track the current player's turn (starts with player1)
         turnplayer = findViewById(R.id.playerTurn)
         turnplayer.text = "Player1"
 
+        // Set variables to track number of pieces player has left to use (starts with player1)
         pegnumber = findViewById(R.id.pegNumber)
         pegnumber.text = p1.getPieces()[0].size.toString()
 
@@ -279,6 +295,11 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     blueWins++
                     resetBoard()
                 }
+                else if (yellowWin) {
+                    println("Yellow win by same space win")
+                    yellowWins++
+                    resetBoard()
+                }
             }
             else if(samePieceWin()) {
                 if(redWin) {
@@ -293,6 +314,11 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     blueWins++
                     resetBoard()
                 }
+                else if (yellowWin) {
+                    println("Yellow win by same space win")
+                    yellowWins++
+                    resetBoard()
+                }
             }
             else if(ascendingDescendingWin()) {
                 if(redWin) {
@@ -305,6 +331,11 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 //                    Toast.makeText(this, "Blue win by ascending descending win", Toast.LENGTH_SHORT).show()
                     println("Blue win by ascending descending win")
                     blueWins++
+                    resetBoard()
+                }
+                else if (yellowWin) {
+                    println("Yellow win by ascending descending win")
+                    yellowWins++;
                     resetBoard()
                 }
             }
@@ -380,22 +411,28 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 }
+                // Call placePiece function to finish placing the piece on the board
                 placePiece(removedElement, Xpos, Ypos)
+                // Set pickedPiece to false as piece has now been placed
                 pickedPiece = false
             }
+        }
+        else {
+            Toast.makeText(this, "Select a piece then select a location on the board", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun resetBoard() {
         val builder = AlertDialog.Builder(this)
 
-        if(!blueWin && !redWin) {
+        if(!blueWin && !redWin && !yellowWin) {
             builder.setTitle("Reset Board")
             builder.setMessage("Are you sure you want to reset the board? This action cannot be undone.")
             builder.setPositiveButton("Yes") { _, _ ->
                 val wins = winData.edit()
                 wins.putInt("redWins", redWins)
                 wins.putInt("blueWins", blueWins)
+                wins.putInt("yellowWins", yellowWins)
                 wins.apply()
 
                 recreate()
@@ -409,20 +446,24 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             if(redWin) {
                 builder.setTitle("Winner: Player 1 (Red)")
             }
-            else {
+            else if (blueWin) {
                 builder.setTitle("Winner: Player 2 (Blue)")
+            }
+            else {
+                builder.setTitle("Winner: Player 3 (Yellow)")
             }
             builder.setMessage("Would you like to play again?")
             builder.setPositiveButton("Yes") { _, _ ->
                 val wins = winData.edit()
                 wins.putInt("redWins", redWins)
                 wins.putInt("blueWins", blueWins)
+                wins.putInt("yellowWins", yellowWins)
                 wins.apply()
 
                 recreate()
                 Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
             }
-            builder.setNegativeButton("No") { dialog, id ->
+            builder.setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
             }
             builder.setNeutralButton("Take Me Home") { _, _ ->
@@ -437,33 +478,44 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun handleButtonPegClick() {
-        if(playerList[turn%3].getPieces()[0].size > 0){
-            pieceType = Piece(playerList[turn%3].getColor(),"Peg")
+        if(playerList[turn % 3].getPieces()[0].size > 0){
+            // Set piece type if they have remaining piece to play
+            pieceType = Piece(playerList[turn % 3].getColor(),"Peg")
+            // Set text for piece to be displayed on screen
             picked.text = pieceType.getColor() + " " + pieceType.getSize()
+            // Confirm a piece has been picked
             pickedPiece = true
+        }
+        else{
+            Toast.makeText(this, "There are no Peg pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun handleButtonMediumClick() {
-        if(playerList[turn%3].getPieces()[1].size > 0){
-            pieceType = Piece(playerList[turn%3].getColor(),"Medium")
-            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+        if(playerList[turn % 3].getPieces()[1].size > 0){
+            pieceType = Piece(playerList[turn % 3].getColor(),"Medium")
+            picked.text = pieceType.getColor() + " "+ pieceType.getSize()
             pickedPiece = true
+        }
+        else{
+            Toast.makeText(this, "There are no Medium pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun handleButtonBigClick() {
-        if(playerList[turn%3].getPieces()[2].size > 0){
-            pieceType = Piece(playerList[turn%3].getColor(),"Big")
-            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+        if(playerList[turn % 3].getPieces()[2].size > 0){
+            pieceType = Piece(playerList[turn % 3].getColor(),"Big")
+            picked.text = pieceType.getColor()+ " " + pieceType.getSize()
             pickedPiece = true
+        }
+        else{
+            Toast.makeText(this, "There are no Big pieces left, please choose another piece", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun showNextPlayerInfo() {
-        turn ++
-        val nextPlayer = playerList[turn%3]
-
+        turn++
+        val nextPlayer = playerList[turn % 3]
         turnplayer.text = nextPlayer.getName()
         pegnumber.text = nextPlayer.getPieces()[0].size.toString()
         mediumnumber.text = nextPlayer.getPieces()[1].size.toString()
@@ -472,9 +524,9 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
-        println("Place piece")
-        piece.setPiecePosition(xPos, yPos);
-
+        // Place the piece according to x and y
+        piece.setPiecePosition(xPos, yPos)
+        // Adjust the turn to the next player
         showNextPlayerInfo()
     }
 
@@ -484,7 +536,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("DiscouragedApi")
     private fun samePieceWin() : Boolean {
         val pieces = arrayOf("peg", "medium", "big")
-        val players = arrayOf("red", "blue")
+        val players = arrayOf("red", "blue", "yellow")
 
         // Checks all rows
         for(i in 0..2) {
@@ -507,6 +559,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         else if(player == "blue") {
                             blueWin = true
+                            return true
+                        }
+                        else if (player == "yellow") {
+                            yellowWin = true
                             return true
                         }
                     }
@@ -537,6 +593,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                             blueWin = true
                             return true
                         }
+                        else if (player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
                     }
                 }
             }
@@ -562,6 +622,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     else if(player == "blue") {
                         blueWin = true
+                        return true
+                    }
+                    else if (player == "yellow") {
+                        yellowWin = true
                         return true
                     }
                 }
@@ -590,10 +654,13 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         blueWin = true
                         return true
                     }
+                    else if (player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
                 }
             }
         }
-
         return false
     }
 
@@ -629,6 +696,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 }
+                else if (peg.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.yellowpeg)?.constantState) {
+                    if(medium.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.yellowmedium)?.constantState) {
+                        if(big.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.yellowbig)?.constantState) {
+                            yellowWin = true
+                            return true
+                        }
+                    }
+                }
             }
         }
         return false
@@ -640,7 +715,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("DiscouragedApi")
     private fun ascendingDescendingWin() : Boolean {
         val pieces = arrayOf("peg", "medium", "big")
-        val players = arrayOf("red", "blue")
+        val players = arrayOf("red", "blue", "yellow")
 
         // Checks all rows
         for(i in 0..2) {
@@ -671,6 +746,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                             blueWin = true
                             return true
                         }
+                        else if (player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
                     }
                     else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
                         if(player == "red") {
@@ -679,6 +758,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         else if(player == "blue") {
                             blueWin = true
+                            return true
+                        }
+                        else if (player == "yellow") {
+                            yellowWin = true
                             return true
                         }
                     }
@@ -715,6 +798,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                             blueWin = true
                             return true
                         }
+                        else if (player == "yellow") {
+                            yellowWin = true
+                            return true
+                        }
                     }
                     else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
                         if(player == "red") {
@@ -723,6 +810,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         }
                         else if(player == "blue") {
                             blueWin = true
+                            return true
+                        }
+                        else if (player == "yellow") {
+                            yellowWin = true
                             return true
                         }
                     }
@@ -758,6 +849,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         blueWin = true
                         return true
                     }
+                    else if (player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
                 }
                 else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
                     if(player == "red") {
@@ -766,6 +861,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     else if(player == "blue") {
                         blueWin = true
+                        return true
+                    }
+                    else if (player == "yellow") {
+                        yellowWin = true
                         return true
                     }
                 }
@@ -800,6 +899,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         blueWin = true
                         return true
                     }
+                    else if (player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
                 }
                 else if(piece4.drawable.constantState == peg?.constantState && piece5.drawable.constantState == medium?.constantState && piece6.drawable.constantState == big?.constantState) {
                     if(player == "red") {
@@ -810,15 +913,18 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                         blueWin = true
                         return true
                     }
+                    else if (player == "yellow") {
+                        yellowWin = true
+                        return true
+                    }
                 }
             }
         }
-
         return false
     }
 
     private fun draw() : Boolean {
-        if(redPieces.isEmpty() && bluePieces.isEmpty()) {
+        if(redPieces.isEmpty() && bluePieces.isEmpty() && yellowPieces.isEmpty()) {
             return true
         }
         return false
