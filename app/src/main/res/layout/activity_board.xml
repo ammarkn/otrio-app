@@ -14,7 +14,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wins"
+            android:text="@string/wins"
             android:id="@+id/open_dialog"
             android:layout_centerHorizontal="true"
             android:textSize="25sp" />
@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle00Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -44,6 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle00Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -53,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle00Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"/>
@@ -69,6 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle01Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -78,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle01Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -87,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle01Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"/>
@@ -103,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle02Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -112,6 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle02Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -121,6 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle02Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig" />
@@ -144,6 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle10Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -153,6 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle10Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -162,6 +173,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle10Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig" />
@@ -178,6 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle11Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -187,6 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle11Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -196,6 +210,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle11Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig" />
@@ -212,6 +227,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle12Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -221,6 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle12Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -230,6 +247,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle12Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"/>
@@ -253,6 +271,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle20Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -262,6 +281,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle20Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -271,6 +291,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle20Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"/>
@@ -287,6 +308,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle21Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -296,6 +318,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle21Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium" />
@@ -305,6 +328,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle21Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"/>
@@ -321,6 +345,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle22Peg"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"/>
@@ -330,6 +355,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle22Medium"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"/>
@@ -339,6 +365,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/circle22Big"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"/>
@@ -355,8 +382,8 @@
             android:id="@+id/playerTurn"
             android:layout_width="195dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Turn for:"
+            android:layout_marginStart="5dp"
+            android:text="@string/turn_for"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
 
@@ -364,18 +391,18 @@
             android:id="@+id/currentPiece"
             android:layout_width="226dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/playerTurn"
-            android:text="Picked:"
+            android:layout_toEndOf="@+id/playerTurn"
+            android:text="@string/picked"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
 
         <TextView
             android:id="@+id/pegText"
             android:layout_width="wrap_content"
-            android:layout_height="33dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_marginLeft="5dp"
-            android:text="remain:"
+            android:layout_marginStart="5dp"
+            android:text="@string/remain"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
 
@@ -384,8 +411,8 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/pegText"
-            android:text="0"
+            android:layout_toEndOf="@+id/pegText"
+            android:text="@string/_0"
             android:textAlignment="center"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
@@ -395,9 +422,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/pegNumber"
-            android:layout_marginLeft="5dp"
-            android:text="remain:"
+            android:layout_toEndOf="@+id/pegNumber"
+            android:layout_marginStart="5dp"
+            android:text="@string/remain1"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
 
@@ -406,8 +433,8 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/mediumText"
-            android:text="0"
+            android:layout_toEndOf="@+id/mediumText"
+            android:text="@string/_m0"
             android:textAlignment="center"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
@@ -417,9 +444,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/mediumNumber"
-            android:layout_marginLeft="5dp"
-            android:text="remain:"
+            android:layout_toEndOf="@+id/mediumNumber"
+            android:layout_marginStart="5dp"
+            android:text="@string/remain2"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
 
@@ -428,8 +455,8 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/bigText"
-            android:text="0"
+            android:layout_toEndOf="@+id/bigText"
+            android:text="@string/_b0"
             android:textAlignment="center"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
@@ -446,24 +473,27 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Peg"
-            android:textSize="20sp" />
+            android:text="@string/peg"
+            android:textSize="20sp"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/medium"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Medium"
-            android:textSize="20sp" />
+            android:text="@string/medium"
+            android:textSize="20sp"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/big"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Big"
-            android:textSize="20sp" />
+            android:text="@string/big"
+            android:textSize="20sp"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 
@@ -479,7 +509,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="341dp"
-            android:contentDescription="Instructions"
+            android:contentDescription="@string/instructions"
             app:icon="@android:drawable/ic_dialog_info" />
 
         <Button
@@ -487,7 +517,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Reset" />
+            android:text="@string/reset" />
 
         <Button
             android:id="@+id/homeButton"
@@ -495,7 +525,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:text="Home" />
+            android:text="@string/home" />
 
 
     </RelativeLayout>

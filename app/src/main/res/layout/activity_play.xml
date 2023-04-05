@@ -21,12 +21,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Single PLayer" />
+            android:text="@string/single_player" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Two Player"
+            android:text="@string/two_player"
             android:layout_marginBottom="20dp"
             android:id="@+id/go_to_two_player"
             />
@@ -34,7 +34,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Three Player"
+            android:text="@string/three_player"
             android:layout_marginBottom="20dp"
             android:id="@+id/go_to_three_player"
             />
@@ -42,7 +42,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Four Player"
+            android:text="@string/four_player"
             android:id="@+id/go_to_four_player"
             />
     </LinearLayout>
