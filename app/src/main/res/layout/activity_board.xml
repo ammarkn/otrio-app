@@ -240,7 +240,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="107dp"
         android:layout_weight="1">
 
         <RelativeLayout
@@ -255,7 +255,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle20medium"
@@ -264,7 +264,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle20big"
@@ -273,7 +273,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -289,7 +289,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle21medium"
@@ -307,7 +307,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -323,7 +323,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg" />
 
             <ImageView
                 android:id="@+id/circle22medium"
@@ -332,7 +332,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium" />
 
             <ImageView
                 android:id="@+id/circle22big"
@@ -341,7 +341,7 @@
                 android:layout_centerInParent="true"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig" />
 
         </RelativeLayout>
 
@@ -349,7 +349,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="68dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/playerTurn"
@@ -369,101 +369,137 @@
             android:textColor="@color/text_color"
             android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/pegText"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:layout_below="@+id/playerTurn"
-            android:layout_marginLeft="5dp"
-            android:text="remain:"
-            android:textColor="@color/text_color"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/pegNumber"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/pegText"
-            android:text="0"
-            android:textAlignment="center"
-            android:textColor="@color/text_color"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/mediumText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/pegNumber"
-            android:layout_marginLeft="5dp"
-            android:text="remain:"
-            android:textColor="@color/text_color"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/mediumNumber"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/mediumText"
-            android:text="0"
-            android:textAlignment="center"
-            android:textColor="@color/text_color"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/bigText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/mediumNumber"
-            android:layout_marginLeft="5dp"
-            android:text="remain:"
-            android:textColor="@color/text_color"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/bigNumber"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/playerTurn"
-            android:layout_toRightOf="@+id/bigText"
-            android:text="0"
-            android:textAlignment="center"
-            android:textColor="@color/text_color"
-            android:textSize="25sp" />
-
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="124dp"
         android:layout_weight="1">
 
-        <Button
+        <RelativeLayout
             android:id="@+id/peg"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Peg"
-            android:textSize="20sp" />
+            android:layout_width="136dp"
+            android:layout_height="match_parent">
 
-        <Button
+            <ImageView
+                android:id="@+id/peg0"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankpeg"
+                android:tag="blankpeg"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/peg1"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="2dp"
+                android:layout_toEndOf="@id/peg0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankpeg"
+                android:tag="blankpeg"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/peg2"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankpeg"
+                android:tag="blankpeg"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/medium"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Medium"
-            android:textSize="20sp" />
+            android:layout_width="136dp"
+            android:layout_height="match_parent">
 
-        <Button
+            <ImageView
+                android:id="@+id/medium0"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankmedium"
+                android:tag="blankmedium"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/medium1"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@id/medium0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankmedium"
+                android:tag="blankmedium"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/medium2"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankmedium"
+                android:tag="blankmedium"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/big"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Big"
-            android:textSize="20sp" />
+            android:layout_width="136dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/big0"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankbig"
+                android:tag="blankbig"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/big1"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_toEndOf="@id/big0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankbig"
+                android:tag="blankbig"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/big2"
+                android:layout_width="65dp"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/blankbig"
+                android:tag="blankbig"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -496,8 +532,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:text="Home" />
-
-
     </RelativeLayout>
+
+
 
 </LinearLayout>

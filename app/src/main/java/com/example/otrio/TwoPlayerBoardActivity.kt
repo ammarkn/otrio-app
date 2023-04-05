@@ -141,13 +141,13 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         playerList.add(p2)
 
         //when users pick up a piece
-        val buttonPeg = findViewById<Button>(R.id.peg)
+        val buttonPeg = findViewById<RelativeLayout>(R.id.peg)
         buttonPeg.setOnClickListener(this)
 
-        val buttonMedium = findViewById<Button>(R.id.medium)
+        val buttonMedium = findViewById<RelativeLayout>(R.id.medium)
         buttonMedium.setOnClickListener(this)
 
-        val buttonBig = findViewById<Button>(R.id.big)
+        val buttonBig = findViewById<RelativeLayout>(R.id.big)
         buttonBig.setOnClickListener(this)
 
         val button00 = findViewById<RelativeLayout>(R.id.grid00)
@@ -176,14 +176,23 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         turnplayer = findViewById(R.id.playerTurn)
         turnplayer.text = "Player1"
 
-        pegnumber = findViewById(R.id.pegNumber)
-        pegnumber.text = p1.getPieces()[0].size.toString()
+        for (i in 0..2){
+            for (pieceLeft in playerList[0].getPieces()[i]){
 
-        mediumnumber = findViewById(R.id.mediumNumber)
-        mediumnumber.text = p1.getPieces()[1].size.toString()
+                val pieceSize = pieceLeft.getSize().lowercase()
+                val pieceColor = playerList[0].getColor().lowercase()
 
-        bignumber = findViewById(R.id.bigNumber)
-        bignumber.text = p1.getPieces()[2].size.toString()
+                val componentId = resources.getIdentifier(pieceSize+playerList[0].getPieces()[i].indexOf(pieceLeft),"id",packageName)
+                //get id of the button which is a relativelayout component
+                val imageId = resources.getIdentifier(pieceColor+pieceSize,"drawable",packageName)
+                //get the id of the image view for player1 pieces
+
+                var pieceButton = findViewById<ImageView>(componentId)
+                pieceButton.visibility = View.VISIBLE
+                pieceButton.setImageResource(imageId)
+                pieceButton.tag = pieceColor+pieceSize
+            }
+        }
 
         winData = getSharedPreferences("Wins", Context.MODE_PRIVATE)
         redWins = winData.getInt("redWins", 0)
@@ -417,11 +426,24 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun showNextPlayerInfo() {
         turn ++
         val nextPlayer = playerList[turn%2]
-
         turnplayer.text = nextPlayer.getName()
-        pegnumber.text = nextPlayer.getPieces()[0].size.toString()
-        mediumnumber.text = nextPlayer.getPieces()[1].size.toString()
-        bignumber.text = nextPlayer.getPieces()[2].size.toString()
+
+        for (i in 0..2){
+            for (pieceLeft in nextPlayer.getPieces()[i]){// set all pieces which player still have to visible
+                val pieceSize = pieceLeft.getSize().lowercase()
+                val pieceColor = nextPlayer.getColor().lowercase()
+
+                val componentId = resources.getIdentifier(pieceSize+nextPlayer.getPieces()[i].indexOf(pieceLeft),"id",packageName)
+                //get id of the button which is a relativelayout component
+                val imageId = resources.getIdentifier(pieceColor+pieceSize,"drawable",packageName)
+                //get the id of the image view for image change
+
+                var pieceButton = findViewById<ImageView>(componentId)
+                pieceButton.visibility = View.VISIBLE
+                pieceButton.setImageResource(imageId)
+                pieceButton.tag = pieceColor+pieceSize
+            }
+        }
         picked.text = ""
     }
 
@@ -429,7 +451,25 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         println("Place piece")
         piece.setPiecePosition(xPos, yPos)
 
+        resetPieceButton()
         showNextPlayerInfo()
+    }
+
+    private fun resetPieceButton(){
+        for (i in 0..2){//reset all buttons to invisible to avid incorrect deployment
+            val pegId = resources.getIdentifier("peg"+i,"id",packageName)
+            val mediumId = resources.getIdentifier("medium"+i,"id",packageName)
+            val bigId = resources.getIdentifier("big"+i,"id",packageName)
+            //get id of the buttons which is a relativelayout component and reset them to invisible
+
+            var piecePegButton = findViewById<ImageView>(pegId)
+            var pieceMediumButton = findViewById<ImageView>(mediumId)
+            var pieceBigButton = findViewById<ImageView>(bigId)
+
+            piecePegButton.visibility = View.INVISIBLE
+            pieceMediumButton.visibility = View.INVISIBLE
+            pieceBigButton.visibility = View.INVISIBLE
+        }
     }
 
     /*
