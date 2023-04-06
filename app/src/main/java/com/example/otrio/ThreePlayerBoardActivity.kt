@@ -354,7 +354,22 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             println("Draw")
             resetBoard()
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
+        val shouldPlay = sharedPreferences.getBoolean("musicSwitchState", true)
+        if (shouldPlay && !MediaPlayerManager.isPlaying) {
+            MediaPlayerManager.createMediaPlayer(this)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (!MainActivity.isAppInForeground(this)) {
+            MediaPlayerManager.stopMediaPlayer()
+        }
     }
 
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {

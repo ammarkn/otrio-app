@@ -41,7 +41,11 @@ class MainActivity : AppCompatActivity() {
         greetingText = findViewById(R.id.greeting_text)
         greetingText.text = randomGreeting()
 
-        MediaPlayerManager.createMediaPlayer(this)
+        val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
+        val shouldPlay = sharedPreferences.getBoolean("musicSwitchState", true)
+        if (shouldPlay && !MediaPlayerManager.isPlaying) {
+            MediaPlayerManager.createMediaPlayer(this)
+        }
         //variable for button to take user to instructions
         val instButtonClick = findViewById<Button>(R.id.go_to_instructions)
 
@@ -90,24 +94,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Resume the media player when the returns to the app
-        MediaPlayerManager.createMediaPlayer(this)
+        val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
+        val shouldPlay = sharedPreferences.getBoolean("musicSwitchState", true)
+        if (shouldPlay && !MediaPlayerManager.isPlaying) {
+            MediaPlayerManager.createMediaPlayer(this)
+        }
     }
 
     override fun onStop() {
         super.onStop()
-
-        // Stop the media player when the user leaves the app
-        if (!isAppInForeground()) {
+        // Stop the media player when the activity is no longer visible
+        if (!isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }
     }
-
-
     // Logic inspired by: https://stackoverflow.com/questions/43378841/check-if-app-is-running-in-foreground-or-background-with-sync-adapter
-    private fun isAppInForeground(): Boolean {
-        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val runningAppProcesses = activityManager.runningAppProcesses ?: return false
-        return runningAppProcesses.any { it.processName == packageName && it.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND }
+    companion object {
+        fun isAppInForeground(context: Context): Boolean {
+            val activityManager =
+                context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val runningAppProcesses = activityManager.runningAppProcesses ?: return false
+            return runningAppProcesses.any { it.processName == context.packageName && it.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND }
+        }
     }
 }
