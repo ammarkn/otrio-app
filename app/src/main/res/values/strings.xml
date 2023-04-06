@@ -46,6 +46,18 @@
     <string name="circle22Medium">circle 22 medium</string>
     <string name="circle22Big">circle 22 big</string>
 
+    <string name="playerPeg1">Player peg 1</string>
+    <string name="playerPeg2">Player peg 2</string>
+    <string name="playerPeg3">Player peg 3</string>
+
+    <string name="playerMed1">Player medium 1</string>
+    <string name="playerMed2">Player medium 2</string>
+    <string name="playerMed3">Player medium 3</string>
+
+    <string name="playerBig1">Player big 1</string>
+    <string name="playerBig2">Player big 2</string>
+    <string name="playerBig3">Player big 3</string>
+
     <string name="wins">Wins</string>
     <string name="turn_for">Turn for:</string>
     <string name="picked">Picked:</string>

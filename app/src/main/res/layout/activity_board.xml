@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+The images for the gameboard all have an ImageContrastCheck suppression as the color of the images is ideal for our game,
+as we require lighter images to show a piece has yet to be played
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -35,30 +39,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle00Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle00Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle00medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle00Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle00Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle00big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle00Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle00Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -72,30 +79,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle01Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle01Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle01medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle01Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle01Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle01big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle01Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle01Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -109,30 +119,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle02Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle02Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle02medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle02Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle02Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle02big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle02Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle02Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig" />
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -153,30 +166,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle10Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle10Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle10medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle10Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle10Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle10big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle10Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle10Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig" />
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -190,30 +206,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle11Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle11Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle11medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle11Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle11Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle11big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle11Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle11Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig" />
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -227,30 +246,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle12Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle12Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg"/>
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle12medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle12Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle12Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium"/>
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle12big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle12Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle12Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig"/>
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -271,30 +293,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle20Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle20Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg" />
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle20medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle20Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle20Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium" />
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle20big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle20Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle20Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig" />
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -308,30 +333,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle21Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle21Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg" />
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle21medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle21Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle21Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium" />
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle21big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle21Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle21Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig" />
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -345,30 +373,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle22Peg"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle22Peg"
                 android:src="@drawable/blankpeg"
-                android:tag="blankpeg" />
+                android:tag="blankpeg"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle22medium"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle22Medium"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle22Medium"
                 android:src="@drawable/blankmedium"
-                android:tag="blankmedium" />
+                android:tag="blankmedium"
+                tools:ignore="ImageContrastCheck" />
 
             <ImageView
                 android:id="@+id/circle22big"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/circle22Big"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/circle22Big"
                 android:src="@drawable/blankbig"
-                android:tag="blankbig" />
+                android:tag="blankbig"
+                tools:ignore="ImageContrastCheck" />
 
         </RelativeLayout>
 
@@ -414,6 +445,7 @@
                 android:layout_height="80dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:contentDescription="@string/playerPeg1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"
@@ -427,6 +459,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginStart="2dp"
                 android:layout_toEndOf="@id/peg0"
+                android:contentDescription="@string/playerPeg2"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"
@@ -439,6 +472,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="40dp"
+                android:contentDescription="@string/playerPeg3"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankpeg"
                 android:tag="blankpeg"
@@ -457,6 +491,7 @@
                 android:layout_height="80dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:contentDescription="@string/playerMed1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"
@@ -469,6 +504,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:layout_toEndOf="@id/medium0"
+                android:contentDescription="@string/playerMed2"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"
@@ -480,6 +516,7 @@
                 android:layout_height="80dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/playerMed3"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankmedium"
                 android:tag="blankmedium"
@@ -498,6 +535,7 @@
                 android:layout_height="80dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
+                android:contentDescription="@string/playerBig1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"
@@ -510,6 +548,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:layout_toEndOf="@id/big0"
+                android:contentDescription="@string/playerBig2"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"
@@ -521,6 +560,7 @@
                 android:layout_height="80dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerInParent="true"
+                android:contentDescription="@string/playerBig3"
                 android:background="@android:color/transparent"
                 android:src="@drawable/blankbig"
                 android:tag="blankbig"
@@ -542,15 +582,16 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="341dp"
-            android:contentDescription="Instructions"
-            app:icon="@android:drawable/ic_dialog_info" />
+            android:contentDescription="@string/instructions"
+            app:icon="@android:drawable/ic_dialog_info"
+            tools:ignore="RelativeOverlap" />
 
         <Button
             android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Reset" />
+            android:text="@string/reset" />
 
         <Button
             android:id="@+id/homeButton"
@@ -558,7 +599,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:text="Home" />
+            android:text="@string/home"
+            tools:ignore="RelativeOverlap" />
     </RelativeLayout>
 
 
