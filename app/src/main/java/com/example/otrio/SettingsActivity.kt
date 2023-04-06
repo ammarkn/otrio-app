@@ -32,8 +32,8 @@ class SettingsActivity: AppCompatActivity() {
 
         // Set a listener for the SwitchCompat to toggle the music on/off
         musicSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                // Turn on the music
+            // Turn on the music if it's not already playing
+            if (isChecked && !MediaPlayerManager.isPlaying) {
                 MediaPlayerManager.createMediaPlayer(this)
             } else {
                 // Turn off the music
@@ -59,6 +59,21 @@ class SettingsActivity: AppCompatActivity() {
             } else { // use the color style in values\colors.xml when turn off the dark mode
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
+        val shouldPlay = sharedPreferences.getBoolean("musicSwitchState", true)
+        if (shouldPlay && !MediaPlayerManager.isPlaying) {
+            MediaPlayerManager.createMediaPlayer(this)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (!MainActivity.isAppInForeground(this)) {
+            MediaPlayerManager.stopMediaPlayer()
         }
     }
 }
