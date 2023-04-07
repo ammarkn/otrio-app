@@ -23,85 +23,82 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private var yellowWin = false
 
     // Stores each player's number of wins
-    var redWins = 0
-    var blueWins = 0
-    var yellowWins = 0
+    private var redWins = 0
+    private var blueWins = 0
+    private var yellowWins = 0
 
     private lateinit var winData: SharedPreferences
 
     // ArrayLists to store each players pieces
-    var redPieces = ArrayList<ArrayList<Piece>>()
-    var bluePieces = ArrayList<ArrayList<Piece>>()
-    var yellowPieces = ArrayList<ArrayList<Piece>>()
+    private var redPieces = ArrayList<ArrayList<Piece>>()
+    private var bluePieces = ArrayList<ArrayList<Piece>>()
+    private var yellowPieces = ArrayList<ArrayList<Piece>>()
 
     // Create pieces for each player (3 of each size)
-    var redPeg0 = Piece("red", "Peg")
-    var redMedium0 = Piece("Red", "Medium")
-    var redBig0 = Piece("red", "Big")
+    private var redPeg0 = Piece("red", "Peg")
+    private var redMedium0 = Piece("Red", "Medium")
+    private var redBig0 = Piece("red", "Big")
 
-    var redPeg1 = Piece("red", "Peg")
-    var redMedium1 = Piece("Red", "Medium")
-    var redBig1 = Piece("red", "Big")
+    private var redPeg1 = Piece("red", "Peg")
+    private var redMedium1 = Piece("Red", "Medium")
+    private var redBig1 = Piece("red", "Big")
 
-    var redPeg2 = Piece("Red", "Peg")
-    var redMedium2 = Piece("red", "Medium")
-    var redBig2 = Piece("Rred", "Big")
+    private var redPeg2 = Piece("Red", "Peg")
+    private var redMedium2 = Piece("red", "Medium")
+    private var redBig2 = Piece("Rred", "Big")
 
-    var bluePeg0 = Piece("blue", "Peg")
-    var blueMedium0 = Piece("Blue", "Medium")
-    var blueBig0 = Piece("blue", "Big")
+    private var bluePeg0 = Piece("blue", "Peg")
+    private var blueMedium0 = Piece("Blue", "Medium")
+    private var blueBig0 = Piece("blue", "Big")
 
-    var bluePeg1 = Piece("blue", "Peg")
-    var blueMedium1 = Piece("Blue", "Medium")
-    var blueBig1 = Piece("blue", "Big")
+    private var bluePeg1 = Piece("blue", "Peg")
+    private var blueMedium1 = Piece("Blue", "Medium")
+    private var blueBig1 = Piece("blue", "Big")
 
-    var bluePeg2 = Piece("blue", "Peg")
-    var blueMedium2 = Piece("Blue", "Medium")
-    var blueBig2 = Piece("blue", "Big")
+    private var bluePeg2 = Piece("blue", "Peg")
+    private var blueMedium2 = Piece("Blue", "Medium")
+    private var blueBig2 = Piece("blue", "Big")
 
-    var yellowPeg0 = Piece("yellow", "Peg")
-    var yellowMedium0 = Piece("yellow", "Medium")
-    var yellowBig0 = Piece("yellow", "Big")
+    private var yellowPeg0 = Piece("yellow", "Peg")
+    private var yellowMedium0 = Piece("yellow", "Medium")
+    private var yellowBig0 = Piece("yellow", "Big")
 
-    var yellowPeg1 = Piece("yellow", "Peg")
-    var yellowMedium1 = Piece("yellow", "Medium")
-    var yellowBig1 = Piece("yellow", "Big")
+    private var yellowPeg1 = Piece("yellow", "Peg")
+    private var yellowMedium1 = Piece("yellow", "Medium")
+    private var yellowBig1 = Piece("yellow", "Big")
 
-    var yellowPeg2 = Piece("yellow", "Peg")
-    var yellowMedium2 = Piece("yellow", "Medium")
-    var yellowBig2 = Piece("yellow", "Big")
+    private var yellowPeg2 = Piece("yellow", "Peg")
+    private var yellowMedium2 = Piece("yellow", "Medium")
+    private var yellowBig2 = Piece("yellow", "Big")
 
     // Turn starts at 0
-    var turn = 0
+    private var turn = 0
     // Init piece to be null at first
-    var pieceType = Piece("null","null") //the piece current picked up by one of players
+    private var pieceType = Piece("null","null") //the piece current picked up by one of players
 
     // Create the players with their name, color, wins, and pieces
-    var p1 = Player("player1", "red", redWins, redPieces)
-    var p2 = Player("player2", "blue", blueWins, bluePieces)
-    var p3 = Player("player3", "yellow", yellowWins, yellowPieces)
+    private var p1 = Player("player1", "red", redWins, redPieces)
+    private var p2 = Player("player2", "blue", blueWins, bluePieces)
+    private var p3 = Player("player3", "yellow", yellowWins, yellowPieces)
 
     // Save all the players in one ArrayList
-    var playerList = ArrayList<Player>()
+    private var playerList = ArrayList<Player>()
 
     // TextView variables that will track player info on the board
     private lateinit var turnplayer: TextView
-    private lateinit var pegnumber: TextView
-    private lateinit var mediumnumber: TextView
-    private lateinit var bignumber: TextView
     private lateinit var picked: TextView
 
-    var redPeg = ArrayList<Piece>()
-    var redMedium = ArrayList<Piece>()
-    var redBig = ArrayList<Piece>()
+    private var redPeg = ArrayList<Piece>()
+    private var redMedium = ArrayList<Piece>()
+    private var redBig = ArrayList<Piece>()
 
-    var bluePeg = ArrayList<Piece>()
-    var blueMedium = ArrayList<Piece>()
-    var blueBig = ArrayList<Piece>()
+    private var bluePeg = ArrayList<Piece>()
+    private var blueMedium = ArrayList<Piece>()
+    private var blueBig = ArrayList<Piece>()
 
-    var yellowPeg = ArrayList<Piece>()
-    var yellowMedium = ArrayList<Piece>()
-    var yellowBig = ArrayList<Piece>()
+    private var yellowPeg = ArrayList<Piece>()
+    private var yellowMedium = ArrayList<Piece>()
+    private var yellowBig = ArrayList<Piece>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -240,7 +237,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 val imageId = resources.getIdentifier(pieceColor+pieceSize,"drawable",packageName)
                 //get the id of the image view for player1 pieces
 
-                var pieceButton = findViewById<ImageView>(componentId)
+                val pieceButton = findViewById<ImageView>(componentId)
                 pieceButton.visibility = View.VISIBLE
                 pieceButton.setImageResource(imageId)
                 pieceButton.tag = pieceColor+pieceSize
@@ -344,7 +341,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 else if (yellowWin) {
                     println("Yellow win by ascending descending win")
-                    yellowWins++;
+                    yellowWins++
                     resetBoard()
                 }
             }
@@ -381,57 +378,57 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         if(pickedPiece){ //check which button selected (Layout as a button)
             val imageView: ImageView = findViewById(vId)
             //check if peg already placed here
-            var imageName = imageView.tag.toString()
+            val imageName = imageView.tag.toString()
             //get the name of the image in the imageview
             if(imageName.contains("blank")){
                 imageView.setImageResource(newTag)
-                imageView.setTag(pieceType.getColor()+pieceType.getSize().lowercase())//re-set the name for check late
+                imageView.tag = pieceType.getColor()+pieceType.getSize().lowercase()//re-set the name for check late
                 var removedElement = Piece("null","null")
                 if(pieceType.getColor()==("red")){
-                    when(pieceType.getSize()){
+                    removedElement = when(pieceType.getSize()){
                         "Peg"->{
-                            removedElement = redPeg.removeAt(redPeg.size - 1)
+                            redPeg.removeAt(redPeg.size - 1)
                         }
                         "Medium"->{
-                            removedElement = redMedium.removeAt(redMedium.size - 1)
+                            redMedium.removeAt(redMedium.size - 1)
                         }
                         "Big"->{
-                            removedElement = redBig.removeAt(redBig.size - 1)
+                            redBig.removeAt(redBig.size - 1)
                         }
                         else->{
-                            removedElement = Piece("error","error")
+                            Piece("error","error")
                         }
                     }
                 }
                 else if(pieceType.getColor()==("blue")){
-                    when(pieceType.getSize()){
+                    removedElement = when(pieceType.getSize()){
                         "Peg"->{
-                            removedElement = bluePeg.removeAt(bluePeg.size - 1)
+                            bluePeg.removeAt(bluePeg.size - 1)
                         }
                         "Medium"->{
-                            removedElement = blueMedium.removeAt(blueMedium.size - 1)
+                            blueMedium.removeAt(blueMedium.size - 1)
                         }
                         "Big"->{
-                            removedElement = blueBig.removeAt(blueBig.size - 1)
+                            blueBig.removeAt(blueBig.size - 1)
                         }
                         else->{
-                            removedElement = Piece("error","error")
+                            Piece("error","error")
                         }
                     }
                 }
                 else if(pieceType.getColor()==("yellow")){
-                    when(pieceType.getSize()){
+                    removedElement = when(pieceType.getSize()){
                         "Peg"->{
-                            removedElement = yellowPeg.removeAt(yellowPeg.size - 1)
+                            yellowPeg.removeAt(yellowPeg.size - 1)
                         }
                         "Medium"->{
-                            removedElement = yellowMedium.removeAt(yellowMedium.size - 1)
+                            yellowMedium.removeAt(yellowMedium.size - 1)
                         }
                         "Big"->{
-                            removedElement = yellowBig.removeAt(yellowBig.size - 1)
+                            yellowBig.removeAt(yellowBig.size - 1)
                         }
                         else->{
-                            removedElement = Piece("error","error")
+                            Piece("error","error")
                         }
                     }
                 }
@@ -552,7 +549,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 val imageId = resources.getIdentifier(pieceColor+pieceSize,"drawable",packageName)
                 //get the id of the image view for image change
 
-                var pieceButton = findViewById<ImageView>(componentId)
+                val pieceButton = findViewById<ImageView>(componentId)
                 pieceButton.visibility = View.VISIBLE
                 pieceButton.setImageResource(imageId)
                 pieceButton.tag = pieceColor+pieceSize
@@ -564,7 +561,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
         println("Place piece")
-        piece.setPiecePosition(xPos, yPos);
+        piece.setPiecePosition(xPos, yPos)
 
         resetPieceButton()
         showNextPlayerInfo()
@@ -572,14 +569,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun resetPieceButton(){
         for (i in 0..2){//reset all buttons to invisible to avid incorrect deployment
-            val pegId = resources.getIdentifier("peg"+i,"id",packageName)
-            val mediumId = resources.getIdentifier("medium"+i,"id",packageName)
-            val bigId = resources.getIdentifier("big"+i,"id",packageName)
+            val pegId = resources.getIdentifier("peg$i","id",packageName)
+            val mediumId = resources.getIdentifier("medium$i","id",packageName)
+            val bigId = resources.getIdentifier("big$i","id",packageName)
             //get id of the buttons which is a relativelayout component and reset them to invisible
 
-            var piecePegButton = findViewById<ImageView>(pegId)
-            var pieceMediumButton = findViewById<ImageView>(mediumId)
-            var pieceBigButton = findViewById<ImageView>(bigId)
+            val piecePegButton = findViewById<ImageView>(pegId)
+            val pieceMediumButton = findViewById<ImageView>(mediumId)
+            val pieceBigButton = findViewById<ImageView>(bigId)
 
             piecePegButton.visibility = View.INVISIBLE
             pieceMediumButton.visibility = View.INVISIBLE

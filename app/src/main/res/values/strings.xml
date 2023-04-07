@@ -46,6 +46,18 @@
     <string name="circle22Medium">circle 22 medium</string>
     <string name="circle22Big">circle 22 big</string>
 
+    <string name="playerPeg1">Player peg 1</string>
+    <string name="playerPeg2">Player peg 2</string>
+    <string name="playerPeg3">Player peg 3</string>
+
+    <string name="playerMed1">Player medium 1</string>
+    <string name="playerMed2">Player medium 2</string>
+    <string name="playerMed3">Player medium 3</string>
+
+    <string name="playerBig1">Player big 1</string>
+    <string name="playerBig2">Player big 2</string>
+    <string name="playerBig3">Player big 3</string>
+
     <string name="wins">Wins</string>
     <string name="turn_for">Turn for:</string>
     <string name="picked">Picked:</string>
@@ -78,4 +90,31 @@
     <string name="offmode">Off</string>
     <string name="player_1_wins">Player 1 Wins:</string>
     <string name="player_2_wins">Player 2 Wins:</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="choosing_the_number_of_players">Choosing the Number of Players</string>
+    <string name="choose_players_dialogue">When users choose to play the game, they will first be prompted to choose the number of players. A game can be played either single player, or multiplayer. In a single player game, the user plays against a CPU. In a multiplayer game, users can have between 2-4 people playing on a single device.</string>
+    <string name="playing_the_game">Playing the Game</string>
+    <string name="playing_game_dialogue">Each player is assigned a color. Player one plays first, then gameplay will cycle through all of the players. Players take turns placing their pieces, one per turn, into the center area.</string>
+    <string name="rules_for_playing_pieces">Rules for Playing Pieces</string>
+    <string name="rule_1">• Select the piece you would like to play. There are three different sized pieces that can be played.</string>
+    <string name="rule_2">• Select the place on the board where you would like to play the piece</string>
+    <string name="rule_3">• If the piece can be played, the piece will appear on the board, and it will change to the next player\'s turn</string>
+    <string name="rule_4">• Keep placing pieces until someone gets an Otrio!</string>
+    <string name="winning">Winning</string>
+    <string name="win_1">There are three ways to win the game. The first way of winning is to get three pieces of the same size in a row either veritcally, horizontally, or diagonally. In the image below, the red player wins with three big pieces in a row diagonally.</string>
+    <string name="win_2">The second way of winning is to get all three of your pieces, one of each size, in the same location on the board. In the image below, red wins by filling up the middle left spot on the board.</string>
+    <string name="win_3">The third way of winning to get three pieces of ascending or descending size in a row, either vertically, horizontally, or diagonally. In the image below, red player wins by having three pieces of ascending size horizontally across the top row.</string>
+    <string name="play_game">Play Game</string>
+    <string name="choose_number_of_players_screen">Choose number of players screen</string>
+    <string name="player_pieces_image">player pieces image</string>
+    <string name="same_piece_win_image">same piece win image</string>
+    <string name="same_space_win_image">same space win image</string>
+    <string name="ascending_or_descending_win_image">ascending or descending win image</string>
+    <string name="additional_information">Additional Information</string>
+    <string name="buttons_explanation">The bottom of the page displays additional buttons:</string>
+    <string name="additional_buttons_on_the_bottom_of_the_page_image">Additional buttons on the bottom of the page image</string>
+    <string name="button_1_explanation">• The Home button on the far left will bring the user back to the home page.</string>
+    <string name="button_2_explanation">• Next is the Reset button, which will reset the board and pieces if the user so desires.</string>
+    <string name="button_3_explanation">• The next button is the Wins button, which displays how many wins each player has.</string>
+    <string name="button_4_explanation">• Finally, the Help button will bring the user back to this instructions page, where they can review the rules of the game.</string>
 </resources>
