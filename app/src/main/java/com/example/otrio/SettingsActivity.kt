@@ -3,6 +3,7 @@ package com.example.otrio
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
@@ -20,8 +21,16 @@ class SettingsActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        musicSwitch = findViewById(R.id.musicSwitch)
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        // Set toolbar as action bar
+        setSupportActionBar(toolbar)
 
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
+        musicSwitch = findViewById(R.id.musicSwitch)
         // Get the SharedPreferences instance
         sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
 
@@ -75,5 +84,9 @@ class SettingsActivity: AppCompatActivity() {
         if (!MainActivity.isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

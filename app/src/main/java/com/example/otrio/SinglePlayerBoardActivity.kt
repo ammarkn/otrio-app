@@ -78,6 +78,14 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        // Set toolbar as action bar
+        setSupportActionBar(toolbar)
+
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -209,7 +217,10 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         player2Wins.text = "Player 2: $blueWins Wins"
         dialog.show()
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
 
     override fun onClick(v: View) {
         when (v.id) {

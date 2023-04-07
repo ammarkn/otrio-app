@@ -5,20 +5,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toolbar
 
 class InstructionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_instructions)
 
-        //variable for button to take user to instructions
-        val gameButtonClick = findViewById<Button>(R.id.go_to_gameplay)
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        // Set toolbar as action bar
+        setSupportActionBar(toolbar)
 
-        //event listener to change page when button is clicked
-        gameButtonClick.setOnClickListener {
-            val intent = Intent(this, TwoPlayerBoardActivity::class.java)
-            startActivity(intent)
-        }
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onResume() {
@@ -35,5 +35,10 @@ class InstructionsActivity : AppCompatActivity() {
         if (!MainActivity.isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }
