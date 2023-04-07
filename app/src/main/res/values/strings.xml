@@ -70,12 +70,13 @@
     <string name="two_player">Two Player</string>
     <string name="three_player">Three Player</string>
     <string name="four_player">Four Player</string>
-    <string name="music">Music</string>
+    <string name="music">"Music         "</string>
     <string name="on">On</string>
     <string name="off">Off</string>
-    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode">"Dark Mode  "</string>
     <string name="onmode">On</string>
     <string name="offmode">Off</string>
     <string name="player_1_wins">Player 1 Wins:</string>
     <string name="player_2_wins">Player 2 Wins:</string>
+    <string name="back">Back</string>
 </resources>

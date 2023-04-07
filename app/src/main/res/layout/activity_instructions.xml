@@ -7,6 +7,24 @@
     android:background="@color/background_color"
     tools:context=".InstructionsActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appbar_layout"
+        android:theme="@style/Theme.Otrio.AppBarOverlay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.Otrio.PopupOverlay" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -131,15 +149,6 @@
             android:scaleType="fitStart"
 
             />
-        <Button
-            android:id="@+id/go_to_gameplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_marginBottom="70dp"
-            android:text="Play Game" />
-
-
     </LinearLayout>
 
     </ScrollView>

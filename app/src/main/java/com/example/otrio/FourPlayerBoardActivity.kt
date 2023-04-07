@@ -139,6 +139,14 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        // Set toolbar as action bar
+        setSupportActionBar(toolbar)
+
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         //create button to return to home page
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
@@ -319,6 +327,11 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         player3Wins.text = "Player 3: $yellowWins Wins"
         player4Wins.text = "Player 4: $greenWins Wins"
         dialog.show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     override fun onClick(v: View) {

@@ -107,6 +107,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        // Set toolbar as action bar
+        setSupportActionBar(toolbar)
+
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         // Button to return user to homepage
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
@@ -269,6 +277,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         dialog.show()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
 
     override fun onClick(v: View) {
         when (v.id) {

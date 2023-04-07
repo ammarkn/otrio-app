@@ -11,6 +11,14 @@ class PlayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        // Set toolbar as action bar
+        setSupportActionBar(toolbar)
+
+        // Enable the back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         val singlePlayerButton = findViewById<Button>(R.id.go_to_single_player)
         val twoPlayerButton = findViewById<Button>(R.id.go_to_two_player)
         val threePlayerButton = findViewById<Button>(R.id.go_to_three_player)
@@ -48,5 +56,10 @@ class PlayActivity : AppCompatActivity() {
         if (!MainActivity.isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }
