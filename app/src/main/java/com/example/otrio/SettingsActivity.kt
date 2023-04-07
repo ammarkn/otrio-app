@@ -14,7 +14,7 @@ class SettingsActivity: AppCompatActivity() {
 
     private lateinit var modeSwitch: SwitchCompat
 
-    var isDarkMode = false
+    private var isDarkMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

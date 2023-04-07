@@ -105,4 +105,16 @@
     <string name="win_2">The second way of winning is to get all three of your pieces, one of each size, in the same location on the board. In the image below, red wins by filling up the middle left spot on the board.</string>
     <string name="win_3">The third way of winning to get three pieces of ascending or descending size in a row, either vertically, horizontally, or diagonally. In the image below, red player wins by having three pieces of ascending size horizontally across the top row.</string>
     <string name="play_game">Play Game</string>
+    <string name="choose_number_of_players_screen">Choose number of players screen</string>
+    <string name="player_pieces_image">player pieces image</string>
+    <string name="same_piece_win_image">same piece win image</string>
+    <string name="same_space_win_image">same space win image</string>
+    <string name="ascending_or_descending_win_image">ascending or descending win image</string>
+    <string name="additional_information">Additional Information</string>
+    <string name="buttons_explanation">The bottom of the page displays additional buttons:</string>
+    <string name="additional_buttons_on_the_bottom_of_the_page_image">Additional buttons on the bottom of the page image</string>
+    <string name="button_1_explanation">• The Home button on the far left will bring the user back to the home page.</string>
+    <string name="button_2_explanation">• Next is the Reset button, which will reset the board and pieces if the user so desires.</string>
+    <string name="button_3_explanation">• The next button is the Wins button, which displays how many wins each player has.</string>
+    <string name="button_4_explanation">• Finally, the Help button will bring the user back to this instructions page, where they can review the rules of the game.</string>
 </resources>

@@ -40,14 +40,14 @@
             android:layout_height="wrap_content"
             android:text="@string/choose_players_dialogue"
             android:textColor="@color/text_color"
-            />
+            tools:ignore="VisualLintLongText" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/choose_players"
             android:layout_marginBottom="15dp"
             android:textColor="@color/text_color"
-            />
+            android:contentDescription="@string/choose_number_of_players_screen" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             android:text="@string/playing_game_dialogue"
             android:layout_marginBottom="15dp"
             android:textColor="@color/text_color"
-            />
+            tools:ignore="VisualLintLongText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
             android:src="@drawable/player_pieces"
             android:layout_marginBottom="15dp"
             android:textColor="@color/text_color"
-            />
+            android:contentDescription="@string/player_pieces_image" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -138,13 +138,14 @@
             android:textColor="@color/text_color"
             android:layout_marginBottom="15dp"
             android:paddingHorizontal="16dp"
-            />
+            tools:ignore="VisualLintLongText" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/samepiecewin"
             android:layout_marginBottom="15dp"
+            android:contentDescription="@string/same_piece_win_image"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -153,12 +154,13 @@
             android:textColor="@color/text_color"
             android:layout_marginBottom="15dp"
             android:paddingHorizontal="16dp"
-            />
+            tools:ignore="VisualLintLongText" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/samespacewin"
             android:layout_marginBottom="15dp"
+            android:contentDescription="@string/same_space_win_image"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -167,14 +169,70 @@
             android:textColor="@color/text_color"
             android:layout_marginBottom="15dp"
             android:paddingHorizontal="16dp"
-            />
+            tools:ignore="VisualLintLongText" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/descendingwin"
             android:layout_marginBottom="15dp"
             android:scaleType="fitStart"
-
+            android:contentDescription="@string/ascending_or_descending_win_image"
+            />
+        <TextView
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/additional_information"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttons_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_1_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_2_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_3_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_4_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            tools:ignore="VisualLintLongText" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/additional_buttons"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/additional_buttons_on_the_bottom_of_the_page_image"
             />
         <Button
             android:id="@+id/go_to_gameplay"
