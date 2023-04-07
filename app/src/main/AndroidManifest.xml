@@ -51,6 +51,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:theme="@style/Theme.Otrio.NoActionBar"
            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
