@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
     tools:context=".InstructionsActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appbar_layout"
-        android:theme="@style/Theme.Otrio.AppBarOverlay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Otrio.PopupOverlay" />
-    </com.google.android.material.appbar.AppBarLayout>
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -40,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="How to Play"
+            android:text="@string/how_to_play"
             android:textSize="25sp"
             android:layout_marginBottom="15dp"
             android:textColor="@color/text_color"
@@ -49,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2 Players"
+            android:text="@string/choosing_the_number_of_players"
             android:textSize="20sp"
             android:textColor="@color/text_color"
             />
@@ -57,20 +38,20 @@
             android:padding="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Each player selects two colors that are opposite to each other on the board. You can win with either of your colors, but colors cannot be combined for a win. The youngest player goes first and play proceeds clockwise. Players take turns placing their pieces, one per turn, into the center area."
+            android:text="@string/choose_players_dialogue"
             android:textColor="@color/text_color"
-            />
+            tools:ignore="VisualLintLongText" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/two_players"
+            android:src="@drawable/choose_players"
             android:layout_marginBottom="15dp"
             android:textColor="@color/text_color"
-            />
+            android:contentDescription="@string/choose_number_of_players_screen" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3-4 Players"
+            android:text="@string/playing_the_game"
             android:textSize="20sp"
             android:textColor="@color/text_color"
             />
@@ -79,15 +60,15 @@
             android:paddingHorizontal="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Each player selects a color. If only three are playing, one color is not used in the game. The youngest player goes first and play proceeds clockwise. Players take turns placing their pieces, one per turn, into the center area."
+            android:text="@string/playing_game_dialogue"
             android:layout_marginBottom="15dp"
             android:textColor="@color/text_color"
-            />
+            tools:ignore="VisualLintLongText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rules for Playing Pieces"
+            android:text="@string/rules_for_playing_pieces"
             android:textSize="25sp"
             android:textColor="@color/text_color"
             />
@@ -100,28 +81,46 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="• Once a piece is placed, it cannot be moved"
+            android:text="@string/rule_1"
             android:textColor="@color/text_color"
+            android:paddingHorizontal="16dp"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="• If you cannot play a piece, you skip a turn."
+            android:text="@string/rule_2"
             android:textColor="@color/text_color"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rule_3"
+            android:textColor="@color/text_color"
+            android:paddingHorizontal="16dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="• Keep placing pieces until someone gets an Otrio!"
+            android:text="@string/rule_4"
             android:textColor="@color/text_color"
+            android:paddingHorizontal="16dp"
             />
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/player_pieces"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/text_color"
+            android:contentDescription="@string/player_pieces_image" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Winning"
+            android:text="@string/winning"
             android:textSize="25sp"
             android:textColor="@color/text_color"
             />
@@ -132,23 +131,118 @@
             android:textColor="@color/text_color"
             />
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/winning_1"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/winning_2"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/winning_3"
-            android:scaleType="fitStart"
+            android:text="@string/win_1"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            tools:ignore="VisualLintLongText" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/samepiecewin"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/same_piece_win_image"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/win_2"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            tools:ignore="VisualLintLongText" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/samespacewin"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/same_space_win_image"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/win_3"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            tools:ignore="VisualLintLongText" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/descendingwin"
+            android:layout_marginBottom="15dp"
+            android:scaleType="fitStart"
+            android:contentDescription="@string/ascending_or_descending_win_image"
+            />
+        <TextView
+            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/additional_information"
+            android:layout_marginBottom="15dp"
+            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttons_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_1_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_2_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_3_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_4_explanation"
+            android:textColor="@color/text_color"
+            android:layout_marginBottom="15dp"
+            android:paddingHorizontal="16dp"
+            tools:ignore="VisualLintLongText" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/additional_buttons"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/additional_buttons_on_the_bottom_of_the_page_image"
+            />
+        <Button
+            android:id="@+id/go_to_gameplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="70dp"
+            android:text="@string/play_game" />
+
+
     </LinearLayout>
 
     </ScrollView>

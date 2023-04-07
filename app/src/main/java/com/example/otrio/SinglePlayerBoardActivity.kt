@@ -6,19 +6,15 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import java.lang.System.arraycopy
 import kotlin.random.Random
 
 class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
-
-    private var rounds = 0;
 
     private var pickedPiece = false
 
@@ -27,59 +23,56 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private var redWin = false
     private var blueWin = false
 
-    var redWins = 0
-    var blueWins = 0
+    private var redWins = 0
+    private var blueWins = 0
 
     private lateinit var winData: SharedPreferences
 
-    var redPieces = ArrayList<ArrayList<Piece>>()
-    var bluePieces = ArrayList<ArrayList<Piece>>()
+    private var redPieces = ArrayList<ArrayList<Piece>>()
+    private var bluePieces = ArrayList<ArrayList<Piece>>()
 
-    var redPeg0 = Piece("red", "Peg")
-    var redMedium0 = Piece("red", "Medium")
-    var redBig0 = Piece("red", "Big")
+    private var redPeg0 = Piece("red", "Peg")
+    private var redMedium0 = Piece("red", "Medium")
+    private var redBig0 = Piece("red", "Big")
 
-    var redPeg1 = Piece("red", "Peg")
-    var redMedium1 = Piece("red", "Medium")
-    var redBig1 = Piece("red", "Big")
+    private var redPeg1 = Piece("red", "Peg")
+    private var redMedium1 = Piece("red", "Medium")
+    private var redBig1 = Piece("red", "Big")
 
-    var redPeg2 = Piece("red", "Peg")
-    var redMedium2 = Piece("red", "Medium")
-    var redBig2 = Piece("red", "Big")
+    private var redPeg2 = Piece("red", "Peg")
+    private var redMedium2 = Piece("red", "Medium")
+    private var redBig2 = Piece("red", "Big")
 
-    var bluePeg0 = Piece("blue", "Peg")
-    var blueMedium0 = Piece("blue", "Medium")
-    var blueBig0 = Piece("blue", "Big")
+    private var bluePeg0 = Piece("blue", "Peg")
+    private var blueMedium0 = Piece("blue", "Medium")
+    private var blueBig0 = Piece("blue", "Big")
 
-    var bluePeg1 = Piece("blue", "Peg")
-    var blueMedium1 = Piece("blue", "Medium")
-    var blueBig1 = Piece("blue", "Big")
+    private var bluePeg1 = Piece("blue", "Peg")
+    private var blueMedium1 = Piece("blue", "Medium")
+    private var blueBig1 = Piece("blue", "Big")
 
-    var bluePeg2 = Piece("blue", "Peg")
-    var blueMedium2 = Piece("blue", "Medium")
-    var blueBig2 = Piece("blue", "Big")
+    private var bluePeg2 = Piece("blue", "Peg")
+    private var blueMedium2 = Piece("blue", "Medium")
+    private var blueBig2 = Piece("blue", "Big")
 
-    var turn = 0 //the current turn number
-    var pieceType = Piece("null","null") //the piece current picked up by one of players
+    private var turn = 0 //the current turn number
+    private var pieceType = Piece("null","null") //the piece current picked up by one of players
 
-    var p1 = Player("player1", "red", redWins, redPieces)
-    var p2 = Player("player2", "blue", blueWins, bluePieces)
+    private var p1 = Player("player1", "red", redWins, redPieces)
+    private var p2 = Player("player2", "blue", blueWins, bluePieces)
 
-    var playerList = ArrayList<Player>() //save all play in one list
+    private var playerList = ArrayList<Player>() //save all play in one list
 
     private lateinit var turnplayer: TextView
-    private lateinit var pegnumber: TextView
-    private lateinit var mediumnumber: TextView
-    private lateinit var bignumber: TextView
     private lateinit var picked: TextView
 
-    var redPeg = ArrayList<Piece>()
-    var redMedium = ArrayList<Piece>()
-    var redBig = ArrayList<Piece>()
+    private var redPeg = ArrayList<Piece>()
+    private var redMedium = ArrayList<Piece>()
+    private var redBig = ArrayList<Piece>()
 
-    var bluePeg = ArrayList<Piece>()
-    var blueMedium = ArrayList<Piece>()
-    var blueBig = ArrayList<Piece>()
+    private var bluePeg = ArrayList<Piece>()
+    private var blueMedium = ArrayList<Piece>()
+    private var blueBig = ArrayList<Piece>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -200,7 +193,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 val imageId = resources.getIdentifier(pieceColor+pieceSize,"drawable",packageName)
                 //get the id of the image view for player1 pieces
 
-                var pieceButton = findViewById<ImageView>(componentId)
+                val pieceButton = findViewById<ImageView>(componentId)
                 pieceButton.visibility = View.VISIBLE
                 pieceButton.setImageResource(imageId)
                 pieceButton.tag = pieceColor+pieceSize
@@ -325,25 +318,25 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         if(pickedPiece){ //check which button selected (Layout as a button)
             val imageView: ImageView = findViewById(vId)
             //check if peg already placed here
-            var imageName = imageView.tag.toString()
+            val imageName = imageView.tag.toString()
             //get the name of the image in the imageview
             if(imageName.contains("blank")){
                 imageView.setImageResource(newTag)
-                imageView.setTag(pieceType.getColor()+pieceType.getSize().lowercase())//re-set the name for check late
+                imageView.tag = pieceType.getColor()+pieceType.getSize().lowercase()//re-set the name for check late
                 var removedElement = Piece("null","null")
                 if(pieceType.getColor()==("red")){
                     when(pieceType.getSize()){
                         "Peg"->{
                             removedElement = redPeg.removeAt(redPeg.size - 1)
-                            randomChosen = false;
+                            randomChosen = false
                         }
                         "Medium"->{
                             removedElement = redMedium.removeAt(redMedium.size - 1)
-                            randomChosen = false;
+                            randomChosen = false
                         }
                         "Big"->{
                             removedElement = redBig.removeAt(redBig.size - 1)
-                            randomChosen = false;
+                            randomChosen = false
                         }
                         else->{
                             removedElement = Piece("error","error")
@@ -354,15 +347,15 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                     when(pieceType.getSize()){
                         "Peg"->{
                             removedElement = bluePeg.removeAt(bluePeg.size - 1)
-                            randomChosen = false;
+                            randomChosen = false
                         }
                         "Medium"->{
                             removedElement = blueMedium.removeAt(blueMedium.size - 1)
-                            randomChosen = false;
+                            randomChosen = false
                         }
                         "Big"->{
                             removedElement = blueBig.removeAt(blueBig.size - 1)
-                            randomChosen = false;
+                            randomChosen = false
                         }
                         else->{
                             removedElement = Piece("error","error")
@@ -463,7 +456,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 recreate()
                 Toast.makeText(this, "Game board was reset.", Toast.LENGTH_SHORT).show()
             }
-            builder.setNegativeButton("No") { dialog, id ->
+            builder.setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
             }
             builder.setNeutralButton("Take Me Home") { _, _ ->
@@ -526,7 +519,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 val imageId = resources.getIdentifier(pieceColor+pieceSize,"drawable",packageName)
                 //get the id of the image view for image change
 
-                var pieceButton = findViewById<ImageView>(componentId)
+                val pieceButton = findViewById<ImageView>(componentId)
                 pieceButton.visibility = View.VISIBLE
                 pieceButton.setImageResource(imageId)
                 pieceButton.tag = pieceColor+pieceSize
@@ -551,14 +544,14 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun resetPieceButton(){
         for (i in 0..2){//reset all buttons to invisible to avid incorrect deployment
-            val pegId = resources.getIdentifier("peg"+i,"id",packageName)
-            val mediumId = resources.getIdentifier("medium"+i,"id",packageName)
-            val bigId = resources.getIdentifier("big"+i,"id",packageName)
+            val pegId = resources.getIdentifier("peg$i","id",packageName)
+            val mediumId = resources.getIdentifier("medium$i","id",packageName)
+            val bigId = resources.getIdentifier("big$i","id",packageName)
             //get id of the buttons which is a relativelayout component and reset them to invisible
 
-            var piecePegButton = findViewById<ImageView>(pegId)
-            var pieceMediumButton = findViewById<ImageView>(mediumId)
-            var pieceBigButton = findViewById<ImageView>(bigId)
+            val piecePegButton = findViewById<ImageView>(pegId)
+            val pieceMediumButton = findViewById<ImageView>(mediumId)
+            val pieceBigButton = findViewById<ImageView>(bigId)
 
             piecePegButton.visibility = View.INVISIBLE
             pieceMediumButton.visibility = View.INVISIBLE

@@ -5,59 +5,46 @@
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appbar_layout"
-        android:theme="@style/Theme.Otrio.AppBarOverlay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Otrio.PopupOverlay" />
-    </com.google.android.material.appbar.AppBarLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar_layout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/musicSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/music"
-            android:textColor="@color/text_color"
-            android:textOff="@string/off"
             android:textOn="@string/on"
+            android:textOff="@string/off"
+            android:textColor="@color/text_color"
+            app:showText="true"
+            android:checked="true"
             android:textSize="24sp"
             android:textStyle="bold"
             android:thumb="@drawable/switch_thumb"
-            app:showText="true"
-            app:track="@drawable/switch_track" />
+            app:track="@drawable/switch_track"
+            />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/mode_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
             android:text="@string/dark_mode"
-            android:textColor="@color/text_color"
-            android:textOff="@string/offmode"
             android:textOn="@string/onmode"
+            android:textOff="@string/offmode"
+            android:textColor="@color/text_color"
+            app:showText="true"
+            android:checked="false"
             android:textSize="24sp"
             android:textStyle="bold"
             android:thumb="@drawable/switch_thumb"
-            app:showText="true"
-            app:track="@drawable/switch_track" />
+            app:track="@drawable/switch_track"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
