@@ -23,6 +23,7 @@
             android:textOff="@string/off"
             android:textColor="@color/text_color"
             app:showText="true"
+            android:checked="true"
             android:textSize="24sp"
             android:textStyle="bold"
             android:thumb="@drawable/switch_thumb"
