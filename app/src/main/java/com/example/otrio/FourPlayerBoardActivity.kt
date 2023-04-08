@@ -272,6 +272,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
         //will be used to show the update of current picked piece
         picked = findViewById(R.id.currentPiece)
+        picked.text = ""
 
         //set variable to track current player's turn on the board
         turnplayer = findViewById(R.id.playerTurn)
@@ -648,7 +649,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             //set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn%4].getColor(),"Peg")
             //set text for piece to be displayed on screen
-            picked.text = pieceType.getColor() + " " + pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             //confirm a piece has been picked
             pickedPiece = true
         }
@@ -663,7 +664,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             //set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn%4].getColor(),"Medium")
             //set text for piece to be displayed on screen
-            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             //confirm a piece has been picked
             pickedPiece = true
         }
@@ -678,7 +679,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             //set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn%4].getColor(),"Big")
             //set text for piece to be displayed on screen
-            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             //confirm a piece has been picked
             pickedPiece = true
         }
@@ -694,7 +695,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val nextPlayer = playerList[turn%4]
 
         //get new player's name, and number of pieces
-        turnplayer.text = nextPlayer.getName()
+        turnplayer.text = nextPlayer.getName().replaceFirstChar {it.uppercase()}
 
         for (i in 0..2){
             for (pieceLeft in nextPlayer.getPieces()[i]){// set all pieces which player still have to visible

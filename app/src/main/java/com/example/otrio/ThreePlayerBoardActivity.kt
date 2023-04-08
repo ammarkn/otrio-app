@@ -228,6 +228,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
         // Used to show the update of picked piece
         picked = findViewById(R.id.currentPiece)
+        picked.text = ""
 
         // Track the current player's turn (starts with player1)
         turnplayer = findViewById(R.id.playerTurn)
@@ -515,7 +516,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             // Set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn % 3].getColor(),"Peg")
             // Set text for piece to be displayed on screen
-            picked.text = pieceType.getColor() + " " + pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             // Confirm a piece has been picked
             pickedPiece = true
         }
@@ -527,7 +528,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleButtonMediumClick() {
         if(playerList[turn % 3].getPieces()[1].size > 0){
             pieceType = Piece(playerList[turn % 3].getColor(),"Medium")
-            picked.text = pieceType.getColor() + " "+ pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
         else{
@@ -538,7 +539,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleButtonBigClick() {
         if(playerList[turn % 3].getPieces()[2].size > 0){
             pieceType = Piece(playerList[turn % 3].getColor(),"Big")
-            picked.text = pieceType.getColor()+ " " + pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
         else{
@@ -549,7 +550,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun showNextPlayerInfo() {
         turn++
         val nextPlayer = playerList[turn % 3]
-        turnplayer.text = nextPlayer.getName()
+        turnplayer.text = nextPlayer.getName().replaceFirstChar {it.uppercase()}
 
         for (i in 0..2){
             for (pieceLeft in nextPlayer.getPieces()[i]){// set all pieces which player still have to visible

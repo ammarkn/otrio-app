@@ -177,6 +177,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         button22.setOnClickListener(this)
 
         picked = findViewById(R.id.currentPiece) //will be used to show the update of current picked piece
+        picked.text = ""
 
         turnplayer = findViewById(R.id.playerTurn)
         turnplayer.text = "Player1"
@@ -473,7 +474,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleButtonPegClick() {
         if(playerList[turn%2].getPieces()[0].size > 0){
             pieceType = Piece(playerList[turn%2].getColor(),"Peg")
-            picked.text = pieceType.getColor() + " " + pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
         else{
@@ -484,7 +485,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleButtonMediumClick() {
         if(playerList[turn%2].getPieces()[1].size > 0){
             pieceType = Piece(playerList[turn%2].getColor(),"Medium")
-            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
         else{
@@ -495,7 +496,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleButtonBigClick() {
         if(playerList[turn%2].getPieces()[2].size > 0){
             pieceType = Piece(playerList[turn%2].getColor(),"Big")
-            picked.text = pieceType.getColor()+" "+pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
         else{
@@ -507,7 +508,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         turn ++
         val nextPlayer = playerList[turn%2]
 
-        turnplayer.text = nextPlayer.getName()
+        turnplayer.text = nextPlayer.getName().replaceFirstChar {it.uppercase()}
 
         for (i in 0..2){
             for (pieceLeft in nextPlayer.getPieces()[i]){// set all pieces which player still have to visible

@@ -428,6 +428,8 @@ as we require lighter images to show a piece has yet to be played
             android:layout_width="226dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/playerTurn"
+            android:gravity="end"
+            android:layout_marginEnd="5dp"
             android:text="@string/picked"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
