@@ -117,4 +117,9 @@
     <string name="button_2_explanation">• Next is the Reset button, which will reset the board and pieces if the user so desires.</string>
     <string name="button_3_explanation">• The next button is the Wins button, which displays how many wins each player has.</string>
     <string name="button_4_explanation">• Finally, the Help button will bring the user back to this instructions page, where they can review the rules of the game.</string>
+
+    <string name="home_button_text">Home</string>
+    <string name="reset_button_text">Reset</string>
+    <string name="wins_button_text">Wins</string>
+    <string name="help_button_text">Help</string>
 </resources>
