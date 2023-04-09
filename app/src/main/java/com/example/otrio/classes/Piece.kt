@@ -20,13 +20,4 @@ class Piece(private val color: String, private val size: String) {
     fun getSize(): String {
         return size
     }
-
-    fun getxPos() : Int? {
-        return xPos
-    }
-
-    fun getyPos() : Int? {
-        return yPos
-    }
-
 }
