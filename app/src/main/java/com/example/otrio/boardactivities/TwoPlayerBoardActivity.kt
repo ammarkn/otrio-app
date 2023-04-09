@@ -1,4 +1,8 @@
-package com.example.otrio
+/*
+File contributors: Katie Arsenault
+ */
+
+package com.example.otrio.boardactivities
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -12,6 +16,12 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.otrio.R
+import com.example.otrio.classes.Piece
+import com.example.otrio.classes.Player
+import com.example.otrio.media.MediaPlayerManager
+import com.example.otrio.pages.InstructionsActivity
+import com.example.otrio.pages.MainActivity
 
 class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -71,6 +81,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private var blueMedium = ArrayList<Piece>()
     private var blueBig = ArrayList<Piece>()
 
+    @SuppressLint("DiscouragedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
@@ -175,7 +186,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         picked = findViewById(R.id.currentPiece) //will be used to show the update of current picked piece
 
         turnplayer = findViewById(R.id.playerTurn)
-        turnplayer.text = "Player1"
+        turnplayer.text = getString(R.string.player1)
 
         for (i in 0..2){
             for (pieceLeft in playerList[0].getPieces()[i]){
@@ -200,6 +211,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         blueWins = winData.getInt("blueWins", 0)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showCustomDialog() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -305,7 +317,8 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun handleLayoutOnClick(vIdstart : String, Xpos : Int,Ypos : Int) {
+    @SuppressLint("DiscouragedApi")
+    private fun handleLayoutOnClick(vIdstart : String, Xpos : Int, Ypos : Int) {
 
         val newTag = resources.getIdentifier(pieceType.getColor()+pieceType.getSize().lowercase(),"drawable",packageName)
         //get id of image name of the piece base on the picked piece
@@ -411,6 +424,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         alert.show()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun handleButtonPegClick() {
         if(playerList[turn%2].getPieces()[0].size > 0){
             pieceType = Piece(playerList[turn%2].getColor(),"Peg")
@@ -422,6 +436,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun handleButtonMediumClick() {
         if(playerList[turn%2].getPieces()[1].size > 0){
             pieceType = Piece(playerList[turn%2].getColor(),"Medium")
@@ -433,6 +448,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun handleButtonBigClick() {
         if(playerList[turn%2].getPieces()[2].size > 0){
             pieceType = Piece(playerList[turn%2].getColor(),"Big")
@@ -444,6 +460,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("DiscouragedApi")
     private fun showNextPlayerInfo() {
         turn ++
         val nextPlayer = playerList[turn%2]
@@ -476,6 +493,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         showNextPlayerInfo()
     }
 
+    @SuppressLint("DiscouragedApi")
     private fun resetPieceButton(){
         for (i in 0..2){//reset all buttons to invisible to avid incorrect deployment
             val pegId = resources.getIdentifier("peg$i","id",packageName)
@@ -629,16 +647,26 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 val big = layout.findViewById<ImageView>(resources.getIdentifier(circleID + "big", "id", packageName))
 
                 if(peg.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.redpeg)?.constantState) {
-                    if(medium.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.redmedium)?.constantState) {
-                        if(big.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.redbig)?.constantState) {
+                    if(medium.drawable.constantState == ContextCompat.getDrawable(this,
+                            R.drawable.redmedium
+                        )?.constantState) {
+                        if(big.drawable.constantState == ContextCompat.getDrawable(this,
+                                R.drawable.redbig
+                            )?.constantState) {
                             redWin = true
                             return true
                         }
                     }
                 }
-                else if(peg.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.bluepeg)?.constantState) {
-                    if(medium.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.bluemedium)?.constantState) {
-                        if(big.drawable.constantState == ContextCompat.getDrawable(this, R.drawable.bluebig)?.constantState) {
+                else if(peg.drawable.constantState == ContextCompat.getDrawable(this,
+                        R.drawable.bluepeg
+                    )?.constantState) {
+                    if(medium.drawable.constantState == ContextCompat.getDrawable(this,
+                            R.drawable.bluemedium
+                        )?.constantState) {
+                        if(big.drawable.constantState == ContextCompat.getDrawable(this,
+                                R.drawable.bluebig
+                            )?.constantState) {
                             blueWin = true
                             return true
                         }

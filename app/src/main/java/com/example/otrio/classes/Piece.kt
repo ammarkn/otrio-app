@@ -1,4 +1,8 @@
-package com.example.otrio
+/*
+File contributors: Katie Arsenault
+ */
+
+package com.example.otrio.classes
 
 class Piece(private val color: String, private val size: String) {
     private var xPos: Int? = null

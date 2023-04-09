@@ -1,12 +1,17 @@
-package com.example.otrio
+/*
+File contributors: Katie Arsenault
+ */
+
+package com.example.otrio.pages
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
+import com.example.otrio.media.MediaPlayerManager
+import com.example.otrio.R
 
 
 class SettingsActivity: AppCompatActivity() {

@@ -1,11 +1,14 @@
-package com.example.otrio
+/*
+File contributors: Katie Arsenault
+ */
+
+package com.example.otrio.pages
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toolbar
+import com.example.otrio.media.MediaPlayerManager
+import com.example.otrio.R
 
 class InstructionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

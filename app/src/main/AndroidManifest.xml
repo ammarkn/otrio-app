@@ -13,43 +13,43 @@
         android:theme="@style/Theme.Otrio"
         tools:targetApi="31">
         <activity
-            android:name=".SinglePlayerBoardActivity"
+            android:name=".boardactivities.SinglePlayerBoardActivity"
             android:exported="false"
             android:theme="@style/Theme.Otrio.NoActionBar"
             />
         <activity
-            android:name=".TwoPlayerBoardActivity"
+            android:name=".boardactivities.TwoPlayerBoardActivity"
             android:exported="false"
             android:theme="@style/Theme.Otrio.NoActionBar"
             />
         <activity
-            android:name=".FourPlayerBoardActivity"
+            android:name=".boardactivities.FourPlayerBoardActivity"
             android:exported="false"
             android:theme="@style/Theme.Otrio.NoActionBar"
             />
         <activity
-            android:name=".InstructionsActivity"
+            android:name=".pages.InstructionsActivity"
             android:exported="false"
             android:theme="@style/Theme.Otrio.NoActionBar"
             />
         <activity
-            android:name=".PlayActivity"
+            android:name=".pages.PlayActivity"
             android:exported="false"
             android:theme="@style/Theme.Otrio.NoActionBar"
             />
         <activity
-            android:name=".ThreePlayerBoardActivity"
+            android:name=".boardactivities.ThreePlayerBoardActivity"
             android:exported="false"
             android:theme="@style/Theme.Otrio.NoActionBar"
             />
 
-        <activity android:name=".SettingsActivity"
+        <activity android:name=".pages.SettingsActivity"
             android:exported="false"
             android:theme="@style/Theme.Otrio.NoActionBar"
             />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".pages.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Otrio.NoActionBar"
            >

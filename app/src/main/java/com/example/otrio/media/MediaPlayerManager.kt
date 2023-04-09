@@ -1,7 +1,9 @@
-package com.example.otrio
+package com.example.otrio.media
 
 import android.content.Context
 import android.media.MediaPlayer
+import com.example.otrio.R
+
 // MediaPlayerManager uses the Singleton pattern to instantiate one global MediaPlayerManager
 object MediaPlayerManager {
     private var mediaPlayer: MediaPlayer? = null
