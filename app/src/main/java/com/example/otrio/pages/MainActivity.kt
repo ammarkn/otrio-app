@@ -1,4 +1,8 @@
-package com.example.otrio
+/*
+File contributors: Katie Arsenault
+ */
+
+package com.example.otrio.pages
 
 import android.app.ActivityManager
 import android.content.Context
@@ -9,7 +13,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import com.example.otrio.*
 import com.example.otrio.databinding.ActivityMainBinding
+import com.example.otrio.media.MediaPlayerManager
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {

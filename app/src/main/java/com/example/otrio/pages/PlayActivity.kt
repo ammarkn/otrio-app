@@ -1,10 +1,20 @@
-package com.example.otrio
+/*
+File contributors: Katie Arsenault
+ */
+
+package com.example.otrio.pages
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.otrio.*
+import com.example.otrio.boardactivities.FourPlayerBoardActivity
+import com.example.otrio.boardactivities.SinglePlayerBoardActivity
+import com.example.otrio.boardactivities.ThreePlayerBoardActivity
+import com.example.otrio.boardactivities.TwoPlayerBoardActivity
+import com.example.otrio.media.MediaPlayerManager
 
 class PlayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
