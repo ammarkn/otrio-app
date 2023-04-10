@@ -183,11 +183,14 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val button22 = findViewById<RelativeLayout>(R.id.grid22)
         button22.setOnClickListener(this)
 
+        //initialize the deployment of information of first player
         picked = findViewById(R.id.currentPiece) //will be used to show the update of current picked piece
 
         turnplayer = findViewById(R.id.playerTurn)
         turnplayer.text = getString(R.string.player1)
 
+        //Author: Yijiu
+        //initialize pieces pick for first user
         for (i in 0..2){
             for (pieceLeft in playerList[0].getPieces()[i]){
 
@@ -425,7 +428,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun handleButtonPegClick() {
+    private fun handleButtonPegClick() {//Author: Yijiu
         if(playerList[turn%2].getPieces()[0].size > 0){
             pieceType = Piece(playerList[turn%2].getColor(),"Peg")
             picked.text = pieceType.getColor() + " " + pieceType.getSize()
@@ -461,7 +464,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @SuppressLint("DiscouragedApi")
-    private fun showNextPlayerInfo() {
+    private fun showNextPlayerInfo() {//Author: Yijiu
         turn ++
         val nextPlayer = playerList[turn%2]
         turnplayer.text = nextPlayer.getName()
@@ -494,7 +497,7 @@ class TwoPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     @SuppressLint("DiscouragedApi")
-    private fun resetPieceButton(){
+    private fun resetPieceButton(){//Author: Yijiu
         for (i in 0..2){//reset all buttons to invisible to avid incorrect deployment
             val pegId = resources.getIdentifier("peg$i","id",packageName)
             val mediumId = resources.getIdentifier("medium$i","id",packageName)

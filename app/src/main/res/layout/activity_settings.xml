@@ -49,6 +49,7 @@ File contributors: Katie Arsenault
             app:track="@drawable/switch_track"
             />
 
+        <!--dark model Auther: Yijiu-->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/mode_switch"
             android:layout_width="wrap_content"
