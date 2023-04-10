@@ -1,5 +1,10 @@
-package com.example.otrio
+/*
+File contributors: Katie Arsenault
+ */
 
+package com.example.otrio.classes
+
+//the pieces on the gameboard require functions to track their position, size and color
 class Piece(private val color: String, private val size: String) {
     private var xPos: Int? = null
     private var yPos: Int? = null
@@ -16,13 +21,4 @@ class Piece(private val color: String, private val size: String) {
     fun getSize(): String {
         return size
     }
-
-    fun getxPos() : Int? {
-        return xPos
-    }
-
-    fun getyPos() : Int? {
-        return yPos
-    }
-
 }

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+File contributors: Katie Arsenault
+-->
+
+<!--
 The images for the gameboard all have an ImageContrastCheck suppression as the color of the images is ideal for our game,
 as we require lighter images to show a piece has yet to be played
 -->
@@ -10,7 +14,7 @@ as we require lighter images to show a piece has yet to be played
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background_color"
-    tools:context=".TwoPlayerBoardActivity">
+    tools:context=".boardactivities.TwoPlayerBoardActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -436,6 +440,7 @@ as we require lighter images to show a piece has yet to be played
 
     </RelativeLayout>
 
+    <!--pieces pick Auther: Yijiu-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="124dp"
