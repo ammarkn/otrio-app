@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault
+File contributors: Katie Arsenault, Ammar Khan
  */
 
 package com.example.otrio.pages
@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var greetingText : TextView
 
+    //pre-defined array of random greetings for randomGreeting() method
     private var greetings = arrayOf(
         "Welcome! It's always a pleasure to see you.",
         "Hope you're doing well and ready to conquer the day!",

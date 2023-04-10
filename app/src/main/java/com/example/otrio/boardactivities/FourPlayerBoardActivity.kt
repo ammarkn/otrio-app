@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault
+File contributors: Katie Arsenault, Ammar Khan
  */
 
 package com.example.otrio.boardactivities
@@ -330,7 +330,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         player1Wins.text = "Player 1: $redWins Wins"
         player2Wins.text = "Player 2: $blueWins Wins"
         player3Wins.text = "Player 3: $yellowWins Wins"
-        player4Wins.text = "Player 3: $greenWins Wins"
+        player4Wins.text = "Player 4: $greenWins Wins"
         dialog.show()
     }
 
@@ -362,29 +362,26 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.grid21 -> handleLayoutOnClick("circle21",2,1)
             R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
         }
-
+        // checks if a win condition is satisfied to increment the win counter of the respective player
+        // calls the resetBoard() function to show the alert dialog
         if(sameSpaceWin() || samePieceWin() || ascendingDescendingWin()) {
             if(sameSpaceWin()) {
                 if(redWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
                     println("Red win by same space win")
                     redWins++
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Blue win by same space win", Toast.LENGTH_SHORT).show()
                     println("Blue win by same space win")
                     blueWins++
                     resetBoard()
                 }
                 else if(yellowWin) {
-//                    Toast.makeText(this, "Yellow win by same space win", Toast.LENGTH_SHORT).show()
                     println("Yellow win by same space win")
                     yellowWins++
                     resetBoard()
                 }
                 else if(greenWin) {
-//                    Toast.makeText(this, "Green win by same space win", Toast.LENGTH_SHORT).show()
                     println("Green win by same space win")
                     greenWins++
                     resetBoard()
@@ -392,25 +389,21 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
             else if(samePieceWin()) {
                 if(redWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
                     println("Red win by same piece win")
                     redWins++
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Blue win by same space win", Toast.LENGTH_SHORT).show()
                     println("Blue win by same piece win")
                     blueWins++
                     resetBoard()
                 }
                 else if(yellowWin) {
-//                    Toast.makeText(this, "Yellow win by same space win", Toast.LENGTH_SHORT).show()
                     println("Yellow win by same piece win")
                     yellowWins++
                     resetBoard()
                 }
                 else if(greenWin) {
-//                    Toast.makeText(this, "Green win by same space win", Toast.LENGTH_SHORT).show()
                     println("Green win by same piece win")
                     greenWins++
                     resetBoard()
@@ -418,25 +411,21 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
             else if(ascendingDescendingWin()) {
                 if(redWin) {
-//                    Toast.makeText(this, "Red win by ascending descending win", Toast.LENGTH_SHORT).show()
                     println("Red win by ascending descending win")
                     redWins++
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Blue win by ascending descending win", Toast.LENGTH_SHORT).show()
                     println("Blue win by ascending descending win")
                     blueWins++
                     resetBoard()
                 }
                 else if(yellowWin) {
-//                    Toast.makeText(this, "Yellow win by ascending descending win", Toast.LENGTH_SHORT).show()
                     println("Yellow win by ascending descending win")
                     yellowWins++
                     resetBoard()
                 }
                 else if(greenWin) {
-//                    Toast.makeText(this, "Green win by ascending descending win", Toast.LENGTH_SHORT).show()
                     println("Green win by ascending descending win")
                     greenWins++
                     resetBoard()
@@ -444,7 +433,6 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         else if(draw()) {
-//                    Toast.makeText(this, "Draw", Toast.LENGTH_SHORT).show()
             println("Draw")
             resetBoard()
         }

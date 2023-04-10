@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault
+File contributors: Katie Arsenault, Ammar Khan
  */
 
 package com.example.otrio.pages
@@ -7,6 +7,8 @@ package com.example.otrio.pages
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
@@ -19,6 +21,8 @@ class SettingsActivity: AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var modeSwitch: SwitchCompat
+
+    private lateinit var resetWinsButton : Button
 
     private var isDarkMode = false
 
@@ -74,6 +78,20 @@ class SettingsActivity: AppCompatActivity() {
             } else { // use the color style in values\colors.xml when turn off the dark mode
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
+        }
+
+        resetWinsButton = findViewById(R.id.resetWins)
+        // Set a listener for the Reset Wins Button to reset all win data
+        resetWinsButton.setOnClickListener {
+            sharedPreferences = getSharedPreferences("Wins", Context.MODE_PRIVATE)
+            val wins = sharedPreferences.edit() //edit the local data stored in wins
+            wins.putInt("redWins", 0)
+            wins.putInt("blueWins", 0)
+            wins.putInt("yellowWins", 0)
+            wins.putInt("greenWins", 0)
+            wins.apply()
+
+            Toast.makeText(this, "Player wins reset.", Toast.LENGTH_SHORT).show()
         }
     }
 
