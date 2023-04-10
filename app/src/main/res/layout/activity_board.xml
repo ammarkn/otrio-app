@@ -450,6 +450,7 @@ as we require lighter images to show a piece has yet to be played
 
     </RelativeLayout>
 
+    <!--pieces pick Auther: Yijiu-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="124dp"

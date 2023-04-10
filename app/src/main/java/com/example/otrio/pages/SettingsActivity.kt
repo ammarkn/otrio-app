@@ -61,6 +61,7 @@ class SettingsActivity: AppCompatActivity() {
         //the associate knowledge learned from URL: https://www.geeksforgeeks.org/how-to-implement-dark-night-mode-in-android-app/
         modeSwitch = findViewById(R.id.mode_switch)
 
+        //Dark model Author: Yijiu
         //get the dark mode setting changed by user
         isDarkMode = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
         //change the switch turn on/off base on the user setting
