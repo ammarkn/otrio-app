@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault, Ammar Khan
+File contributors: Katie Arsenault, Deniz Kaptan, Ammar Khan
  */
 
 package com.example.otrio.boardactivities
@@ -230,6 +230,8 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         player2Wins.text = "Player 2: $blueWins Wins"
         dialog.show()
     }
+
+    // User can go back on back button click
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
@@ -300,6 +302,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // Upon resuming the activity, check if the music should be played
     override fun onResume() {
         super.onResume()
         val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
@@ -311,6 +314,7 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onStop() {
         super.onStop()
+        // Stop the media player when the activity is no longer visible
         if (!MainActivity.isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }

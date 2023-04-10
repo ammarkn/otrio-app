@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault, Ammar Khan
+File contributors: Katie Arsenault, Deniz Kaptan, Ammar Khan
  */
 
 package com.example.otrio.pages
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //if music is turned back on, it should play for the user on the home page
+    // Upon resuming the activity, check if the music should be played
     override fun onResume() {
         super.onResume()
         val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
@@ -117,7 +117,9 @@ class MainActivity : AppCompatActivity() {
     }
     //determine if activity is still visible by user to determine if music should continue to play
     // Logic inspired by: https://stackoverflow.com/questions/43378841/check-if-app-is-running-in-foreground-or-background-with-sync-adapter
+    // Use a a companion object to make the method "static"
     companion object {
+       // Used to check if app is in foreground to disable music
         fun isAppInForeground(context: Context): Boolean {
             val activityManager =
                 context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager

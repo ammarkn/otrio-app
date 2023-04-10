@@ -1,3 +1,8 @@
+/*
+File contributors: Deniz Kaptan
+ */
+
+
 package com.example.otrio.classes
 
 //the players should have a name, color, and pieces associated with them to play the game

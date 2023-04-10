@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault
+File contributors: Katie Arsenault, Deniz Kaptan
  */
 
 package com.example.otrio.classes

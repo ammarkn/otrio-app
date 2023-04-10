@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault, Ammar Khan
+File contributors: Katie Arsenault, Deniz Kaptan, Ammar Khan
  */
 
 package com.example.otrio.pages
@@ -95,7 +95,7 @@ class SettingsActivity: AppCompatActivity() {
         }
     }
 
-    //if music is turned back on, it should play for the user on the current page
+    // Upon resuming the activity, check if the music should be played
     override fun onResume() {
         super.onResume()
         val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
@@ -108,12 +108,13 @@ class SettingsActivity: AppCompatActivity() {
     //if activity is no longer visible, turn off music
     override fun onStop() {
         super.onStop()
+        // Stop the media player when the activity is no longer visible
         if (!MainActivity.isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }
     }
 
-    //user should be able to return to previous page
+    // User can go back on back button click
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
