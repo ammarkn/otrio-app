@@ -1,3 +1,8 @@
+/*
+File contributors: Deniz Kaptan
+ */
+
+
 package com.example.otrio.classes
 
 class Player(private val name: String, private val color: String, private var wins: Int, private val pieces: ArrayList<ArrayList<Piece>>) {

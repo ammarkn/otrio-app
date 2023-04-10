@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault
+File contributors: Katie Arsenault, Deniz Kaptan
  */
 
 package com.example.otrio.pages
@@ -24,6 +24,7 @@ class InstructionsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
+    // Upon resuming the activity, check if the music should be played
     override fun onResume() {
         super.onResume()
         val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
@@ -35,11 +36,13 @@ class InstructionsActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
+        // Stop the media player when the activity is no longer visible
         if (!MainActivity.isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }
     }
 
+    // User can go back on back button click
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true

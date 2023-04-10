@@ -1,25 +1,0 @@
-
-Tkotlin:S1172ò"5Use "_" instead of this unused lambda parameter "id".(ş–¸f8®Êíëô0
-2kotlin:S1128	"Remove this unused import.(İ¦ùÂ
-2kotlin:S1128"Remove this unused import.(¿ˆĞ³
-<kotlin:S125å"Remove this commented out code.(¡œï¼øÿÿÿÿ
-<kotlin:S125ë"Remove this commented out code.(¾Øãâøÿÿÿÿ
-Ckotlin:S125ó"Remove this commented out code.(¡œï¼øÿÿÿÿ8ÊÊíëô0
-Ckotlin:S125ù"Remove this commented out code.(¾Øãâøÿÿÿÿ8ËÊíëô0
-Ckotlin:S125"Remove this commented out code.(µš­ıùÿÿÿÿ8ËÊíëô0
->kotlin:S125‡"Remove this commented out code.(õÖşÙ8ËÊíëô0
-=kotlin:S125"Remove this commented out code.(İ•À)8ÌÊíëô0
-kkotlin:S1871Ì"MThis branch's code block is the same as the block for the branch on line 706.(ô›“êÿÿÿÿÿ
-kkotlin:S1871ö"MThis branch's code block is the same as the block for the branch on line 748.(ô›“êÿÿÿÿÿ
-kkotlin:S1871õ"MThis branch's code block is the same as the block for the branch on line 619.(ô›“êÿÿÿÿÿ
-kkotlin:S1871¡"MThis branch's code block is the same as the block for the branch on line 663.(ô›“êÿÿÿÿÿ
-pkotlin:S3776Î"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(öÍæšøÿÿÿÿ
-wkotlin:S3776–"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(€û”Ëøÿÿÿÿ8ÙÊíëô0
-pkotlin:S3776·"RRefactor this method to reduce its Cognitive Complexity from 58 to the 15 allowed.(şæÌØıÿÿÿÿ
-kkotlin:S3776®"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(±…•·
-kkotlin:S3776Ó"RRefactor this method to reduce its Cognitive Complexity from 88 to the 15 allowed.(òÿš·
-rkotlin:S117–"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(€û”Ëøÿÿÿÿ8äÊíëô0
-rkotlin:S117–"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(€û”Ëøÿÿÿÿ8äÊíëô0
-Lkotlin:S1066Â".Merge this "if" statement with the nested one.(œïëÜùÿÿÿÿ
-Gkotlin:S1066»".Merge this "if" statement with the nested one.(°İ·Ó
-Lkotlin:S1066Ã".Merge this "if" statement with the nested one.(Ã©£±øÿÿÿÿ

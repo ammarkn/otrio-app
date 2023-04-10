@@ -1,3 +1,7 @@
+/*
+File contributors: Deniz Kaptan
+ */
+
 package com.example.otrio.media
 
 import android.content.Context
