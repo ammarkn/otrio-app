@@ -26,10 +26,10 @@ class SettingsActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        //user should be able to return to previous page
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         // Set toolbar as action bar
         setSupportActionBar(toolbar)
-
         // Enable the back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -75,6 +75,8 @@ class SettingsActivity: AppCompatActivity() {
             }
         }
     }
+
+    //if music is turned back on, it should play for the user on the current page
     override fun onResume() {
         super.onResume()
         val sharedPreferences = getSharedPreferences("Music", Context.MODE_PRIVATE)
@@ -84,12 +86,15 @@ class SettingsActivity: AppCompatActivity() {
         }
     }
 
+    //if activity is no longer visible, turn off music
     override fun onStop() {
         super.onStop()
         if (!MainActivity.isAppInForeground(this)) {
             MediaPlayerManager.stopMediaPlayer()
         }
     }
+
+    //user should be able to return to previous page
     override fun onSupportNavigateUp(): Boolean {
         finish()
         return true
