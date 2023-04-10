@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-File contributors: Katie Arsenault
+File contributors: Katie Arsenault, Ammar Khan
 -->
 
 <!--
@@ -32,18 +32,6 @@ as we require lighter images to show a piece has yet to be played
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.Otrio.PopupOverlay" />
     </com.google.android.material.appbar.AppBarLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/wins"
-            android:id="@+id/open_dialog"
-            android:layout_centerHorizontal="true"
-            android:textSize="25sp" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -301,7 +289,7 @@ as we require lighter images to show a piece has yet to be played
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="107dp"
+        android:layout_height="100dp"
         android:layout_weight="1">
 
         <RelativeLayout
@@ -444,12 +432,15 @@ as we require lighter images to show a piece has yet to be played
             android:layout_width="226dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/playerTurn"
+            android:gravity="end"
+            android:layout_marginEnd="5dp"
             android:text="@string/picked"
             android:textColor="@color/text_color"
             android:textSize="25sp" />
 
     </RelativeLayout>
 
+    <!--pieces pick Auther: Yijiu-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="124dp"
@@ -594,34 +585,37 @@ as we require lighter images to show a piece has yet to be played
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_marginStart="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_button_text"/>
+        
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/homeButton"
+            android:text="@string/reset_button_text"/>
+
+        <Button
+            android:id="@+id/open_dialog"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/resetButton"
+            android:text="@string/wins_button_text"/>
 
         <Button
             android:id="@+id/instructionsButton"
-            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="341dp"
-            android:contentDescription="@string/instructions"
-            app:icon="@android:drawable/ic_dialog_info"
-            tools:ignore="RelativeOverlap" />
-
-        <Button
-            android:id="@+id/resetButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/reset" />
-
-        <Button
-            android:id="@+id/homeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            android:text="@string/home"
-            tools:ignore="RelativeOverlap" />
+            android:layout_toEndOf="@id/open_dialog"
+            android:text="@string/help_button_text"/>
     </RelativeLayout>
 
 

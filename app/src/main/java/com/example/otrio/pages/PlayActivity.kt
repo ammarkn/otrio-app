@@ -21,10 +21,10 @@ class PlayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
+        //user should be able to return to previous page
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         // Set toolbar as action bar
         setSupportActionBar(toolbar)
-
         // Enable the back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -34,18 +34,22 @@ class PlayActivity : AppCompatActivity() {
         val threePlayerButton = findViewById<Button>(R.id.go_to_three_player)
         val fourPlayerButton = findViewById<Button>(R.id.go_to_four_player)
 
+        //user should be able to access single player game mode
         singlePlayerButton.setOnClickListener {
             val intent = Intent(this, SinglePlayerBoardActivity::class.java)
             startActivity(intent)
         }
+        //user should be able to access two player game mode
         twoPlayerButton.setOnClickListener {
             val intent = Intent(this, TwoPlayerBoardActivity::class.java)
             startActivity(intent)
         }
+        //user should be able to access three player game mode
         threePlayerButton.setOnClickListener {
             val intent = Intent(this, ThreePlayerBoardActivity::class.java)
             startActivity(intent)
         }
+        //user should be able to access four player game mode
         fourPlayerButton.setOnClickListener {
             val intent = Intent(this, FourPlayerBoardActivity::class.java)
             startActivity(intent)
@@ -62,6 +66,7 @@ class PlayActivity : AppCompatActivity() {
         }
     }
 
+    //if activity is no longer visible, turn off music
     override fun onStop() {
         super.onStop()
         // Stop the media player when the activity is no longer visible

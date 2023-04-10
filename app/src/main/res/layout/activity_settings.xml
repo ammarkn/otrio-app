@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-File contributors: Katie Arsenault, Deniz Kaptan
+File contributors: Katie Arsenault, Ammar Khan, Deniz Kaptan
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -49,6 +49,7 @@ File contributors: Katie Arsenault, Deniz Kaptan
             app:track="@drawable/switch_track"
             />
 
+        <!--dark model Auther: Yijiu-->
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/mode_switch"
             android:layout_width="wrap_content"
@@ -64,6 +65,13 @@ File contributors: Katie Arsenault, Deniz Kaptan
             android:thumb="@drawable/switch_thumb"
             app:track="@drawable/switch_track"
             />
+
+        <Button
+            android:id="@+id/resetWins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/resetWinsSetting" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault, Deniz Kaptan
+File contributors: Katie Arsenault, Deniz Kaptan, Ammar Khan
  */
 
 package com.example.otrio.boardactivities
@@ -239,6 +239,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
         // Used to show the update of picked piece
         picked = findViewById(R.id.currentPiece)
+        picked.text = ""
 
         // Track the current player's turn (starts with player1)
         turnplayer = findViewById(R.id.playerTurn)
@@ -311,17 +312,16 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             R.id.grid21 -> handleLayoutOnClick("circle21",2,1)
             R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
         }
-
+        // checks if a win condition is satisfied to increment the win counter of the respective player
+        // calls the resetBoard() function to show the alert dialog
         if(sameSpaceWin() || samePieceWin() || ascendingDescendingWin()) {
             if(sameSpaceWin()) {
                 if(redWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
                     println("Red win by same space win")
                     redWins++
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
                     println("Blue win by same space win")
                     blueWins++
                     resetBoard()
@@ -334,13 +334,11 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
             else if(samePieceWin()) {
                 if(redWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
                     println("Red win by same piece win")
                     redWins++
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Red win by same space win", Toast.LENGTH_SHORT).show()
                     println("Blue win by same piece win")
                     blueWins++
                     resetBoard()
@@ -353,13 +351,11 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
             else if(ascendingDescendingWin()) {
                 if(redWin) {
-//                    Toast.makeText(this, "Red win by ascending descending win", Toast.LENGTH_SHORT).show()
                     println("Red win by ascending descending win")
                     redWins++
                     resetBoard()
                 }
                 else if(blueWin) {
-//                    Toast.makeText(this, "Blue win by ascending descending win", Toast.LENGTH_SHORT).show()
                     println("Blue win by ascending descending win")
                     blueWins++
                     resetBoard()
@@ -372,7 +368,6 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         else if(draw()) {
-//                    Toast.makeText(this, "Draw", Toast.LENGTH_SHORT).show()
             println("Draw")
             resetBoard()
         }
@@ -532,7 +527,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             // Set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn % 3].getColor(),"Peg")
             // Set text for piece to be displayed on screen
-            picked.text = pieceType.getColor() + " " + pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             // Confirm a piece has been picked
             pickedPiece = true
         }
@@ -545,7 +540,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleButtonMediumClick() {
         if(playerList[turn % 3].getPieces()[1].size > 0){
             pieceType = Piece(playerList[turn % 3].getColor(),"Medium")
-            picked.text = pieceType.getColor() + " "+ pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
         else{
@@ -557,7 +552,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleButtonBigClick() {
         if(playerList[turn % 3].getPieces()[2].size > 0){
             pieceType = Piece(playerList[turn % 3].getColor(),"Big")
-            picked.text = pieceType.getColor()+ " " + pieceType.getSize()
+            picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
         else{
@@ -569,7 +564,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private fun showNextPlayerInfo() {
         turn++
         val nextPlayer = playerList[turn % 3]
-        turnplayer.text = nextPlayer.getName()
+        turnplayer.text = nextPlayer.getName().replaceFirstChar {it.uppercase()}
 
         for (i in 0..2){
             for (pieceLeft in nextPlayer.getPieces()[i]){// set all pieces which player still have to visible

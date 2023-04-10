@@ -15,10 +15,10 @@ class InstructionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_instructions)
 
+        //user should be able to return to previous page
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         // Set toolbar as action bar
         setSupportActionBar(toolbar)
-
         // Enable the back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -34,6 +34,7 @@ class InstructionsActivity : AppCompatActivity() {
         }
     }
 
+    //if activity is no longer visible, turn off music
     override fun onStop() {
         super.onStop()
         // Stop the media player when the activity is no longer visible

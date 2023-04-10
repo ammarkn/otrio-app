@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-File contributors: Katie Arsenault, Deniz Kaptan
+File contributors: Katie Arsenault, Ammar Khan, Deniz Kaptan
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -37,33 +37,42 @@ File contributors: Katie Arsenault, Deniz Kaptan
         >
 
         <Button
+            android:layout_marginTop="200dp"
             android:id="@+id/go_to_single_player"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:text="@string/single_player" />
+            android:layout_marginBottom="50dp"
+            android:drawableLeft="@drawable/baseline_person_24"
+            android:text="@string/single_player"
+            tools:ignore="RtlHardcoded" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/two_player"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/go_to_two_player"
+            android:drawableLeft="@drawable/baseline_group_24"
+            tools:ignore="RtlHardcoded"
             />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/three_player"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/go_to_three_player"
+            android:drawableLeft="@drawable/baseline_group_24"
+            tools:ignore="RtlHardcoded"
             />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/four_player"
             android:id="@+id/go_to_four_player"
+            android:drawableLeft="@drawable/baseline_group_24"
+            tools:ignore="RtlHardcoded"
             />
     </LinearLayout>
 
