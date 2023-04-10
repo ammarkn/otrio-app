@@ -255,13 +255,6 @@ File contributors: Katie Arsenault
             android:layout_marginBottom="15dp"
             android:contentDescription="@string/additional_buttons_on_the_bottom_of_the_page_image"
             />
-        <Button
-            android:id="@+id/go_to_gameplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_marginBottom="70dp"
-            android:text="@string/play_game" />
 
 
     </LinearLayout>

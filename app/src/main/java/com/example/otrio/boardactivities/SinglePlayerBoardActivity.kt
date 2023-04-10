@@ -388,7 +388,6 @@ class SinglePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         while(randomChosen){
             val randPieceSize = Random.nextInt(0, 3)
             val randLocation = Random.nextInt(0, 9)
-            //val randomValues = List(10) { Random.nextInt(0, 100) }
             // prints new sequence every time
             println(randPieceSize)
             //check the piece size

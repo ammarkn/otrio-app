@@ -4,6 +4,7 @@ File contributors: Katie Arsenault
 
 package com.example.otrio.classes
 
+//the pieces on the gameboard require functions to track their position, size and color
 class Piece(private val color: String, private val size: String) {
     private var xPos: Int? = null
     private var yPos: Int? = null
