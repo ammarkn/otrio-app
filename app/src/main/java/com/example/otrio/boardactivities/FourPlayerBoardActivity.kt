@@ -30,13 +30,13 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var pickedPiece = false
 
-    //variables to store each player's number of wins
+    //the program should be able to tack which user won the game
     private var redWin = false
     private var blueWin = false
     private var yellowWin = false
     private var greenWin = false
 
-    //variables to save each player's win count
+    //The number of wins for each user should be counted
     private var redWins = 0
     private var blueWins = 0
     private var yellowWins = 0
@@ -44,13 +44,13 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var winData: SharedPreferences
 
-    //arraylists to store each player's pieces
+    //The player pieces should be stored in lists to track which have been played
     private var redPieces = ArrayList<ArrayList<Piece>>()
     private var bluePieces = ArrayList<ArrayList<Piece>>()
     private var yellowPieces = ArrayList<ArrayList<Piece>>()
     private var greenPieces = ArrayList<ArrayList<Piece>>()
 
-    //create pieces for each player (3 of each size)
+    //players should be able to play with 3 different sized pieces
     private var redPeg0 = Piece("red", "Peg")
     private var redMedium0 = Piece("red", "Medium")
     private var redBig0 = Piece("red", "Big")
@@ -99,19 +99,19 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private var greenMedium2 = Piece("green", "Medium")
     private var greenBig2 = Piece("green", "Big")
 
-    //set turn count to 0
+    //The turn should be tracked to determine who plays next
     private var turn = 0
 
-    //the piece current picked up by one of players
+    //the piece current picked up by one of players so that it can be added to the board
     private var pieceType = Piece("null","null")
 
-    //create the players, storing their pieces and win counts
+    //players should be created, storing their pieces and win counts
     private var p1 = Player("player1", "red", redWins, redPieces)
     private var p2 = Player("player2", "blue", blueWins, bluePieces)
     private var p3 = Player("player3", "yellow", yellowWins, yellowPieces)
     private var p4 = Player("player4", "green", greenWins, greenPieces)
 
-    //arraylist to save all players in
+    //players should all be stored in one place
     private var playerList = ArrayList<Player>()
 
     //text view variables that will track player info on the board
@@ -119,7 +119,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var picked: TextView
 
 
-    //create arraylist for each piece size+color
+    //arraylists for each piece+color combo should be created to track which pieces are left
     private var redPeg = ArrayList<Piece>()
     private var redMedium = ArrayList<Piece>()
     private var redBig = ArrayList<Piece>()
@@ -141,6 +141,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
+        //users should be able to back out of the game
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         // Set toolbar as action bar
         setSupportActionBar(toolbar)
@@ -149,14 +150,14 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        //create button to return to home page
+        //users should be able to return to the home page
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        //create button to access instructions
+        //users should be able to review the instructions
         val instructionsButtonClick = findViewById<Button>(R.id.instructionsButton)
         instructionsButtonClick.setOnClickListener {
             val intent = Intent(this, InstructionsActivity::class.java)
@@ -164,19 +165,19 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
-        //create wins button to display wins
+        //users should be able to view the wins each player has
         val openDialogButton = findViewById<Button>(R.id.open_dialog)
         openDialogButton.setOnClickListener {
             showCustomDialog()
         }
 
-        //create button to reset board
+        //users should be able to reset the board as needed
         val resetButtonClick = findViewById<Button>(R.id.resetButton)
         resetButtonClick.setOnClickListener {
             resetBoard()
         }
 
-        //add each individual pieces to arraylists of pieces of same size+color
+        //individual pieces should be added to piece lists to track them as they get played
         redPeg.add(redPeg0)
         redPeg.add(redPeg1)
         redPeg.add(redPeg2)
@@ -225,7 +226,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         greenBig.add(greenBig1)
         greenBig.add(greenBig2)
 
-        //add each size piece arraylist to arraylists for each color
+        //piece sizes should be added to the lists of colors to track the pieces in the game
         redPieces.add(redPeg)
         redPieces.add(redMedium)
         redPieces.add(redBig)
@@ -242,13 +243,13 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         greenPieces.add(greenMedium)
         greenPieces.add(greenBig)
 
-        //add players to player list
+        //all players should be added to a list to easily filter through turns
         playerList.add(p1)
         playerList.add(p2)
         playerList.add(p3)
         playerList.add(p4)
 
-        //set onclick listeners for player pieces
+        //users selecting a piece should trigger functions to process their selection
         val buttonPeg = findViewById<RelativeLayout>(R.id.peg)
         buttonPeg.setOnClickListener(this)
 
@@ -258,7 +259,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val buttonBig = findViewById<RelativeLayout>(R.id.big)
         buttonBig.setOnClickListener(this)
 
-        //set onclick listeners for each board piece
+        //users selecting a board location should trigger functions to process their selection
         val button00 = findViewById<RelativeLayout>(R.id.grid00)
         button00.setOnClickListener(this)
         val button01 = findViewById<RelativeLayout>(R.id.grid01)
@@ -280,11 +281,11 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val button22 = findViewById<RelativeLayout>(R.id.grid22)
         button22.setOnClickListener(this)
 
-        //will be used to show the update of current picked piece
+        //current piece picked will need to be tracked so we can add it to the board
         picked = findViewById(R.id.currentPiece)
         picked.text = ""
 
-        //set variable to track current player's turn on the board
+        //current player needs to be tracked to display their pieces
         turnplayer = findViewById(R.id.playerTurn)
         turnplayer.text = getString(R.string.player1)
 
@@ -307,6 +308,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+        //user wins should be tracked, which will start at zero
         winData = getSharedPreferences("Wins", Context.MODE_PRIVATE)
         redWins = winData.getInt("redWins", 0)
         blueWins = winData.getInt("blueWins", 0)
@@ -314,6 +316,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         greenWins = winData.getInt("greenWins", 0)
     }
 
+    //users should be able to view the wins through the wins button
     @SuppressLint("SetTextI18n")
     private fun showCustomDialog() {
         val dialog = Dialog(this)
@@ -341,24 +344,23 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        //call functions for onclick
         when (v.id) {
-            //if user clicks a piece to play
+            //if user clicks a piece to play, we should handle that click accordingly
             R.id.peg -> handleButtonPegClick()
             R.id.medium -> handleButtonMediumClick()
             R.id.big -> handleButtonBigClick()
 
-            //if user clicks top row on board
+            //if user clicks top row on board, we should send the location to the function to handle the play
             R.id.grid00 -> handleLayoutOnClick("circle00",0,0)
             R.id.grid01 -> handleLayoutOnClick("circle01",0,1)
             R.id.grid02 -> handleLayoutOnClick("circle02",0,2)
 
-            //if user clicks middle row on board
+            //if user clicks middle row on board, we should send the location to the function to handle the play
             R.id.grid10 -> handleLayoutOnClick("circle10",1,0)
             R.id.grid11 -> handleLayoutOnClick("circle11",1,1)
             R.id.grid12 -> handleLayoutOnClick("circle12",1,2)
 
-            //if user clicks bottom row on board
+            //if user clicks bottom row on board, we should send the location to the function to handle the play
             R.id.grid20 -> handleLayoutOnClick("circle20",2,0)
             R.id.grid21 -> handleLayoutOnClick("circle21",2,1)
             R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
@@ -450,6 +452,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //stop music if it shouldn't be playing
     override fun onStop() {
         super.onStop()
         // Stop the media player when the activity is no longer visible
@@ -458,6 +461,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //if user clicks a spot on the board, we should check if we can play their piece there and place it
     @SuppressLint("DiscouragedApi")
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int, Ypos : Int) {
 
@@ -474,101 +478,78 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 imageView.setImageResource(newTag)
                 imageView.tag = pieceType.getColor()+pieceType.getSize().lowercase()//re-set the name for check late
                 var removedElement = Piece("null","null")
-                //if piece color is red
+                //get size and color of piece and remove it so user can't play it again
                 if(pieceType.getColor()==("red")){
-                    //get size of piece
                     when(pieceType.getSize()){
-                        //remove red peg from list
                         "Peg"->{
                             removedElement = redPeg.removeAt(redPeg.size - 1)
                             playCount++
                         }
-                        //remove red medium from list
                         "Medium"->{
                             removedElement = redMedium.removeAt(redMedium.size - 1)
                             playCount++
                         }
-                        //remove red big from list
                         "Big"->{
                             removedElement = redBig.removeAt(redBig.size - 1)
                             playCount++
                         }
-                        //set removed piece to error, to handle error cases
                         else->{
                             removedElement = Piece("error","error")
                         }
                     }
                 }
-                //if piece color is blue
                 else if(pieceType.getColor()==("blue")){
-                    //get size of piece
                     when(pieceType.getSize()){
-                        //remove blue peg from list
                         "Peg"->{
                             removedElement = bluePeg.removeAt(bluePeg.size - 1)
                             playCount++
                         }
-                        //remove blue medium from list
                         "Medium"->{
                             removedElement = blueMedium.removeAt(blueMedium.size - 1)
                             playCount++
                         }
-                        //remove blue big from list
                         "Big"->{
                             removedElement = blueBig.removeAt(blueBig.size - 1)
                             playCount++
                         }
-                        //set removed piece to error, to handle error cases
                         else->{
                             removedElement = Piece("error","error")
                         }
                     }
                 }
-                //if piece color is yellow
                 else if(pieceType.getColor()==("yellow")){
-                    //get size of piece
                     when(pieceType.getSize()){
-                        //remove yellow peg from list
                         "Peg"->{
                             removedElement = yellowPeg.removeAt(yellowPeg.size - 1)
                             playCount++
                         }
-                        //remove yellow medium from list
                         "Medium"->{
                             removedElement = yellowMedium.removeAt(yellowMedium.size - 1)
                             playCount++
                         }
-                        //remove yellow big from list
                         "Big"->{
                             removedElement = yellowBig.removeAt(yellowBig.size - 1)
                             playCount++
                         }
-                        //set removed piece to error, to handle error cases
                         else->{
                             removedElement = Piece("error","error")
                         }
                     }
                 }
-                //if piece color is green
                 else if(pieceType.getColor()==("green")){
-                    //get size of piece
                     when(pieceType.getSize()){
-                        //remove green peg from list
                         "Peg"->{
                             removedElement = greenPeg.removeAt(greenPeg.size - 1)
                             playCount++
                         }
-                        //remove green medium from list
                         "Medium"->{
                             removedElement = greenMedium.removeAt(greenMedium.size - 1)
                             playCount++
                         }
-                        //remove green big from list
                         "Big"->{
                             removedElement = greenBig.removeAt(greenBig.size - 1)
                             playCount++
                         }
-                        //set removed piece to error, to handle error cases
                         else->{
                             removedElement = Piece("error","error")
                         }
@@ -585,9 +566,10 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //resets board if user wins or user clicks reset button
     private fun resetBoard() {
         val builder = AlertDialog.Builder(this)
-
+        //if user chooses to reset board
         if(!blueWin && !redWin && !yellowWin && !greenWin) {
             builder.setTitle("Reset Board")
             builder.setMessage("Are you sure you want to reset the board? This action cannot be undone.")
@@ -606,6 +588,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 dialog.dismiss()
             }
         }
+        //if a player wins the game
         else {
             if(redWin) {
                 builder.setTitle("Winner: Player 1 (Red)")
@@ -645,7 +628,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         alert.show()
     }
 
-
+    //check if user can play a peg piece, and if so, set it as the selected piece
     @SuppressLint("SetTextI18n")
     private fun handleButtonPegClick() {
         //check if user has any peg pieces left
@@ -654,7 +637,6 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             pieceType = Piece(playerList[turn%4].getColor(),"Peg")
             //set text for piece to be displayed on screen
             picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
-            //confirm a piece has been picked
             pickedPiece = true
         }
         else{
@@ -662,6 +644,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //check if user can play a medium piece, and if so, set it as the selected piece
     @SuppressLint("SetTextI18n")
     private fun handleButtonMediumClick() {
         //check if user has any medium pieces left
@@ -670,7 +653,6 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             pieceType = Piece(playerList[turn%4].getColor(),"Medium")
             //set text for piece to be displayed on screen
             picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
-            //confirm a piece has been picked
             pickedPiece = true
         }
         else{
@@ -678,6 +660,7 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //check if user can play a big piece, and if so, set it as the selected piece
     @SuppressLint("SetTextI18n")
     private fun handleButtonBigClick() {
         //check if user has any big pieces left
@@ -686,7 +669,6 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             pieceType = Piece(playerList[turn%4].getColor(),"Big")
             //set text for piece to be displayed on screen
             picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
-            //confirm a piece has been picked
             pickedPiece = true
         }
         else{
@@ -696,16 +678,15 @@ class FourPlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     @SuppressLint("DiscouragedApi")
     private fun showNextPlayerInfo() {
-        //increase number of turns played
         turn ++
         //use modulus to determine next player based on number of turns
         val nextPlayer = playerList[turn%4]
 
-        //get new player's name, and number of pieces
         turnplayer.text = nextPlayer.getName().replaceFirstChar {it.uppercase()}
 
         for (i in 0..2){
-            for (pieceLeft in nextPlayer.getPieces()[i]){// set all pieces which player still have to visible
+            // set all pieces which player still have to visible
+            for (pieceLeft in nextPlayer.getPieces()[i]){
                 val pieceSize = pieceLeft.getSize().lowercase()
                 val pieceColor = nextPlayer.getColor().lowercase()
 
