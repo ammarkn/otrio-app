@@ -252,7 +252,7 @@ File contributors: Katie Arsenault, Deniz Kaptan
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/additional_buttons"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="70dp"
             android:contentDescription="@string/additional_buttons_on_the_bottom_of_the_page_image"
             />
 
