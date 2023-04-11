@@ -17,6 +17,6 @@ Pixel 2 API 30
 - feature about dark/light mode, the associate knowledge learned from 
 > URL: https://www.geeksforgeeks.org/how-to-implement-dark-night-mode-in-android-app/
 
-- the image used in chess board and piece pick
+- the image used in game board and piece pick
 > created by Group 12
 
