@@ -1,5 +1,5 @@
 /*
-File contributors: Katie Arsenault, Deniz Kaptan, Ammar Khan
+File contributors: Katie Arsenault, Deniz Kaptan, Ammar Khan, Yijiu Zhao
  */
 
 package com.example.otrio.pages
