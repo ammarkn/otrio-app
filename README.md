@@ -14,4 +14,9 @@ Pixel 2 API 30
 - Game board setup in Android Studio adapted from [YouTube] (How to Make a Tic Tac Toe Game in Android - Part 1 - THE LAYOUT - Android Studio) Tutorial 
 > URL: https://www.youtube.com/watch?v=apDL78MFR3o
 
+- feature about dark/light mode, the associate knowledge learned from 
+> URL: https://www.geeksforgeeks.org/how-to-implement-dark-night-mode-in-android-app/
+
+- the image used in chess board and piece pick
+> created by Group 12
 
