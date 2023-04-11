@@ -1,5 +1,7 @@
 # CSCI 4176 Group 12 Project
 
+Emulator used:
+Pixel 2 API 30
 
 **Citations:**
 

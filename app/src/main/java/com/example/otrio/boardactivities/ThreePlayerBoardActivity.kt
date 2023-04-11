@@ -27,24 +27,24 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     private var pickedPiece = false
 
-    // Used to check if player has won
+    //the program should be able to tack which user won the game
     private var redWin = false
     private var blueWin = false
     private var yellowWin = false
 
-    // Stores each player's number of wins
+    //The number of wins for each user should be counted
     private var redWins = 0
     private var blueWins = 0
     private var yellowWins = 0
 
     private lateinit var winData: SharedPreferences
 
-    // ArrayLists to store each players pieces
+    //The player pieces should be stored in lists to track which have been played
     private var redPieces = ArrayList<ArrayList<Piece>>()
     private var bluePieces = ArrayList<ArrayList<Piece>>()
     private var yellowPieces = ArrayList<ArrayList<Piece>>()
 
-    // Create pieces for each player (3 of each size)
+    //players should be able to play with 3 different sized pieces
     private var redPeg0 = Piece("red", "Peg")
     private var redMedium0 = Piece("Red", "Medium")
     private var redBig0 = Piece("red", "Big")
@@ -81,23 +81,24 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     private var yellowMedium2 = Piece("yellow", "Medium")
     private var yellowBig2 = Piece("yellow", "Big")
 
-    // Turn starts at 0
+    //The turn should be tracked to determine who plays next
     private var turn = 0
-    // Init piece to be null at first
-    private var pieceType = Piece("null","null") //the piece current picked up by one of players
+    //the piece current picked up by one of players so that it can be added to the board, initialized as null to start
+    private var pieceType = Piece("null","null")
 
-    // Create the players with their name, color, wins, and pieces
+    //players should be created, storing their pieces and win counts
     private var p1 = Player("player1", "red", redWins, redPieces)
     private var p2 = Player("player2", "blue", blueWins, bluePieces)
     private var p3 = Player("player3", "yellow", yellowWins, yellowPieces)
 
-    // Save all the players in one ArrayList
+    //players should all be stored in one place
     private var playerList = ArrayList<Player>()
 
     // TextView variables that will track player info on the board
     private lateinit var turnplayer: TextView
     private lateinit var picked: TextView
 
+    //arraylists for each piece+color combo should be created to track which pieces are left
     private var redPeg = ArrayList<Piece>()
     private var redMedium = ArrayList<Piece>()
     private var redBig = ArrayList<Piece>()
@@ -115,6 +116,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board)
 
+        //users should be able to back out of the game
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         // Set toolbar as action bar
         setSupportActionBar(toolbar)
@@ -123,14 +125,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        // Button to return user to homepage
+        //users should be able to return to the home page
         val homeButtonClick = findViewById<Button>(R.id.homeButton)
         homeButtonClick.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        // Button to take user to instructions page
+        //users should be able to review the instructions
         val instructionsButtonClick = findViewById<Button>(R.id.instructionsButton)
         instructionsButtonClick.setOnClickListener {
             val intent = Intent(this, InstructionsActivity::class.java)
@@ -138,19 +140,19 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(intent)
         }
 
-        // Button to show the user the number of wins
+        //users should be able to view the wins each player has
         val openDialogButton = findViewById<Button>(R.id.open_dialog)
         openDialogButton.setOnClickListener {
             showCustomDialog()
         }
 
-        // Button to reset the board
+        //users should be able to reset the board as needed
         val resetButtonClick = findViewById<Button>(R.id.resetButton)
         resetButtonClick.setOnClickListener {
             resetBoard()
         }
 
-        // Add each individual pieces to arraylists of pieces of same size+color
+        //individual pieces should be added to piece lists to track them as they get played
         redPeg.add(redPeg0)
         redPeg.add(redPeg1)
         redPeg.add(redPeg2)
@@ -187,7 +189,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         yellowBig.add(yellowBig1)
         yellowBig.add(yellowBig2)
 
-        // Add each size piece arraylist to arraylists for each color
+        //piece sizes should be added to the lists of colors to track the pieces in the game
         redPieces.add(redPeg)
         redPieces.add(redMedium)
         redPieces.add(redBig)
@@ -200,12 +202,12 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         yellowPieces.add(yellowMedium)
         yellowPieces.add(yellowBig)
 
-        // Add players to playerList
+        //all players should be added to a list to easily filter through turns
         playerList.add(p1)
         playerList.add(p2)
         playerList.add(p3)
 
-        //when users pick up a piece
+        //users selecting a piece should trigger functions to process their selection
         val buttonPeg = findViewById<RelativeLayout>(R.id.peg)
         buttonPeg.setOnClickListener(this)
 
@@ -215,7 +217,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val buttonBig = findViewById<RelativeLayout>(R.id.big)
         buttonBig.setOnClickListener(this)
 
-        // Set onClick listeners for each board pieces
+        //users selecting a board location should trigger functions to process their selection
         val button00 = findViewById<RelativeLayout>(R.id.grid00)
         button00.setOnClickListener(this)
         val button01 = findViewById<RelativeLayout>(R.id.grid01)
@@ -237,11 +239,11 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         val button22 = findViewById<RelativeLayout>(R.id.grid22)
         button22.setOnClickListener(this)
 
-        // Used to show the update of picked piece
+        //current piece picked will need to be tracked so we can add it to the board
         picked = findViewById(R.id.currentPiece)
         picked.text = ""
 
-        // Track the current player's turn (starts with player1)
+        //current player needs to be tracked to display their pieces
         turnplayer = findViewById(R.id.playerTurn)
         turnplayer.text = getString(R.string.player1)
 
@@ -264,12 +266,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+        //user wins should be tracked, which will start at zero
         winData = getSharedPreferences("Wins", Context.MODE_PRIVATE)
         redWins = winData.getInt("redWins", 0)
         blueWins = winData.getInt("blueWins", 0)
         yellowWins = winData.getInt("yellowWins", 0)
     }
 
+    //users should be able to view the wins through the wins button
     @SuppressLint("SetTextI18n")
     private fun showCustomDialog() {
         val dialog = Dialog(this)
@@ -295,19 +299,22 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            //R.id.peg -> buttonPegSelected = true
+            //if user clicks a piece to play, we should handle that click accordingly
             R.id.peg -> handleButtonPegClick()
             R.id.medium -> handleButtonMediumClick()
             R.id.big -> handleButtonBigClick()
 
+            //if user clicks top row on board, we should send the location to the function to handle the play
             R.id.grid00 -> handleLayoutOnClick("circle00",0,0)
             R.id.grid01 -> handleLayoutOnClick("circle01",0,1)
             R.id.grid02 -> handleLayoutOnClick("circle02",0,2)
 
+            //if user clicks middle row on board, we should send the location to the function to handle the play
             R.id.grid10 -> handleLayoutOnClick("circle10",1,0)
             R.id.grid11 -> handleLayoutOnClick("circle11",1,1)
             R.id.grid12 -> handleLayoutOnClick("circle12",1,2)
 
+            //if user clicks bottom row on board, we should send the location to the function to handle the play
             R.id.grid20 -> handleLayoutOnClick("circle20",2,0)
             R.id.grid21 -> handleLayoutOnClick("circle21",2,1)
             R.id.grid22 -> handleLayoutOnClick("circle22",2,2)
@@ -383,6 +390,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //stop music if it shouldn't be playing
     override fun onStop() {
         super.onStop()
         // Stop the media player when the activity is no longer visible
@@ -391,6 +399,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //if user clicks a spot on the board, we should check if we can play their piece there and place it
     @SuppressLint("DiscouragedApi")
     private fun handleLayoutOnClick(vIdstart : String, Xpos : Int, Ypos : Int) {
 
@@ -407,6 +416,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 imageView.setImageResource(newTag)
                 imageView.tag = pieceType.getColor()+pieceType.getSize().lowercase()//re-set the name for check late
                 var removedElement = Piece("null","null")
+                //get size and color of piece and remove it so user can't play it again
                 if(pieceType.getColor()==("red")){
                     removedElement = when(pieceType.getSize()){
                         "Peg"->{
@@ -466,9 +476,10 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //resets board if user wins or user clicks reset button
     private fun resetBoard() {
         val builder = AlertDialog.Builder(this)
-
+        //if user chooses to reset board
         if(!blueWin && !redWin && !yellowWin) {
             builder.setTitle("Reset Board")
             builder.setMessage("Are you sure you want to reset the board? This action cannot be undone.")
@@ -486,6 +497,7 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
                 dialog.dismiss()
             }
         }
+        //if a player wins the game
         else {
             if(redWin) {
                 builder.setTitle("Winner: Player 1 (Red)")
@@ -521,14 +533,15 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         alert.show()
     }
 
+    //check if user can play a peg piece, and if so, set it as the selected piece
     @SuppressLint("SetTextI18n")
     private fun handleButtonPegClick() {
+        //check if user has any peg pieces left
         if(playerList[turn % 3].getPieces()[0].size > 0){
             // Set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn % 3].getColor(),"Peg")
             // Set text for piece to be displayed on screen
             picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
-            // Confirm a piece has been picked
             pickedPiece = true
         }
         else{
@@ -536,10 +549,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //check if user can play a medium piece, and if so, set it as the selected piece
     @SuppressLint("SetTextI18n")
     private fun handleButtonMediumClick() {
+        //check if user has any medium pieces left
         if(playerList[turn % 3].getPieces()[1].size > 0){
+            //set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn % 3].getColor(),"Medium")
+            //set text for piece to be displayed on screen
             picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
@@ -548,10 +565,14 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //check if user can play a big piece, and if so, set it as the selected piece
     @SuppressLint("SetTextI18n")
     private fun handleButtonBigClick() {
+        //check if user has any big pieces left
         if(playerList[turn % 3].getPieces()[2].size > 0){
+            //set piece type if they have remaining piece to play
             pieceType = Piece(playerList[turn % 3].getColor(),"Big")
+            //set text for piece to be displayed on screen
             picked.text = pieceType.getColor().replaceFirstChar {it.uppercase()} + " " + pieceType.getSize()
             pickedPiece = true
         }
@@ -563,11 +584,13 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
     @SuppressLint("DiscouragedApi")
     private fun showNextPlayerInfo() {
         turn++
+        //use modulus to determine next player based on number of turns
         val nextPlayer = playerList[turn % 3]
         turnplayer.text = nextPlayer.getName().replaceFirstChar {it.uppercase()}
 
         for (i in 0..2){
-            for (pieceLeft in nextPlayer.getPieces()[i]){// set all pieces which player still have to visible
+            // set all pieces which player still have to visible
+            for (pieceLeft in nextPlayer.getPieces()[i]){
                 val pieceSize = pieceLeft.getSize().lowercase()
                 val pieceColor = nextPlayer.getColor().lowercase()
 
@@ -586,22 +609,24 @@ class ThreePlayerBoardActivity : AppCompatActivity(), View.OnClickListener {
         picked.text = ""
     }
 
-    private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
-        println("Place piece")
-        piece.setPiecePosition(xPos, yPos)
 
+    private fun placePiece(piece: Piece, xPos: Int, yPos: Int) {
+        //set the piece location for win conditions
+        piece.setPiecePosition(xPos, yPos)
+        //call function to show next player's information
         resetPieceButton()
         showNextPlayerInfo()
     }
 
     @SuppressLint("DiscouragedApi")
     private fun resetPieceButton(){
-        for (i in 0..2){//reset all buttons to invisible to avid incorrect deployment
+        //reset all buttons to invisible to avid incorrect deployment
+        for (i in 0..2){
             val pegId = resources.getIdentifier("peg$i","id",packageName)
             val mediumId = resources.getIdentifier("medium$i","id",packageName)
             val bigId = resources.getIdentifier("big$i","id",packageName)
-            //get id of the buttons which is a relativelayout component and reset them to invisible
 
+            //get id of the buttons which is a relativelayout component and reset them to invisible
             val piecePegButton = findViewById<ImageView>(pegId)
             val pieceMediumButton = findViewById<ImageView>(mediumId)
             val pieceBigButton = findViewById<ImageView>(bigId)
