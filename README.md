@@ -10,3 +10,8 @@ Pixel 2 API 30
 
 - Music from GameSounds.xyz - Royalty free or public domain game music and sounds
 > URL: https://gamesounds.xyz/OpenBundle/Background%20Music%20and%20Loops/Elevator%20Music%20%28loop%29.mp3
+
+- Game board setup in Android Studio adapted from [YouTube] (How to Make a Tic Tac Toe Game in Android - Part 1 - THE LAYOUT - Android Studio) Tutorial 
+> URL: https://www.youtube.com/watch?v=apDL78MFR3o
+
+
