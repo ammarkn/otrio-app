@@ -17,6 +17,15 @@ Pixel 2 API 30
 - feature about dark/light mode, the associate knowledge learned from 
 > URL: https://www.geeksforgeeks.org/how-to-implement-dark-night-mode-in-android-app/
 
+- Logic for determining if app is in foreground
+> URL: https://stackoverflow.com/questions/43378841/check-if-app-is-running-in-foreground-or-background-with-sync-adapter
+
+- Video for creating a custom switch button
+> URL: https://www.youtube.com/watch?v=NIU-jZfJNnY&t=1s&ab_channel=CodingZest
+
+- Android Docs
+> URL: https://developer.android.com/guide/components/activities/intro-activities
+
 - the image used in game board and piece pick
 > created by Group 12
 
