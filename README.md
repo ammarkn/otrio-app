@@ -3,6 +3,8 @@
 Emulator used:
 Pixel 2 API 30
 
+Link to video on Youtube (another option to watch the video): https://youtu.be/ogymRtla-cE 
+
 **Citations:**
 
 - The idea for the game, the rules of the game, the basis for the instructions, and the basis for the design of the game 
