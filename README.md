@@ -22,6 +22,9 @@ Link to video on Youtube (another option to watch the video): https://youtu.be/o
 - Logic for determining if app is in foreground
 > URL: https://stackoverflow.com/questions/43378841/check-if-app-is-running-in-foreground-or-background-with-sync-adapter
 
+- MediaPlayer Singleton
+> URL: https://github.com/loveandlike/MyOnlineVideo/blob/master/videoplayer/src/main/java/com/example/videoplayer/full/list/MediaPlayerManager.java
+
 - Video for creating a custom switch button
 > URL: https://www.youtube.com/watch?v=NIU-jZfJNnY&t=1s&ab_channel=CodingZest
 
