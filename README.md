@@ -1,5 +1,7 @@
 # Otrio for Android
 
+Link to download .apk file for Android: https://web.cs.dal.ca/~ammar/projects/otrio-app.apk
+
 **Citations:**
 
 - The idea for the game, the rules of the game, the basis for the instructions, and the basis for the design of the game 
